@@ -287,6 +287,11 @@ p:last-child { margin-bottom: 0; }
   color: #fff;
 }
 
+/* Keep donate link text white when active (overrides the aria-current color rule) */
+.nav-links .nav-donate[aria-current="page"] {
+  color: #fff;
+}
+
 /* Hamburger toggle — hidden on desktop */
 .nav-toggle {
   display: none;
