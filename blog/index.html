@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Friends of the Anoka County Library</title>
+  <meta name="description" content="News and updates from the Friends of the Anoka County Library.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
+        <img src="/images/logo.svg" alt="" width="150" height="40" aria-hidden="true">
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+      </button>
+      <ul id="nav-menu" class="nav-links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About &amp; Contact</a></li>
+        <li><a href="/events.html">Events</a></li>
+        <li><a href="/membership.html">Membership</a></li>
+        <li><a href="/volunteer.html">Volunteer</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="section">
+      <div class="container">
+        <h1>Blog</h1>
+
+        <!-- BUILD:BLOG_INDEX_START -->
+        <p>No posts yet. Check back soon!</p>
+        <!-- BUILD:BLOG_INDEX_END -->
+
+        <!-- BUILD:BLOG_PAGINATION_START -->
+        <!-- BUILD:BLOG_PAGINATION_END -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div><strong>Friends of the Anoka County Library</strong></div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About &amp; Contact</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/membership.html">Membership</a></li>
+          <li><a href="/volunteer.html">Volunteer</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/donate.html">Donate</a></li>
+        </ul>
+      </nav>
+      <div>
+        <ul class="social-links">
+          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copyright">
+      &copy; <span id="footer-year"></span> Friends of the Anoka County Library. All rights reserved.
+    </p>
+  </footer>
+
+  <script defer src="/main.js"></script>
+</body>
+</html>
