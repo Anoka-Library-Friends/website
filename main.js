@@ -17,7 +17,7 @@
 
     // Close menu when a nav link is clicked (mobile UX)
     menu.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') {
+      if (e.target.closest('a')) {
         toggle.setAttribute('aria-expanded', 'false');
         menu.classList.remove('is-open');
       }
