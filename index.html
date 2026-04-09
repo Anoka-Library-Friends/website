@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends of the Anoka County Library</title>
+  <meta name="description" content="Supporting the Anoka County Library through advocacy, fundraising, and community programming.">
+  <link rel="stylesheet" href="/style.css">
+  <!-- Google Fonts: update family names once brand is confirmed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Skip to main content (screen readers + keyboard) -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
+        <img src="/images/logo.svg" alt="" width="150" height="40" aria-hidden="true">
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+      </button>
+      <ul id="nav-menu" class="nav-links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About &amp; Contact</a></li>
+        <li><a href="/events.html">Events</a></li>
+        <li><a href="/membership.html">Membership</a></li>
+        <li><a href="/volunteer.html">Volunteer</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Supporting Our Library, Strengthening Our Community</h1>
+        <p><!-- CONTENT: mission statement — supplied by organization --></p>
+        <a href="/membership.html" class="btn btn--primary">Become a Member</a>
+      </div>
+    </section>
+
+    <!-- Featured Events (placeholder — update after content delivered) -->
+    <section class="section">
+      <div class="container">
+        <h2>Upcoming Events</h2>
+        <p>Check our <a href="/events.html">events calendar</a> for upcoming programs, book sales, and community gatherings.</p>
+      </div>
+    </section>
+
+    <!-- Recent Blog Posts — injected by build script -->
+    <section class="section section--alt">
+      <div class="container">
+        <h2>Latest News</h2>
+        <!-- BUILD:RECENT_POSTS_START -->
+        <p>No posts yet. Check back soon.</p>
+        <!-- BUILD:RECENT_POSTS_END -->
+        <p style="margin-top: 1.5rem;"><a href="/blog/" class="btn btn--outline">All Posts</a></p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container" style="text-align: center;">
+        <h2>Join the Friends Today</h2>
+        <p>Your membership directly funds library programs, equipment, and events for our entire community.</p>
+        <a href="/membership.html" class="btn btn--primary" style="margin-right: 1rem;">View Membership Tiers</a>
+        <a href="/donate.html" class="btn btn--donate">Make a Donation</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Friends of the Anoka County Library</strong>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+          <!-- CONTENT: address, phone — supplied by organization -->
+        </p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About &amp; Contact</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/membership.html">Membership</a></li>
+          <li><a href="/volunteer.html">Volunteer</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/donate.html">Donate</a></li>
+        </ul>
+      </nav>
+      <div>
+        <strong>Follow Us</strong>
+        <ul class="social-links" style="margin-top: 0.5rem;">
+          <!-- CONTENT: social links — supplied by organization -->
+          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copyright">
+      &copy; <span id="footer-year"></span> Friends of the Anoka County Library. All rights reserved.
+    </p>
+  </footer>
+
+  <script defer src="/main.js"></script>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+  <!-- Netlify Identity: handles redirect from GitHub OAuth after CMS login -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function (user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function () {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
+  <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+</body>
+</html>
