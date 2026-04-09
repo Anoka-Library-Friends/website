@@ -183,3 +183,424 @@ p:last-child { margin-bottom: 0; }
   background: var(--color-primary);
   color: #fff;
 }
+
+/* =============================================
+   SKIP TO MAIN (accessibility)
+   ============================================= */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-weight: 600;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.1s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+}
+
+.nav-logo img {
+  height: 40px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  list-style: none;
+}
+
+.nav-links a {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-text);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius);
+}
+
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Donate link styled as button */
+.nav-links .nav-donate {
+  background: var(--color-accent);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius);
+}
+
+.nav-links .nav-donate:hover {
+  background: var(--color-accent-dark);
+  color: #fff;
+}
+
+/* Hamburger toggle — hidden on desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-sm);
+  border-radius: var(--radius);
+}
+
+.hamburger-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Hamburger open state */
+.nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 767px) {
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.site-footer {
+  background: var(--color-primary-dark);
+  color: rgba(255, 255, 255, 0.85);
+  padding-block: var(--space-xl);
+}
+
+.site-footer a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.site-footer a:hover {
+  color: #fff;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-lg);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+}
+
+.footer-copyright {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+  padding-top: var(--space-lg);
+  margin-top: var(--space-lg);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: var(--font-size-sm);
+}
+
+.footer-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-md);
+  list-style: none;
+}
+
+@media (max-width: 767px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================
+   CARDS (blog posts, volunteer opportunities)
+   ============================================= */
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  background: var(--color-bg);
+}
+
+.card__date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.card__title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.card__excerpt {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+/* =============================================
+   HERO SECTION
+   ============================================= */
+.hero {
+  background: var(--color-primary);
+  color: #fff;
+  padding-block: var(--space-xl);
+  text-align: center;
+}
+
+.hero h1 {
+  color: #fff;
+  margin-bottom: var(--space-md);
+}
+
+.hero p {
+  font-size: var(--font-size-lg);
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: var(--space-lg);
+  opacity: 0.9;
+}
+
+/* =============================================
+   MEMBERSHIP TIERS
+   ============================================= */
+.tier-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-lg);
+}
+
+.tier {
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.tier--featured {
+  border-color: var(--color-primary);
+}
+
+.tier__price {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-block: var(--space-sm);
+}
+
+.tier__benefits {
+  list-style: none;
+  margin-bottom: var(--space-lg);
+  text-align: left;
+}
+
+.tier__benefits li::before {
+  content: "✓ ";
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* =============================================
+   BLOG
+   ============================================= */
+.blog-post__header {
+  margin-bottom: var(--space-lg);
+}
+
+.blog-post__meta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.blog-post__body {
+  max-width: 720px;
+}
+
+.blog-post__body h2 { margin-top: var(--space-lg); }
+.blog-post__body h3 { margin-top: var(--space-md); }
+.blog-post__body ul,
+.blog-post__body ol {
+  margin-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.pagination {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  padding-top: var(--space-lg);
+}
+
+.pagination a,
+.pagination span {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.pagination .current {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* =============================================
+   GOOGLE CALENDAR EMBED
+   ============================================= */
+.calendar-wrapper {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.calendar-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* =============================================
+   VOLUNTEER OPPORTUNITIES
+   ============================================= */
+.volunteer-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.volunteer-card__meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.volunteer-card__cta {
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .volunteer-card {
+    flex-direction: column;
+  }
+}
+
+/* =============================================
+   DONATE PAGE
+   ============================================= */
+.donate-hero {
+  background: var(--color-accent);
+  color: #fff;
+  text-align: center;
+  padding-block: var(--space-xl);
+}
+
+.donate-hero h1 {
+  color: #fff;
+}
+
+.donate-cta {
+  text-align: center;
+  padding-block: var(--space-xl);
+}
+
+.donate-cta .btn {
+  font-size: var(--font-size-lg);
+  padding: 1rem 2.5rem;
+}
+
+/* =============================================
+   REDUCED MOTION
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
