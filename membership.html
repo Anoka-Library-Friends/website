@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership — Friends of the Anoka County Library</title>
+  <meta name="description" content="Join the Friends of the Anoka County Library. View membership tiers and benefits.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
+        <img src="/images/logo.svg" alt="" width="150" height="40" aria-hidden="true">
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+      </button>
+      <ul id="nav-menu" class="nav-links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About &amp; Contact</a></li>
+        <li><a href="/events.html">Events</a></li>
+        <li><a href="/membership.html">Membership</a></li>
+        <li><a href="/volunteer.html">Volunteer</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <section class="section">
+      <div class="container">
+        <h1>Membership</h1>
+        <p>Your membership directly supports library programs, events, and equipment for the entire community. Join today — all memberships are renewed annually.</p>
+        <p>To join, send an email to <a href="mailto:membership@example.org?subject=New%20Membership"><!-- CONTENT: membership email --></a> with your name, address, and chosen tier. We'll send you a confirmation and invoice.</p>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <h2>Membership Tiers</h2>
+        <!--
+          CONTENT: tier names, prices, and benefits supplied by organization.
+          Duplicate or remove .tier blocks as needed.
+        -->
+        <div class="tier-list">
+
+          <div class="tier">
+            <h3>Individual</h3>
+            <p class="tier__price">$10 / year</p>
+            <ul class="tier__benefits">
+              <li><!-- CONTENT: benefit 1 --></li>
+              <li><!-- CONTENT: benefit 2 --></li>
+              <li>Access to members-only events</li>
+            </ul>
+            <a href="mailto:membership@example.org?subject=Individual%20Membership" class="btn btn--outline">Join — $10</a>
+          </div>
+
+          <div class="tier tier--featured">
+            <h3>Family</h3>
+            <p class="tier__price">$25 / year</p>
+            <ul class="tier__benefits">
+              <li>Everything in Individual</li>
+              <li><!-- CONTENT: family benefit --></li>
+            </ul>
+            <a href="mailto:membership@example.org?subject=Family%20Membership" class="btn btn--primary">Join — $25</a>
+          </div>
+
+          <div class="tier">
+            <h3>Sustaining</h3>
+            <p class="tier__price">$100 / year</p>
+            <ul class="tier__benefits">
+              <li>Everything in Family</li>
+              <li>Recognition in annual report</li>
+              <li><!-- CONTENT: sustaining benefit --></li>
+            </ul>
+            <a href="mailto:membership@example.org?subject=Sustaining%20Membership" class="btn btn--outline">Join — $100</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Friends of the Anoka County Library</strong>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+          <!-- CONTENT: address — supplied by organization -->
+        </p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About &amp; Contact</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/membership.html">Membership</a></li>
+          <li><a href="/volunteer.html">Volunteer</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/donate.html">Donate</a></li>
+        </ul>
+      </nav>
+      <div>
+        <strong>Follow Us</strong>
+        <ul class="social-links" style="margin-top: 0.5rem;">
+          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copyright">
+      &copy; <span id="footer-year"></span> Friends of the Anoka County Library. All rights reserved.
+    </p>
+  </footer>
+
+  <script defer src="/main.js"></script>
+
+</body>
+</html>

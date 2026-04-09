@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events — Friends of the Anoka County Library</title>
+  <meta name="description" content="Browse upcoming and past events for the Friends of the Anoka County Library.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
+        <img src="/images/logo.svg" alt="" width="150" height="40" aria-hidden="true">
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+      </button>
+      <ul id="nav-menu" class="nav-links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About &amp; Contact</a></li>
+        <li><a href="/events.html">Events</a></li>
+        <li><a href="/membership.html">Membership</a></li>
+        <li><a href="/volunteer.html">Volunteer</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="section">
+      <div class="container">
+        <h1>Events</h1>
+        <p>All events are managed through our Google Calendar. Add, edit, or cancel events directly in Google Calendar — changes appear on this page immediately.</p>
+
+        <!--
+          SETUP: Replace the src below with the embed URL from your Google Calendar.
+          In Google Calendar: Settings (gear icon) → Settings for my calendars
+          → [calendar name] → Integrate calendar → Copy "Embed code" iframe src.
+          The calendar must be set to Public visibility.
+        -->
+        <div class="calendar-wrapper" style="margin-top: 2rem;" role="region" aria-label="Library events calendar">
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=REPLACE_WITH_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FChicago"
+            title="Friends of the Anoka County Library Events Calendar"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Friends of the Anoka County Library</strong>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+          <!-- CONTENT: address — supplied by organization -->
+        </p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About &amp; Contact</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/membership.html">Membership</a></li>
+          <li><a href="/volunteer.html">Volunteer</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/donate.html">Donate</a></li>
+        </ul>
+      </nav>
+      <div>
+        <strong>Follow Us</strong>
+        <ul class="social-links" style="margin-top: 0.5rem;">
+          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copyright">
+      &copy; <span id="footer-year"></span> Friends of the Anoka County Library. All rights reserved.
+    </p>
+  </footer>
+
+  <script defer src="/main.js"></script>
+
+</body>
+</html>
