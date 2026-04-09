@@ -1,6 +1,8 @@
 {
   "name": "anoka-library-friends",
   "version": "1.0.0",
+  "description": "Static website for Friends of the Anoka County Library nonprofit",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "build": "node scripts/build.js",
