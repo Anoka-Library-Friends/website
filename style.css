@@ -1,3 +1,18 @@
+/*
+  IMAGE GUIDANCE (for content editors):
+  - Use WebP format for all photos. Include a JPEG fallback using <picture>:
+
+    <picture>
+      <source srcset="images/photo.webp" type="image/webp">
+      <img src="images/photo.jpg" alt="Description" width="800" height="533" loading="lazy">
+    </picture>
+
+  - Always specify width and height attributes to prevent layout shift (CLS).
+  - Use loading="lazy" on all images below the fold.
+  - Compress images before uploading: target < 200KB per image.
+  - Recommended tool: squoosh.app (free, browser-based)
+*/
+
 /* =============================================
    DESIGN TOKENS
    Replace --color-primary, --color-accent, and
