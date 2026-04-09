@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { marked } from 'marked';
 import {
   parsePost,
   sortByDateDesc,
@@ -212,7 +213,7 @@ function volunteerCardHtml({ data }) {
       <div>
         <p class="volunteer-card__meta">${dateRange}${location}${needed}</p>
         <h2 style="margin-bottom: 0.5rem;">${data.title || 'Untitled Opportunity'}</h2>
-        <p>${data.description || ''}</p>
+        ${data.description ? marked.parse(data.description) : ''}
         ${data.contact ? `<p style="font-size:0.875rem; color: var(--color-text-muted);">Contact: ${data.contact}</p>` : ''}
       </div>
       ${data.signup_url ? `
