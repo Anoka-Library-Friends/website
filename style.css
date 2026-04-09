@@ -260,7 +260,7 @@ p:last-child { margin-bottom: 0; }
   font-weight: 600;
   text-decoration: none;
   color: var(--color-text);
-  padding: var(--space-xs) var(--space-sm);
+  padding: 0.625rem var(--space-sm);  /* 10px vertical → ~46px tap target (WCAG 2.5.5) */
   border-radius: var(--radius);
 }
 
@@ -390,13 +390,23 @@ p:last-child { margin-bottom: 0; }
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: 0;
+}
+
+.footer-nav a {
+  display: block;
+  padding-block: 0.625rem;  /* 10px vertical → ~44px tap target (WCAG 2.5.5) */
 }
 
 .social-links {
   display: flex;
   gap: var(--space-md);
   list-style: none;
+}
+
+.social-links a {
+  display: block;
+  padding-block: 0.625rem;  /* 10px vertical → ~44px tap target (WCAG 2.5.5) */
 }
 
 @media (max-width: 767px) {
