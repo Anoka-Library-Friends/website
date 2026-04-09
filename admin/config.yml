@@ -1,0 +1,114 @@
+# Decap CMS configuration
+# Docs: https://decapcms.org/docs/configuration-options/
+
+backend:
+  name: git-gateway
+  branch: main  # Branch to update (change to your default branch name if different)
+
+# Where uploaded images are stored
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# CMS collections
+collections:
+
+  # ── Blog Posts ─────────────────────────────────────────────────────────────
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "blog"
+    create: true
+    slug: "{{slug}}"           # Filename derived from title; editors can override
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        required: true
+
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        required: true
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: true
+
+      - label: "Excerpt"
+        name: "excerpt"
+        widget: "string"
+        hint: "Short summary shown on the blog index and home page. 150 characters max."
+        pattern: ['^.{0,150}$', "Excerpt must be 150 characters or fewer"]
+        required: false
+
+      - label: "Featured Image (og:image)"
+        name: "og:image"
+        widget: "image"
+        required: false
+        hint: "Optional. Used for social media link previews."
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        required: true
+
+  # ── Volunteer Opportunities ────────────────────────────────────────────────
+  - name: "volunteers"
+    label: "Volunteer Opportunities"
+    folder: "_volunteers"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        required: true
+
+      - label: "Start Date"
+        name: "start_date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: true
+
+      - label: "End Date"
+        name: "end_date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: true
+
+      - label: "Description"
+        name: "description"
+        widget: "markdown"
+        required: true
+
+      - label: "Sign-Up URL"
+        name: "signup_url"
+        widget: "string"
+        hint: "External link to Google Form, SignUpGenius, or similar sign-up service."
+        required: true
+
+      - label: "Location"
+        name: "location"
+        widget: "string"
+        required: false
+
+      - label: "Volunteers Needed"
+        name: "volunteers_needed"
+        widget: "number"
+        required: false
+        hint: "Leave blank if no specific number."
+
+      - label: "Contact Person"
+        name: "contact"
+        widget: "string"
+        required: false
+        hint: "Name or email of the volunteer coordinator."
