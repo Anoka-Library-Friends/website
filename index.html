@@ -113,20 +113,14 @@
   </footer>
 
   <script defer src="/main.js"></script>
-  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
-  <!-- Netlify Identity: handles redirect from GitHub OAuth after CMS login -->
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', function (user) {
-        if (!user) {
-          window.netlifyIdentity.on('login', function () {
-            document.location.href = '/admin/';
-          });
-        }
-      });
-    }
-  </script>
-  <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!--
+    Netlify Identity: loaded on root page only so CMS editors are redirected to
+    /admin/ after GitHub OAuth login. Loaded synchronously (no defer) so the
+    redirect handler runs immediately after the widget initialises.
+    DO NOT copy these two script tags to other pages.
+  -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="/netlify-identity.js"></script>
 
 </body>
 </html>
