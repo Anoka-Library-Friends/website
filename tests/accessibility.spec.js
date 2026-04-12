@@ -41,22 +41,22 @@ for (const { name, url } of PAGES) {
 
 test('body text color token is dark enough for WCAG AA', async ({ page }) => {
   await page.goto('/');
-  // --color-text is #1c1c1c — verify it's applied to body
+  // --color-text is #422E1D — verify it's applied to body
   const bodyColor = await page.evaluate(() =>
     getComputedStyle(document.body).color
   );
-  // rgb(28, 28, 28) = #1c1c1c, contrast ~18:1 on white
-  expect(bodyColor).toBe('rgb(28, 28, 28)');
+  // rgb(66, 46, 29) = #422E1D, contrast >7:1 on --color-bg (#F8F5EC)
+  expect(bodyColor).toBe('rgb(66, 46, 29)');
 });
 
 test('muted text color token is readable on white background', async ({ page }) => {
   await page.goto('/blog/');
-  // .card__date uses --color-text-muted (#555555), contrast ~7.4:1 on white
+  // .card__date uses --color-text-muted (#6B5B4F), contrast ≥4.5:1 on --color-bg
   const mutedColor = await page.evaluate(() => {
     const el = document.querySelector('.card__date');
     return el ? getComputedStyle(el).color : null;
   });
-  expect(mutedColor).toBe('rgb(85, 85, 85)');
+  expect(mutedColor).toBe('rgb(107, 91, 79)');
 });
 
 // ── Focus visibility ──────────────────────────────────────────────────────────

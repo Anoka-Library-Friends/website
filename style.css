@@ -19,21 +19,32 @@
    font-family values once brand assets are provided.
    ============================================= */
 :root {
-  /* Colors — placeholders until brand guide delivered */
-  --color-primary:      #1a5276;  /* Deep blue */
-  --color-primary-dark: #154360;
-  --color-accent:       #c0392b;  /* Red — Donate button */
-  --color-accent-dark:  #a93226;
-  --color-bg:           #ffffff;
-  --color-bg-alt:       #f4f6f7;
-  --color-text:         #1c1c1c;
-  --color-text-muted:   #555555;
-  --color-border:       #dde0e3;
-  --color-focus:        #f39c12;  /* High-contrast focus ring */
+  /* ── Brand Colors (Anoka County Color Standards) ────────────────────────── */
+  --color-primary:      #904026;  /* AC Burnt Umber — buttons, headings, accents */
+  --color-primary-dark: #6A3222;  /* Liver — hover states on primary */
+  --color-secondary:    #5B5248;  /* Umber — body text, secondary elements */
+  --color-warm:         #BC5839;  /* Crayola Brown — warm accents */
+  --color-teal:         #415C5C;  /* Feldgrau — nav, card section bands */
+  --color-teal-light:   #6F9191;  /* Desaturated Cyan — teal hover states */
+  --color-seaweed:      #137C7D;  /* Metallic Seaweed — links, icon accents */
+  --color-sky:          #CFE1E0;  /* Columbia Blue — alt section bg, placeholders */
+  --color-bg:           #F8F5EC;  /* Isabelline — page background */
+  --color-dark:         #262626;  /* Raisin Black — header, footer */
+  --color-text:         #422E1D;  /* Deep brown — body text */
+  --color-text-muted:   #6B5B4F;  /* Warm brown — muted text (≥4.5:1 on --color-bg) */
+  --color-border:       #ddd8d0;  /* Neutral warm border */
+  --color-focus:        #ECE331;  /* Yellow — high-contrast focus ring (WCAG AA) */
 
-  /* Typography — update font names once brand delivered */
-  --font-heading: 'Georgia', 'Times New Roman', serif;
-  --font-body:    'Open Sans', Arial, Helvetica, sans-serif;
+  /* ── Backward-compat aliases (used by existing component CSS) ────────────── */
+  --color-accent:       #904026;  /* maps to --color-primary (Burnt Umber) */
+  --color-accent-dark:  #6A3222;  /* maps to --color-primary-dark (Liver) */
+
+  /* ── Typography (update @import in HTML if font names change) ────────────── */
+  --font-heading: 'Montserrat', Arial, sans-serif;
+  --font-body:    'Poppins', Arial, Helvetica, sans-serif;
+  --font-serif:   'Merriweather', Georgia, serif;  /* pull quotes, editorial */
+
+  /* ── Scale & Spacing (unchanged) ─────────────────────────────────────────── */
   --font-size-sm:  0.875rem;
   --font-size-md:  1rem;
   --font-size-lg:  1.25rem;
@@ -41,18 +52,16 @@
   --font-size-2xl: 2.5rem;
   --line-height:   1.65;
 
-  /* Spacing */
   --space-xs:  0.25rem;
   --space-sm:  0.5rem;
   --space-md:  1rem;
   --space-lg:  2rem;
   --space-xl:  4rem;
 
-  /* Layout */
-  --max-width:      1100px;
-  --nav-height:     64px;
-  --radius:         4px;
-  --radius-lg:      8px;
+  --max-width:  1100px;
+  --nav-height: 64px;
+  --radius:     4px;
+  --radius-lg:  8px;
 }
 
 /* =============================================
@@ -84,11 +93,11 @@ img {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-seaweed);
 }
 
 a:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-teal);
 }
 
 /* Visible focus ring for keyboard users */
@@ -107,6 +116,7 @@ ol[role="list"] {
    ============================================= */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  font-weight: 700;
   line-height: 1.2;
   color: var(--color-primary-dark);
 }
@@ -132,7 +142,16 @@ p:last-child { margin-bottom: 0; }
 }
 
 .section--alt {
-  background: var(--color-bg-alt);
+  background: var(--color-sky);
+}
+
+/* Links on --color-sky background need higher contrast than seaweed provides */
+.section--alt a:not(.btn) {
+  color: var(--color-teal);  /* #415C5C — 5.1:1 on #CFE1E0 (passes WCAG AA) */
+}
+
+.section--alt a:not(.btn):hover {
+  color: var(--color-primary-dark);
 }
 
 .grid-3 {
