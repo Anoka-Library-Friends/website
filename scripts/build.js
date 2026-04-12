@@ -56,7 +56,7 @@ function navHtml() {
   return `  <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
-        <img src="/images/logo.svg" alt="" width="150" height="40" aria-hidden="true">
+        <img src="/images/logo-white.png" alt="" width="150" height="40" aria-hidden="true">
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="hamburger-bar" aria-hidden="true"></span>
@@ -123,7 +123,7 @@ function generateBlogPostPage({ data, html, slug }) {
   <link rel="stylesheet" href="/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
