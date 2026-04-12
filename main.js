@@ -9,25 +9,38 @@
   const menu   = document.querySelector('.nav-links');
 
   if (toggle && menu) {
+    function openMenu() {
+      menu.style.maxHeight = menu.scrollHeight + 'px';
+      menu.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMenu() {
+      menu.style.maxHeight = menu.scrollHeight + 'px';
+      // Force reflow so transition fires from exact current height
+      menu.offsetHeight; // eslint-disable-line no-unused-expressions
+      menu.style.maxHeight = '0';
+      menu.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
     toggle.addEventListener('click', function () {
-      const isOpen = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', String(!isOpen));
-      menu.classList.toggle('is-open', !isOpen);
+      if (this.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
     // Close menu when a nav link is clicked (mobile UX)
     menu.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        toggle.setAttribute('aria-expanded', 'false');
-        menu.classList.remove('is-open');
-      }
+      if (e.target.closest('a')) closeMenu();
     });
 
     // Close menu on Escape key
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menu.classList.contains('is-open')) {
-        toggle.setAttribute('aria-expanded', 'false');
-        menu.classList.remove('is-open');
+        closeMenu();
         toggle.focus();
       }
     });
@@ -38,13 +51,17 @@
   // Uses aria-current="page" (read by screen readers) + CSS targets that attr.
   const currentPath = window.location.pathname;
 
+  // Normalize: strip .html and trailing slash (except root)
+  function normalizePath(p) {
+    return p.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  }
+
   document.querySelectorAll('.nav-links a').forEach(function (link) {
     const linkPath = new URL(link.href, window.location.origin).pathname;
 
-    // Exact match, or blog sub-pages matching /blog/
     const isActive =
-      linkPath === currentPath ||
-      (linkPath === '/blog/' && currentPath.startsWith('/blog/'));
+      normalizePath(linkPath) === normalizePath(currentPath) ||
+      (normalizePath(linkPath) === '/blog' && normalizePath(currentPath).startsWith('/blog'));
 
     if (isActive) {
       link.setAttribute('aria-current', 'page');

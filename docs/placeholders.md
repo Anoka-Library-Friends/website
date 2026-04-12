@@ -112,11 +112,11 @@ Blog posts are managed via the CMS at `/admin`. The sample blog posts in `blog/*
 
 ---
 
-## images/logo.svg
+## images/logo-white.png
 
 | File | Type | What to replace |
 |------|------|-----------------|
-| `images/logo.svg` | BRAND | Replace the entire file with the organization's official logo. SVG preferred; PNG at 300×80px minimum also works. If the filename changes, update `src="/images/logo.svg"` in every HTML page and in the `navHtml()` and `footerHtml()` functions in `scripts/build.js`. |
+| `images/logo-white.png` | BRAND | Replace the entire file with the organization's official logo. SVG preferred; PNG at 300×80px minimum also works. If the filename changes, update `src="/images/logo-white.png"` in every HTML page and in the `navHtml()` and `footerHtml()` functions in `scripts/build.js`. |
 
 ---
 

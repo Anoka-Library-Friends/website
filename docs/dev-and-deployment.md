@@ -234,7 +234,7 @@ Run through `docs/test-checklist.md` fully, then confirm:
 
 - [ ] `netlify.toml` build command and publish directory are correct
 - [ ] All placeholders replaced (see `docs/placeholders.md`)
-- [ ] `images/logo.svg` is the real logo
+- [ ] `images/logo-white.png` is the real logo
 - [ ] CSS brand colors pass contrast checks
 - [ ] Custom domain is connected and HTTPS is active
 - [ ] Netlify Identity is enabled, set to invite-only, and GitHub OAuth is on

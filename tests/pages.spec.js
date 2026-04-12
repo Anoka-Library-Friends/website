@@ -77,7 +77,7 @@ test('about page: title, h1, page banner, sections, contact anchor', async ({ pa
   await expect(page.locator('h2', { hasText: 'Our History' })).toBeVisible();
   await expect(page.locator('h2', { hasText: 'Board Members' })).toBeVisible();
   await expect(page.locator('h2', { hasText: 'Partners' })).toBeVisible();
-  await expect(page.locator('h2', { hasText: 'Contact Us' })).toBeVisible();
+  await expect(page.locator('strong', { hasText: 'Connect With Us' })).toBeVisible();
 
   // #contact anchor exists for deep-linking
   await expect(page.locator('#contact')).toBeAttached();

@@ -82,6 +82,13 @@ body {
   line-height: var(--line-height);
   color: var(--color-text);
   background: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 img {
@@ -92,10 +99,24 @@ img {
 
 a {
   color: var(--color-seaweed);
+  text-decoration: none;
 }
 
 a:hover {
   color: var(--color-teal);
+}
+
+/* Expanding underline — content links only (not buttons, nav, footer) */
+main a:not(.btn):not(.nav-logo):not([class^="card"]):not([class^="events-strip"]):not([class^="donate-fab"]) {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.25s ease, color 0.15s;
+}
+
+main a:not(.btn):not(.nav-logo):not([class^="card"]):not([class^="events-strip"]):not([class^="donate-fab"]):hover {
+  background-size: 100% 2px;
 }
 
 /* Visible focus ring for keyboard users */
@@ -274,6 +295,7 @@ p:last-child { margin-bottom: 0; }
   top: 0;
   z-index: 100;
   background: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   height: var(--nav-height);
   display: flex;
@@ -310,17 +332,31 @@ p:last-child { margin-bottom: 0; }
   color: var(--color-sky);
   padding: 0.625rem var(--space-sm);  /* 10px vertical → ~46px tap target (WCAG 2.5.5) */
   border-radius: var(--radius);
-  transition: color 0.15s;
+  transition: color 0.2s;
+  position: relative;
 }
 
-.nav-links a:hover {
+.nav-links a:not(.nav-donate)::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 1px;
+  transition: left 0.22s ease, right 0.22s ease;
+}
+
+.nav-links a:not(.nav-donate):hover,
+.nav-links a:not(.nav-donate)[aria-current="page"] {
   color: #fff;
 }
 
-.nav-links a[aria-current="page"] {
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.nav-links a:not(.nav-donate):hover::after,
+.nav-links a:not(.nav-donate)[aria-current="page"]::after {
+  left: var(--space-sm);
+  right: var(--space-sm);
 }
 
 /* Donate link styled as button — cream on primary header */
@@ -382,7 +418,7 @@ p:last-child { margin-bottom: 0; }
   .nav-toggle { display: flex; }
 
   .nav-links {
-    display: none;
+    display: flex;
     position: absolute;
     top: var(--nav-height);
     left: 0;
@@ -392,11 +428,40 @@ p:last-child { margin-bottom: 0; }
     gap: 0;
     background: var(--color-primary-dark);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--space-md) var(--space-lg) calc(var(--space-md) + 12px);
+    /* Hidden state — closing transition uses ease-in (fast end) */
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
+    transition: max-height 0.4s ease-in,
+                visibility 0s linear 0.4s;
   }
 
   .nav-links.is-open {
-    display: flex;
+    /* Opening transition uses ease-out (fast start) */
+    visibility: visible;
+    pointer-events: auto;
+    transition: max-height 0.4s ease-out,
+                visibility 0s linear 0s;
+  }
+
+  /* Staggered item reveal — only on open, no reverse animation */
+  .nav-links.is-open li {
+    animation: navItemIn 0.25s ease-out both;
+  }
+
+  .nav-links.is-open li:nth-child(1) { animation-delay: 0.06s; }
+  .nav-links.is-open li:nth-child(2) { animation-delay: 0.10s; }
+  .nav-links.is-open li:nth-child(3) { animation-delay: 0.14s; }
+  .nav-links.is-open li:nth-child(4) { animation-delay: 0.18s; }
+  .nav-links.is-open li:nth-child(5) { animation-delay: 0.22s; }
+  .nav-links.is-open li:nth-child(6) { animation-delay: 0.26s; }
+  .nav-links.is-open li:nth-child(7) { animation-delay: 0.30s; }
+
+  @keyframes navItemIn {
+    from { opacity: 0; transform: translateX(-8px); }
+    to   { opacity: 1; transform: translateX(0); }
   }
 
   .nav-links a {
@@ -405,9 +470,17 @@ p:last-child { margin-bottom: 0; }
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
+  /* Nav link ::after underline doesn't make sense stacked — remove it */
+  .nav-links a:not(.nav-donate)::after {
+    display: none;
+  }
+
   /* Give donate button extra breathing room in the hamburger menu */
-  .nav-links .nav-donate {
+  .nav-links li:last-child {
     margin-top: var(--space-sm);
+  }
+
+  .nav-links .nav-donate {
     padding: 0.5rem 1rem;
   }
 }
@@ -729,7 +802,7 @@ p:last-child { margin-bottom: 0; }
    PAGE BANNER (inner pages)
    ============================================= */
 .page-banner {
-  background: var(--color-dark);
+  background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-dark) 100%);
   padding-block: 3rem;
   text-align: center;
 }
