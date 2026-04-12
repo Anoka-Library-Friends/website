@@ -448,14 +448,16 @@ p:last-child { margin-bottom: 0; }
   font-size: var(--font-size-sm);
 }
 
-.footer-nav {
+.footer-nav,
+.footer-connect {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
-.footer-nav a {
+.footer-nav a,
+.footer-connect a {
   display: block;
   padding-block: 0.625rem;  /* 10px vertical → ~44px tap target (WCAG 2.5.5) */
 }
@@ -914,7 +916,8 @@ p:last-child { margin-bottom: 0; }
    ============================================= */
 @media (max-width: 767px) {
   /* Footer: tighter link tap targets on mobile to reduce vertical bulk */
-  .footer-nav a {
+  .footer-nav a,
+  .footer-connect a {
     padding-block: 0.375rem;
   }
 
