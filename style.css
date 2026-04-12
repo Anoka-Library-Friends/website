@@ -192,15 +192,15 @@ p:last-child { margin-bottom: 0; }
 }
 
 .btn--donate {
-  background: var(--color-accent);
+  background: var(--color-primary);
   color: #fff;
-  border-color: var(--color-accent);
+  border-color: var(--color-primary);
 }
 
 .btn--donate:hover,
 .btn--donate:focus-visible {
-  background: var(--color-accent-dark);
-  border-color: var(--color-accent-dark);
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
   color: #fff;
 }
 
@@ -214,6 +214,35 @@ p:last-child { margin-bottom: 0; }
 .btn--outline:focus-visible {
   background: var(--color-primary);
   color: #fff;
+}
+
+/* Hero outline — cream border/text for use on dark backgrounds */
+.btn--hero-outline {
+  background: transparent;
+  color: var(--color-bg);
+  border: 2px solid var(--color-bg);
+}
+
+.btn--hero-outline:hover,
+.btn--hero-outline:focus-visible {
+  background: var(--color-bg);
+  color: var(--color-primary);
+}
+
+/* Cream — for use on primary-colored backgrounds */
+.btn--cream {
+  background: var(--color-bg);
+  color: var(--color-primary);
+  border-color: var(--color-bg);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.btn--cream:hover,
+.btn--cream:focus-visible {
+  background: white;
+  border-color: white;
+  color: var(--color-primary);
 }
 
 /* =============================================
@@ -447,18 +476,34 @@ p:last-child { margin-bottom: 0; }
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  background: var(--color-bg);
+  background: white;
 }
 
 .card__date {
-  font-size: var(--font-size-sm);
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--color-text-muted);
   margin-bottom: var(--space-xs);
 }
 
 .card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: var(--font-size-lg);
+  color: var(--color-primary);
   margin-bottom: var(--space-sm);
+}
+
+.card__title a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.card__title a:hover {
+  color: var(--color-primary-dark);
 }
 
 .card__excerpt {
@@ -470,23 +515,43 @@ p:last-child { margin-bottom: 0; }
    HERO SECTION
    ============================================= */
 .hero {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-dark) 100%);
   color: #fff;
-  padding-block: var(--space-xl);
+  padding-block: 6rem;
   text-align: center;
 }
 
-.hero h1 {
-  color: #fff;
+.hero__eyebrow {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-sky);
   margin-bottom: var(--space-md);
 }
 
-.hero p {
+.hero h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--color-bg);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  margin-bottom: var(--space-md);
+}
+
+.hero > .container > p {
+  color: var(--color-sky);
   font-size: var(--font-size-lg);
   max-width: 640px;
   margin-inline: auto;
   margin-bottom: var(--space-lg);
-  opacity: 0.9;
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* =============================================
@@ -622,25 +687,30 @@ p:last-child { margin-bottom: 0; }
 /* =============================================
    DONATE PAGE
    ============================================= */
-.donate-hero {
-  background: var(--color-accent);
-  color: #fff;
+.donate-section {
   text-align: center;
   padding-block: var(--space-xl);
 }
 
-.donate-hero h1 {
+.btn--paypal {
+  background: var(--color-primary);
   color: #fff;
-}
-
-.donate-cta {
-  text-align: center;
-  padding-block: var(--space-xl);
-}
-
-.donate-cta .btn {
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius);
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: var(--font-size-lg);
   padding: 1rem 2.5rem;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn--paypal:hover,
+.btn--paypal:focus-visible {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: #fff;
 }
 
 /* =============================================
