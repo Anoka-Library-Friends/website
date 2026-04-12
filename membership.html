@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
   <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
-        <img src="/images/logo.svg" alt="" width="150" height="40" aria-hidden="true">
+        <img src="/images/logo-white.png" alt="" width="150" height="40" aria-hidden="true">
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="hamburger-bar" aria-hidden="true"></span>
@@ -38,9 +38,15 @@
 
   <main id="main-content">
 
-    <section class="section">
+    <section class="page-banner">
       <div class="container">
         <h1>Membership</h1>
+        <p class="page-banner__subtitle">Support the library — join the Friends today</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
         <p>Your membership directly supports library programs, events, and equipment for the entire community. Join today — all memberships are renewed annually.</p>
         <p>To join, send an email to <a href="mailto:membership@example.org?subject=New%20Membership">membership@example.org<!-- CONTENT: replace membership email --></a> with your name, address, and chosen tier. We'll send you a confirmation and invoice.</p>
       </div>
@@ -48,43 +54,18 @@
 
     <section class="section section--alt">
       <div class="container">
-        <h2>Membership Tiers</h2>
-        <!--
-          CONTENT: tier names, prices, and benefits supplied by organization.
-          Duplicate or remove .tier blocks as needed.
-        -->
         <div class="tier-list">
 
           <div class="tier">
-            <h3>Individual</h3>
-            <p class="tier__price">$10 / year</p>
-            <ul class="tier__benefits">
-              <li><!-- CONTENT: benefit 1 --></li>
-              <li><!-- CONTENT: benefit 2 --></li>
-              <li>Access to members-only events</li>
+            <h3>Annual Membership</h3>
+            <p class="tier__price">$20 <span>/year</span></p>
+            <ul class="tier__perks">
+              <li>Support the Anoka County Library</li>
+              <li>Invitation to member-only events</li>
+              <li>Early access to book sales</li>
+              <li>Satisfaction of making a difference</li>
             </ul>
-            <a href="mailto:membership@example.org?subject=Individual%20Membership" class="btn btn--outline">Join — $10</a>
-          </div>
-
-          <div class="tier tier--featured">
-            <h3>Family</h3>
-            <p class="tier__price">$25 / year</p>
-            <ul class="tier__benefits">
-              <li>Everything in Individual</li>
-              <li><!-- CONTENT: family benefit --></li>
-            </ul>
-            <a href="mailto:membership@example.org?subject=Family%20Membership" class="btn btn--primary">Join — $25</a>
-          </div>
-
-          <div class="tier">
-            <h3>Sustaining</h3>
-            <p class="tier__price">$100 / year</p>
-            <ul class="tier__benefits">
-              <li>Everything in Family</li>
-              <li>Recognition in annual report</li>
-              <li><!-- CONTENT: sustaining benefit --></li>
-            </ul>
-            <a href="mailto:membership@example.org?subject=Sustaining%20Membership" class="btn btn--outline">Join — $100</a>
+            <a href="mailto:friendsofanokacolib@gmail.com?subject=Membership" class="btn btn--primary">Join Now</a>
           </div>
 
         </div>
@@ -113,9 +94,11 @@
         </ul>
       </nav>
       <div>
-        <strong>Follow Us</strong>
-        <ul class="social-links" style="margin-top: 0.5rem;">
-          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        <strong>Connect With Us</strong>
+        <ul class="footer-nav" style="margin-top: 0.5rem;">
+          <li><a href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.anokacountymn.gov/4180/Libraries" target="_blank" rel="noopener noreferrer">Anoka County Library</a></li>
+          <li><a href="mailto:friendsofanokacolib@gmail.com">friendsofanokacolib@gmail.com</a></li>
         </ul>
       </div>
     </div>
