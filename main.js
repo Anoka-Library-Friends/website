@@ -56,4 +56,15 @@
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  // ── Floating Donate Button ────────────────────────────────────────────────
+  // Suppressed on donate.html via data-page="donate" on <body>.
+  if (document.body.dataset.page !== 'donate') {
+    const fab = document.createElement('a');
+    fab.href = '/donate.html';
+    fab.className = 'donate-fab';
+    fab.setAttribute('aria-label', 'Donate to Friends of the Anoka County Library');
+    fab.textContent = '♥ Donate';
+    document.body.appendChild(fab);
+  }
 }());
