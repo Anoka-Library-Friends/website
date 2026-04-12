@@ -154,7 +154,45 @@ A persistent donate prompt on every page **except** `donate.html`.
 
 ---
 
-## 5. Implementation Notes
+## 5. PayPal Donate Integration (`donate.html`)
+
+The donate page embeds a PayPal-hosted donate button — no backend or PayPal SDK required. PayPal handles all payment processing and receipts.
+
+### How it works
+The organization generates a donate button from their PayPal Business account (Merchant Services → PayPal Buttons → Donate). PayPal produces a small HTML `<form>` snippet with a hosted button ID. That snippet is pasted into `donate.html`.
+
+### Placeholder markup
+Until the real button ID is obtained from PayPal, the donate page uses a clearly-commented placeholder:
+
+```html
+<!-- PAYPAL DONATE BUTTON: Replace hosted_button_id value with your PayPal button ID.
+     Generate at: paypal.com → Merchant Services → PayPal Buttons → Donate -->
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+  <input type="hidden" name="hosted_button_id" value="REPLACE_WITH_YOUR_BUTTON_ID">
+  <button type="submit" class="btn btn--primary btn--paypal">
+    Donate with PayPal
+  </button>
+</form>
+```
+
+### CSP update (`netlify.toml`)
+The PayPal form posts to `paypal.com`, so `form-action` must be added to the Content Security Policy header:
+```
+form-action 'self' https://www.paypal.com;
+```
+
+### Donate page layout
+The donate page gets the standard inner-page hero banner, then a centered content section:
+1. Impact statement — 2–3 sentences on what donations fund (placeholder copy)
+2. PayPal donate button (styled to match brand but standard PayPal submit behavior)
+3. Note: "You will be redirected to PayPal to complete your donation securely."
+4. Tax-deductibility note placeholder (e.g. "Friends of the Anoka County Library is a 501(c)(3) nonprofit.")
+
+The floating donate FAB does **not** appear on this page (`data-page="donate"` on `<body>`).
+
+---
+
+## 6. Implementation Notes
 
 - All color and font values live exclusively in CSS custom properties in `style.css` — no hardcoded values in HTML or component styles. Changing a brand color requires editing one line.
 - Placeholder images use `--color-sky` (`#CFE1E0`) as background color with a centered label. Replace with real `<picture>` elements when photos are available.
@@ -171,3 +209,4 @@ A persistent donate prompt on every page **except** `donate.html`.
 - New pages
 - Newsletter backend integration (markup placeholder only if added later)
 - Real photos (placeholders used throughout)
+- PayPal recurring donations or custom amount fields (standard donate button only)
