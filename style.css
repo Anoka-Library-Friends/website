@@ -589,13 +589,15 @@ p:last-child { margin-bottom: 0; }
   margin-block: var(--space-sm);
 }
 
-.tier__benefits {
+.tier__benefits,
+.tier__perks {
   list-style: none;
   margin-bottom: var(--space-lg);
   text-align: left;
 }
 
-.tier__benefits li::before {
+.tier__benefits li::before,
+.tier__perks li::before {
   content: "✓ ";
   color: var(--color-primary);
   font-weight: 700;
