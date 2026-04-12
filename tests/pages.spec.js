@@ -34,33 +34,46 @@ async function checkSharedElements(page) {
 
 // ── index.html ────────────────────────────────────────────────────────────────
 
-test('home page: title, h1, hero, recent posts, CTAs', async ({ page }) => {
+test('home page: title, h1, hero, events strip, recent posts, CTAs', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle(/Friends of the Anoka County Library/);
   await expect(page.locator('h1')).toHaveText('Supporting Our Library, Strengthening Our Community');
   await checkSharedElements(page);
 
-  // Hero CTA links to membership
-  await expect(page.locator('.hero a.btn')).toHaveAttribute('href', '/membership.html');
+  // Hero has two buttons: member + donate
+  await expect(page.locator('.hero a.btn').first()).toHaveAttribute('href', '/membership.html');
+  await expect(page.locator('.hero a.btn').nth(1)).toHaveAttribute('href', '/donate.html');
 
-  // Recent posts section injected by build script — should contain article cards
-  const recentSection = page.locator('section').filter({ hasText: 'Latest News' });
+  // Upcoming Events strip with at least one event item
+  const eventsSection = page.locator('.events-strip');
+  await expect(eventsSection).toBeVisible();
+  await expect(eventsSection.locator('.event-item')).toHaveCount(3);
+  await expect(eventsSection.locator('.events-strip__link')).toHaveAttribute('href', '/events.html');
+
+  // Recent posts section — three blog cards
+  const recentSection = page.locator('.section--teal');
   await expect(recentSection.locator('article')).toHaveCount(3);
 
-  // Join CTA section — two buttons
-  const ctaSection = page.locator('section').filter({ hasText: 'Join the Friends Today' });
-  await expect(ctaSection.locator('a.btn')).toHaveCount(2);
+  // CTA band — two cream buttons
+  const ctaBand = page.locator('.cta-band');
+  await expect(ctaBand).toBeVisible();
+  await expect(ctaBand.locator('a.btn')).toHaveCount(2);
+
+  // Donate FAB present on homepage
+  await expect(page.locator('.donate-fab')).toBeVisible();
+  await expect(page.locator('.donate-fab')).toHaveAttribute('href', '/donate.html');
 });
 
 // ── about.html ────────────────────────────────────────────────────────────────
 
-test('about page: title, h1, sections, contact anchor', async ({ page }) => {
+test('about page: title, h1, page banner, sections, contact anchor', async ({ page }) => {
   await page.goto('/about.html');
   await expect(page).toHaveTitle(/About & Contact/);
-  await expect(page.locator('h1')).toHaveText('About Us');
+  await expect(page.locator('h1')).toHaveText('About & Contact');
+  await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
-  // All four required sections present
+  // All four required sections present (now h2 since h1 is in the banner)
   await expect(page.locator('h2', { hasText: 'Our History' })).toBeVisible();
   await expect(page.locator('h2', { hasText: 'Board Members' })).toBeVisible();
   await expect(page.locator('h2', { hasText: 'Partners' })).toBeVisible();
@@ -68,14 +81,18 @@ test('about page: title, h1, sections, contact anchor', async ({ page }) => {
 
   // #contact anchor exists for deep-linking
   await expect(page.locator('#contact')).toBeAttached();
+
+  // Donate FAB present
+  await expect(page.locator('.donate-fab')).toBeVisible();
 });
 
 // ── events.html ───────────────────────────────────────────────────────────────
 
-test('events page: title, h1, calendar iframe with title and loading attrs', async ({ page }) => {
+test('events page: title, h1, page banner, calendar iframe with title and loading attrs', async ({ page }) => {
   await page.goto('/events.html');
   await expect(page).toHaveTitle(/Events/);
-  await expect(page.locator('h1')).toHaveText('Events');
+  await expect(page.locator('h1')).toHaveText('Events & Programs');
+  await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
   // Calendar iframe must have accessible title and lazy loading
@@ -89,10 +106,11 @@ test('events page: title, h1, calendar iframe with title and loading attrs', asy
 
 // ── membership.html ───────────────────────────────────────────────────────────
 
-test('membership page: title, h1, three tier cards, featured tier, mailto links', async ({ page }) => {
+test('membership page: title, h1, page banner, three tier cards, featured tier, mailto links', async ({ page }) => {
   await page.goto('/membership.html');
   await expect(page).toHaveTitle(/Membership/);
   await expect(page.locator('h1')).toHaveText('Membership');
+  await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
   // Three tier cards
@@ -113,35 +131,36 @@ test('membership page: title, h1, three tier cards, featured tier, mailto links'
 
 // ── donate.html ───────────────────────────────────────────────────────────────
 
-test('donate page: title, h1, donate button opens new tab with noopener', async ({ page }) => {
+test('donate page: title, page banner, impact statement, PayPal form, no FAB', async ({ page }) => {
   await page.goto('/donate.html');
   await expect(page).toHaveTitle(/Donate/);
-  await expect(page.locator('h1')).toHaveText('Make a Difference');
+  await expect(page.locator('h1')).toHaveText('Make a Donation');
+  await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
-  // Donate hero section
-  await expect(page.locator('.donate-hero')).toBeVisible();
-
-  // "Why Your Gift Matters" section
+  // Impact statement heading
   await expect(page.locator('h2', { hasText: 'Why Your Gift Matters' })).toBeVisible();
 
-  // Donate CTA button — must open new tab safely
-  const donateBtn = page.locator('.donate-cta .btn');
-  await expect(donateBtn).toBeVisible();
-  await expect(donateBtn).toHaveAttribute('target', '_blank');
-  await expect(donateBtn).toHaveAttribute('rel', /noopener/);
-  await expect(donateBtn).toHaveAttribute('aria-label', /new tab/i);
+  // PayPal form
+  const form = page.locator('form[action="https://www.paypal.com/donate"]');
+  await expect(form).toBeAttached();
+  await expect(form.locator('input[name="hosted_button_id"]')).toBeAttached();
+  await expect(form.locator('button[type="submit"]')).toBeVisible();
 
-  // Disclaimer text
-  await expect(page.locator('.donate-cta p')).toBeVisible();
+  // Security note below button
+  await expect(page.locator('.donate-section p')).toBeVisible();
+
+  // Donate FAB must NOT appear on donate page
+  await expect(page.locator('.donate-fab')).not.toBeAttached();
 });
 
 // ── volunteer.html ────────────────────────────────────────────────────────────
 
-test('volunteer page: title, h1, injected opportunity card, sign-up button', async ({ page }) => {
+test('volunteer page: title, h1, page banner, injected opportunity card, sign-up button', async ({ page }) => {
   await page.goto('/volunteer.html');
   await expect(page).toHaveTitle(/Volunteer/);
-  await expect(page.locator('h1')).toHaveText('Volunteer Opportunities');
+  await expect(page.locator('h1')).toHaveText('Volunteer');
+  await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
   // Build should have injected the sample opportunity
@@ -158,10 +177,11 @@ test('volunteer page: title, h1, injected opportunity card, sign-up button', asy
 
 // ── blog/index.html ───────────────────────────────────────────────────────────
 
-test('blog index: title, h1, injected post list with three sample posts', async ({ page }) => {
+test('blog index: title, h1, page banner, injected post list with three sample posts', async ({ page }) => {
   await page.goto('/blog/');
   await expect(page).toHaveTitle(/Blog/);
-  await expect(page.locator('h1')).toHaveText('Blog');
+  await expect(page.locator('h1')).toHaveText('Latest News');
+  await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
   // Build injected 3 sample blog posts
