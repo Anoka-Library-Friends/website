@@ -106,27 +106,20 @@ test('events page: title, h1, page banner, calendar iframe with title and loadin
 
 // ── membership.html ───────────────────────────────────────────────────────────
 
-test('membership page: title, h1, page banner, three tier cards, featured tier, mailto links', async ({ page }) => {
+test('membership page: title, h1, page banner, single tier, mailto link', async ({ page }) => {
   await page.goto('/membership.html');
   await expect(page).toHaveTitle(/Membership/);
   await expect(page.locator('h1')).toHaveText('Membership');
   await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
-  // Three tier cards
-  await expect(page.locator('.tier')).toHaveCount(3);
+  // Single tier at $20/year
+  await expect(page.locator('.tier')).toHaveCount(1);
 
-  // Exactly one featured tier
-  await expect(page.locator('.tier--featured')).toHaveCount(1);
-  await expect(page.locator('.tier--featured h3')).toHaveText('Family');
-
-  // All Join buttons use mailto (no external form)
-  const joinBtns = page.locator('.tier .btn');
-  await expect(joinBtns).toHaveCount(3);
-  for (const btn of await joinBtns.all()) {
-    const href = await btn.getAttribute('href');
-    expect(href).toMatch(/^mailto:/);
-  }
+  // Join button uses mailto
+  const joinBtn = page.locator('.tier .btn').first();
+  const href = await joinBtn.getAttribute('href');
+  expect(href).toMatch(/^mailto:/);
 });
 
 // ── donate.html ───────────────────────────────────────────────────────────────
