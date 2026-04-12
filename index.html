@@ -9,7 +9,7 @@
   <!-- Google Fonts: update family names once brand is confirmed -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -19,7 +19,7 @@
   <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
-        <img src="/images/logo.svg" alt="" width="150" height="40" aria-hidden="true">
+        <img src="/images/logo-white.png" alt="" width="150" height="40" aria-hidden="true">
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="hamburger-bar" aria-hidden="true"></span>
@@ -43,22 +43,59 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container">
+        <p class="hero__eyebrow">Friends of the Anoka County Library</p>
         <h1>Supporting Our Library, Strengthening Our Community</h1>
-        <p><!-- CONTENT: mission statement — supplied by organization --></p>
-        <a href="/membership.html" class="btn btn--primary">Become a Member</a>
+        <p>The Friends of the Anoka County Library raises funds for and increases awareness of the Anoka County Library in its mission to connect the community to ideas, information, and inspiration.</p>
+        <div class="hero__actions">
+          <a href="/membership.html" class="btn btn--primary">Become a Member</a>
+          <a href="/donate.html" class="btn btn--hero-outline">Make a Donation</a>
+        </div>
       </div>
     </section>
 
-    <!-- Featured Events (placeholder — update after content delivered) -->
-    <section class="section">
+    <!-- Upcoming Events Strip -->
+    <!-- EVENTS: Replace placeholder events with real dates and details when available. -->
+    <section class="section events-strip">
       <div class="container">
         <h2>Upcoming Events</h2>
-        <p>Check our <a href="/events.html">events calendar</a> for upcoming programs, book sales, and community gatherings.</p>
+        <ul class="event-list" role="list">
+          <li class="event-item">
+            <div class="event-date" aria-hidden="true">
+              <span class="event-date__month">APR</span>
+              <span class="event-date__day">25</span>
+            </div>
+            <div class="event-details">
+              <h3 class="event-title">Annual Book Sale</h3>
+              <p class="event-desc">Join us for three days of discounted books, DVDs, and more at the Anoka County Library.</p>
+            </div>
+          </li>
+          <li class="event-item">
+            <div class="event-date" aria-hidden="true">
+              <span class="event-date__month">MAY</span>
+              <span class="event-date__day">10</span>
+            </div>
+            <div class="event-details">
+              <h3 class="event-title">Friends Board Meeting</h3>
+              <p class="event-desc">Open to the public. Come learn about our upcoming programs and how you can get involved.</p>
+            </div>
+          </li>
+          <li class="event-item">
+            <div class="event-date" aria-hidden="true">
+              <span class="event-date__month">JUN</span>
+              <span class="event-date__day">1</span>
+            </div>
+            <div class="event-details">
+              <h3 class="event-title">Summer Reading Kickoff</h3>
+              <p class="event-desc">Celebrate the launch of the summer reading program with activities for kids of all ages.</p>
+            </div>
+          </li>
+        </ul>
+        <a href="/events.html" class="events-strip__link">See all events →</a>
       </div>
     </section>
 
     <!-- Recent Blog Posts — injected by build script -->
-    <section class="section section--alt">
+    <section class="section section--teal">
       <div class="container">
         <h2>Latest News</h2>
         <!-- BUILD:RECENT_POSTS_START -->
@@ -84,17 +121,19 @@
       <a href="/blog/summer-reading-program-recap.html">Read More &rarr;</a>
     </article></div>
 <!-- BUILD:RECENT_POSTS_END -->
-        <p style="margin-top: 1.5rem;"><a href="/blog/" class="btn btn--outline">All Posts</a></p>
+        <p style="margin-top: 1.5rem;"><a href="/blog/" class="btn btn--hero-outline">All Posts</a></p>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section">
-      <div class="container" style="text-align: center;">
+    <!-- CTA Band -->
+    <section class="cta-band">
+      <div class="container">
         <h2>Join the Friends Today</h2>
         <p>Your membership directly funds library programs, equipment, and events for our entire community.</p>
-        <a href="/membership.html" class="btn btn--primary" style="margin-right: 1rem;">View Membership Tiers</a>
-        <a href="/donate.html" class="btn btn--donate">Make a Donation</a>
+        <div class="cta-band__actions">
+          <a href="/membership.html" class="btn btn--cream">Become a Member</a>
+          <a href="/donate.html" class="btn btn--cream">Make a Donation</a>
+        </div>
       </div>
     </section>
 
@@ -120,10 +159,11 @@
         </ul>
       </nav>
       <div>
-        <strong>Follow Us</strong>
-        <ul class="social-links" style="margin-top: 0.5rem;">
-          <!-- CONTENT: social links — supplied by organization -->
-          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        <strong>Connect With Us</strong>
+        <ul class="footer-nav" style="margin-top: 0.5rem;">
+          <li><a href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.anokacountymn.gov/4180/Libraries" target="_blank" rel="noopener noreferrer">Anoka County Library</a></li>
+          <li><a href="mailto:friendsofanokacolib@gmail.com">friendsofanokacolib@gmail.com</a></li>
         </ul>
       </div>
     </div>
