@@ -244,8 +244,8 @@ p:last-child { margin-bottom: 0; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   height: var(--nav-height);
   display: flex;
   align-items: center;
@@ -274,37 +274,39 @@ p:last-child { margin-bottom: 0; }
 }
 
 .nav-links a {
+  font-family: var(--font-heading);
   font-weight: 600;
+  font-size: var(--font-size-sm);
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--color-sky);
   padding: 0.625rem var(--space-sm);  /* 10px vertical → ~46px tap target (WCAG 2.5.5) */
   border-radius: var(--radius);
+  transition: color 0.15s;
 }
 
 .nav-links a:hover {
-  color: var(--color-primary);
+  color: #fff;
 }
 
 .nav-links a[aria-current="page"] {
-  color: var(--color-primary);
+  color: #fff;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 
 /* Donate link styled as button */
 .nav-links .nav-donate {
-  background: var(--color-accent);
+  background: var(--color-primary);
   color: #fff;
   padding: 0.4rem 1rem;
   border-radius: var(--radius);
 }
 
 .nav-links .nav-donate:hover {
-  background: var(--color-accent-dark);
+  background: var(--color-primary-dark);
   color: #fff;
 }
 
-/* Keep donate link text white when active (overrides the aria-current color rule) */
 .nav-links .nav-donate[aria-current="page"] {
   color: #fff;
 }
@@ -326,7 +328,7 @@ p:last-child { margin-bottom: 0; }
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--color-text);
+  background: var(--color-text-muted);
   border-radius: 2px;
   transition: transform 0.2s, opacity 0.2s;
 }
@@ -356,8 +358,8 @@ p:last-child { margin-bottom: 0; }
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
+    background: var(--color-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     padding: var(--space-md) var(--space-lg);
   }
 
@@ -368,7 +370,7 @@ p:last-child { margin-bottom: 0; }
   .nav-links a {
     width: 100%;
     padding: var(--space-sm) 0;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 }
 
@@ -376,17 +378,17 @@ p:last-child { margin-bottom: 0; }
    FOOTER
    ============================================= */
 .site-footer {
-  background: var(--color-primary-dark);
-  color: rgba(255, 255, 255, 0.85);
+  background: var(--color-dark);
+  color: var(--color-sky);
   padding-block: var(--space-xl);
 }
 
 .site-footer a {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-sky);
 }
 
 .site-footer a:hover {
-  color: #fff;
+  color: var(--color-sky);
 }
 
 .footer-inner {
