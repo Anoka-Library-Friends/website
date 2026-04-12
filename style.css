@@ -15,8 +15,6 @@
 
 /* =============================================
    DESIGN TOKENS
-   Replace --color-primary, --color-accent, and
-   font-family values once brand assets are provided.
    ============================================= */
 :root {
   /* ── Brand Colors (Anoka County Color Standards) ────────────────────────── */
@@ -36,8 +34,8 @@
   --color-focus:        #ECE331;  /* Yellow — high-contrast focus ring (WCAG AA) */
 
   /* ── Backward-compat aliases (used by existing component CSS) ────────────── */
-  --color-accent:       #904026;  /* maps to --color-primary (Burnt Umber) */
-  --color-accent-dark:  #6A3222;  /* maps to --color-primary-dark (Liver) */
+  --color-accent:       var(--color-primary);      /* backward-compat alias — removed in Tasks 2–4 */
+  --color-accent-dark:  var(--color-primary-dark);  /* backward-compat alias — removed in Tasks 2–4 */
 
   /* ── Typography (update @import in HTML if font names change) ────────────── */
   --font-heading: 'Montserrat', Arial, sans-serif;

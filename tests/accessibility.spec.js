@@ -49,7 +49,7 @@ test('body text color token is dark enough for WCAG AA', async ({ page }) => {
   expect(bodyColor).toBe('rgb(66, 46, 29)');
 });
 
-test('muted text color token is readable on white background', async ({ page }) => {
+test('muted text color token is readable on page background', async ({ page }) => {
   await page.goto('/blog/');
   // .card__date uses --color-text-muted (#6B5B4F), contrast ≥4.5:1 on --color-bg
   const mutedColor = await page.evaluate(() => {

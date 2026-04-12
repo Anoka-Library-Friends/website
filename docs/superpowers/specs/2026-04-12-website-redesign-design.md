@@ -30,7 +30,7 @@ Replace all existing CSS custom properties with the official Anoka County brand 
 --color-bg:           #F8F5EC;  /* Isabelline — page background */
 --color-dark:         #262626;  /* Raisin Black — header, footer */
 --color-text:         #422E1D;  /* Deep brown — body text */
---color-text-muted:   #A29586;  /* Grullo — muted/secondary text */
+--color-text-muted:   #6B5B4F;  /* Grullo (darkened for WCAG AA 4.5:1 on --color-bg) */
 --color-border:       #ddd8d0;  /* Neutral warm border */
 --color-focus:        #ECE331;  /* Yellow — high-contrast focus ring */
 
