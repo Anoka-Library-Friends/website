@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-page="donate">
 
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
-        <img src="/images/logo.svg" alt="" width="150" height="40" aria-hidden="true">
+        <img src="/images/logo-white.png" alt="" width="150" height="40" aria-hidden="true">
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="hamburger-bar" aria-hidden="true"></span>
@@ -38,19 +38,18 @@
 
   <main id="main-content">
 
-    <div class="donate-hero">
+    <section class="page-banner">
       <div class="container">
-        <h1>Make a Difference</h1>
-        <p style="font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin-inline: auto;">Your donation funds the programs, materials, and events that make our library a true community hub.</p>
+        <h1>Make a Donation</h1>
+        <p class="page-banner__subtitle">Your gift directly supports the Anoka County Library</p>
       </div>
-    </div>
+    </section>
 
     <section class="section">
       <div class="container" style="max-width: 720px;">
         <h2>Why Your Gift Matters</h2>
         <!--
           CONTENT: impact statement (1–3 paragraphs) — supplied by organization.
-          Partners must confirm the external donation platform URL before launch.
         -->
         <p><!-- CONTENT: impact paragraph 1 --></p>
         <p><!-- CONTENT: impact paragraph 2 --></p>
@@ -58,25 +57,30 @@
       </div>
     </section>
 
-    <section class="donate-cta">
+    <section class="donate-section">
       <div class="container">
         <!--
-          SETUP: Replace the href below with the confirmed external donation platform URL.
-          Options: PayPal, GoFundMe, Donorbox, or equivalent.
-          Opens in a new tab per spec.
+          PAYPAL DONATE BUTTON
+          SETUP: Replace REPLACE_WITH_YOUR_BUTTON_ID with your PayPal hosted button ID.
+          Generate at: paypal.com → Merchant Services → PayPal Buttons → Donate
+          The hosted_button_id is found in the code snippet PayPal provides.
         -->
-        <a
-          href="https://REPLACE_WITH_DONATION_PLATFORM_URL"
-          class="btn btn--donate"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Donate Now — opens external donation page in a new tab"
-        >
-          Donate Now
-        </a>
+        <form action="https://www.paypal.com/donate" method="post" target="_top">
+          <input type="hidden" name="hosted_button_id" value="REPLACE_WITH_YOUR_BUTTON_ID">
+          <button type="submit" class="btn--paypal">
+            Donate with PayPal
+          </button>
+        </form>
         <p style="margin-top: 1rem; color: var(--color-text-muted); font-size: 0.875rem;">
-          You will be redirected to our secure donation partner. No payment information is collected on this site.
+          You will be redirected to PayPal to complete your donation securely.
         </p>
+        <!--
+          CONTENT: confirm 501(c)(3) status with board before publishing this line.
+          <p style="font-size: 0.875rem; color: var(--color-text-muted);">
+            Friends of the Anoka County Library is a 501(c)(3) nonprofit organization.
+            Your donation may be tax-deductible.
+          </p>
+        -->
       </div>
     </section>
 
@@ -102,9 +106,11 @@
         </ul>
       </nav>
       <div>
-        <strong>Follow Us</strong>
-        <ul class="social-links" style="margin-top: 0.5rem;">
-          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        <strong>Connect With Us</strong>
+        <ul class="footer-nav" style="margin-top: 0.5rem;">
+          <li><a href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.anokacountymn.gov/4180/Libraries" target="_blank" rel="noopener noreferrer">Anoka County Library</a></li>
+          <li><a href="mailto:friendsofanokacolib@gmail.com">friendsofanokacolib@gmail.com</a></li>
         </ul>
       </div>
     </div>
