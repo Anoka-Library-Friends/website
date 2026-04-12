@@ -388,7 +388,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .site-footer a:hover {
-  color: var(--color-sky);
+  color: #fff;
 }
 
 .footer-inner {
