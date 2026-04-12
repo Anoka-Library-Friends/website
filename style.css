@@ -740,7 +740,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .page-banner__subtitle {
-  color: var(--color-text-muted);
+  color: var(--color-sky);
   font-size: var(--font-size-md);
   margin: 0;
 }

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
   <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
-        <img src="/images/logo.svg" alt="" width="150" height="40" aria-hidden="true">
+        <img src="/images/logo-white.png" alt="" width="150" height="40" aria-hidden="true">
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="hamburger-bar" aria-hidden="true"></span>
@@ -38,21 +38,37 @@
 
   <main id="main-content">
 
+    <section class="page-banner">
+      <div class="container">
+        <h1>About &amp; Contact</h1>
+        <p class="page-banner__subtitle">Learn about our mission, board, and how to reach us</p>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
-        <h1>About Us</h1>
 
-        <h2>Our History</h2>
-        <p><!-- CONTENT: organization history — supplied by organization --></p>
+        <h2>Our Mission</h2>
+        <p>The Friends of the Anoka County Library raises funds for and increases awareness of the Anoka County Library (ACL) in its mission to connect the community to ideas, information, and inspiration.</p>
+
+        <h2 style="margin-top: 2rem;">Our History</h2>
+        <p>In April 2003, local library supporters joined together to create Friends of the Anoka County Library. The Friends is a 501(c)(3) nonprofit all-volunteer organization governed by a board of directors.</p>
+        <p>The ACL Friends organization was formed to advocate for and support public library services provided in Anoka County. In addition to raising funds for ACL programs, the Friends help to strengthen, support, and advocate for the libraries in the Anoka County Library system.</p>
+        <p>The Friends have funded, enhanced, or expanded programs for all ages, including support for the Summer Reading Program, the ACL Local Author Fair, funding the Book Club-in-a-Bag collection for reading and discussion groups and staff appreciation, as well as sponsoring the Reading Bridge program that supports struggling readers.</p>
+        <p>The Friends serve as ambassadors for the Anoka County Library system by advocating for ACL at local community activities, such as St. Francis Pioneer Days, Fridley 49er Days, Blaine Worldfest, Trunk or Treat, and back-to-school backpack giveaway events.</p>
+        <p>Friends raise funds for ACL through three book sales each spring, fall, and winter. We also host a fall gala called &ldquo;An Evening With Friends &amp; Authors.&rdquo; With the support of the public, Friends raised and donated $20,000+ to the Libraries each of the past three years.</p>
 
         <h2 style="margin-top: 2rem;">Board Members</h2>
-        <!-- CONTENT: board member names and bios — supplied by organization -->
-        <ul>
-          <li><!-- Board member name and title --></li>
-        </ul>
+        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
+          <img src="/images/board-member-portrait/betsy.png" alt="Betsy Friesen" width="120" height="120" style="border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+          <div>
+            <h3 style="font-size: 1.1rem;">Betsy Friesen &mdash; President (2026)</h3>
+            <p>Betsy is the current president of Friends of the Anoka County Library (FACL). She has served on the Board off and on since 2021. She mentors elementary school readers through the ACL Reading Bridge program. She also volunteers at Wargo Nature Center, including the cataloging and care of the Center's library, and provides a monthly story/craft time for pre-schoolers. Betsy is a retired University of Minnesota Libraries cataloging and systems librarian.</p>
+          </div>
+        </div>
 
         <h2 style="margin-top: 2rem;">Partners</h2>
-        <p><!-- CONTENT: partner organizations — supplied by organization --></p>
+        <p>We are proud to partner with the <a href="https://www.anokacountymn.gov/4180/Libraries" target="_blank" rel="noopener noreferrer">Anoka County Library</a> system, serving communities across Anoka County.</p>
       </div>
     </section>
 
@@ -60,11 +76,11 @@
     <section class="section section--alt" id="contact">
       <div class="container">
         <h2>Contact Us</h2>
-        <p>We'd love to hear from you. Reach out by email or visit us in person.</p>
-        <address style="font-style: normal; line-height: 2;">
-          <!-- CONTENT: address — supplied by organization --><br>
-          Phone: <a href="tel:+10000000000">+1 (000) 000-0000<!-- CONTENT: replace phone number --></a><br>
-          Email: <a href="mailto:info@example.org">info@example.org<!-- CONTENT: replace email address --></a>
+        <p>We'd love to hear from you. Reach out by email or connect with us on social media.</p>
+        <address style="font-style: normal; line-height: 2; margin-top: 1rem;">
+          Email: <a href="mailto:friendsofanokacolib@gmail.com">friendsofanokacolib@gmail.com</a><br>
+          Facebook: <a href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/" target="_blank" rel="noopener noreferrer">Friends of the Anoka County Library</a><br>
+          Library website: <a href="https://www.anokacountymn.gov/4180/Libraries" target="_blank" rel="noopener noreferrer">Anoka County Library</a>
         </address>
       </div>
     </section>
@@ -91,9 +107,11 @@
         </ul>
       </nav>
       <div>
-        <strong>Follow Us</strong>
-        <ul class="social-links" style="margin-top: 0.5rem;">
-          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        <strong>Connect With Us</strong>
+        <ul class="footer-nav" style="margin-top: 0.5rem;">
+          <li><a href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.anokacountymn.gov/4180/Libraries" target="_blank" rel="noopener noreferrer">Anoka County Library</a></li>
+          <li><a href="mailto:friendsofanokacolib@gmail.com">friendsofanokacolib@gmail.com</a></li>
         </ul>
       </div>
     </div>
