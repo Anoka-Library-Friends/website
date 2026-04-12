@@ -307,6 +307,7 @@ p:last-child { margin-bottom: 0; }
   color: #fff;
 }
 
+/* Keep donate button text white when on donate page (overrides the .nav-links a[aria-current] underline color rule) */
 .nav-links .nav-donate[aria-current="page"] {
   color: #fff;
 }
@@ -328,7 +329,7 @@ p:last-child { margin-bottom: 0; }
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--color-text-muted);
+  background: var(--color-sky);  /* #CFE1E0 — 11.2:1 on --color-dark (WCAG 1.4.11) */
   border-radius: 2px;
   transition: transform 0.2s, opacity 0.2s;
 }
