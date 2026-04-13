@@ -17,10 +17,11 @@ import {
 } from './parse-markdown.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, '..');
-const BLOG_SRC  = join(ROOT, 'blog');
-const VOL_SRC   = join(ROOT, 'volunteers');
-const BOARD_SRC  = join(ROOT, 'board-members');
+const ROOT  = join(__dirname, '..');
+const PAGES = join(ROOT, 'pages');
+const BLOG_SRC  = join(PAGES, 'blog');
+const VOL_SRC   = join(PAGES, 'volunteers');
+const BOARD_SRC  = join(PAGES, 'board-members');
 const POSTS_PER_PAGE = 10;
 const RECENT_POSTS_COUNT = 3;
 const UPCOMING_EVENTS_COUNT = 10;
@@ -413,7 +414,7 @@ async function build() {
 
   // 2. Home page recent posts
   injectBetweenMarkers(
-    join(ROOT, 'index.html'),
+    join(PAGES, 'index.html'),
     'BUILD:RECENT_POSTS_START',
     'BUILD:RECENT_POSTS_END',
     recentPostsHtml(allPosts)
@@ -432,7 +433,7 @@ async function build() {
     : '<p>No volunteer opportunities are currently listed. Check back soon!</p>';
 
   injectBetweenMarkers(
-    join(ROOT, 'volunteer.html'),
+    join(PAGES, 'volunteer.html'),
     'BUILD:VOLUNTEER_OPPORTUNITIES_START',
     'BUILD:VOLUNTEER_OPPORTUNITIES_END',
     currentHtml
@@ -448,7 +449,7 @@ async function build() {
     : '';
 
   injectBetweenMarkers(
-    join(ROOT, 'volunteer.html'),
+    join(PAGES, 'volunteer.html'),
     'BUILD:PAST_OPPORTUNITIES_START',
     'BUILD:PAST_OPPORTUNITIES_END',
     pastHtml
@@ -459,7 +460,7 @@ async function build() {
   const allMembers = readMarkdownDir(BOARD_SRC);
   console.log(`[build] Found ${allMembers.length} board member(s).`);
   injectBetweenMarkers(
-    join(ROOT, 'about.html'),
+    join(PAGES, 'about.html'),
     'BUILD:BOARD_MEMBERS_START',
     'BUILD:BOARD_MEMBERS_END',
     boardMembersHtml(allMembers)
@@ -470,13 +471,13 @@ async function build() {
   const calEvents = await fetchCalendarEvents();
   if (calEvents !== null) {
     injectBetweenMarkers(
-      join(ROOT, 'events.html'),
+      join(PAGES, 'events.html'),
       'BUILD:EVENTS_START',
       'BUILD:EVENTS_END',
       eventsListHtml(calEvents)
     );
     injectBetweenMarkers(
-      join(ROOT, 'index.html'),
+      join(PAGES, 'index.html'),
       'BUILD:HOME_EVENTS_START',
       'BUILD:HOME_EVENTS_END',
       eventsListHtml(calEvents.slice(0, 3))

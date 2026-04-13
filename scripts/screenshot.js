@@ -8,7 +8,7 @@ import { readFileSync, existsSync, statSync, mkdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = join(fileURLToPath(import.meta.url), '../..');
+const ROOT = join(fileURLToPath(import.meta.url), '../../pages');
 const PORT = 4001; // separate port so it doesn't conflict with the test server
 const OUT  = join(ROOT, 'screenshots');
 

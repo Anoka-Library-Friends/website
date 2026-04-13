@@ -8,7 +8,7 @@ import { readFileSync, existsSync, statSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT  = join(fileURLToPath(import.meta.url), '../..');
+const ROOT  = join(fileURLToPath(import.meta.url), '../../pages');
 const PORT  = parseInt(process.env.PORT || '4000', 10);
 
 const MIME = {

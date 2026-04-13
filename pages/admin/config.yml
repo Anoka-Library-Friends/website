@@ -6,7 +6,7 @@ backend:
   branch: main  # Branch to update (change to your default branch name if different)
 
 # Where uploaded images are stored
-media_folder: "images/uploads"
+media_folder: "pages/images/uploads"
 public_folder: "/images/uploads"
 
 # CMS collections
@@ -15,7 +15,7 @@ collections:
   # ── Blog Posts ─────────────────────────────────────────────────────────────
   - name: "blog"
     label: "Blog Posts"
-    folder: "blog"
+    folder: "pages/blog"
     create: true
     slug: "{{slug}}"           # Filename derived from title; editors can override
     extension: "md"
@@ -59,7 +59,7 @@ collections:
   # ── Volunteer Opportunities ────────────────────────────────────────────────
   - name: "volunteers"
     label: "Volunteer Opportunities"
-    folder: "_volunteers"
+    folder: "pages/volunteers"
     create: true
     slug: "{{slug}}"
     extension: "md"
@@ -116,7 +116,7 @@ collections:
   # ── Board Members ──────────────────────────────────────────────────────────
   - name: "board-members"
     label: "Board Members"
-    folder: "board-members"
+    folder: "pages/board-members"
     create: true
     slug: "{{slug}}"
     extension: "md"
