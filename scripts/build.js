@@ -455,7 +455,7 @@ async function build() {
   );
   console.log('[build] Injected volunteer opportunities into volunteer.html');
 
-  // 5. Board members
+  // 4. Board members
   const allMembers = readMarkdownDir(BOARD_SRC);
   console.log(`[build] Found ${allMembers.length} board member(s).`);
   injectBetweenMarkers(
@@ -466,7 +466,7 @@ async function build() {
   );
   console.log('[build] Injected board members into about.html');
 
-  // 4. Upcoming events from Google Calendar
+  // 5. Upcoming events from Google Calendar
   const calEvents = await fetchCalendarEvents();
   if (calEvents !== null) {
     injectBetweenMarkers(
