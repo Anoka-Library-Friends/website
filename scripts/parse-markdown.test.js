@@ -10,6 +10,7 @@ import {
   formatDate,
   isExpired,
   paginate,
+  sortBoardMembers,
 } from './parse-markdown.js';
 
 // ── parsePost ────────────────────────────────────────────────────────────────
@@ -123,4 +124,56 @@ test('paginate returns one page when items fit', () => {
 
 test('paginate returns empty array for empty input', () => {
   assert.deepEqual(paginate([], 10), []);
+});
+
+// ── sortBoardMembers ──────────────────────────────────────────────────────────
+
+test('sortBoardMembers: numbered members come before unnumbered', () => {
+  const members = [
+    { data: { name: 'Alice', title: 'Treasurer' } },
+    { data: { name: 'Bob', title: 'President', sort_order: 1 } },
+  ];
+  const sorted = sortBoardMembers(members);
+  assert.equal(sorted[0].data.name, 'Bob');
+  assert.equal(sorted[1].data.name, 'Alice');
+});
+
+test('sortBoardMembers: numbered members sort by sort_order ascending', () => {
+  const members = [
+    { data: { name: 'Carol', title: 'Vice President', sort_order: 2 } },
+    { data: { name: 'Bob', title: 'President', sort_order: 1 } },
+  ];
+  const sorted = sortBoardMembers(members);
+  assert.equal(sorted[0].data.name, 'Bob');
+  assert.equal(sorted[1].data.name, 'Carol');
+});
+
+test('sortBoardMembers: same sort_order breaks tie alphabetically by name', () => {
+  const members = [
+    { data: { name: 'Zelda', title: 'Director', sort_order: 2 } },
+    { data: { name: 'Amy', title: 'Director', sort_order: 2 } },
+  ];
+  const sorted = sortBoardMembers(members);
+  assert.equal(sorted[0].data.name, 'Amy');
+  assert.equal(sorted[1].data.name, 'Zelda');
+});
+
+test('sortBoardMembers: unnumbered members sort alphabetically by name', () => {
+  const members = [
+    { data: { name: 'Zelda', title: 'Director' } },
+    { data: { name: 'Amy', title: 'Secretary' } },
+  ];
+  const sorted = sortBoardMembers(members);
+  assert.equal(sorted[0].data.name, 'Amy');
+  assert.equal(sorted[1].data.name, 'Zelda');
+});
+
+test('sortBoardMembers: does not mutate the input array', () => {
+  const members = [
+    { data: { name: 'Bob', title: 'President', sort_order: 1 } },
+    { data: { name: 'Alice', title: 'Treasurer' } },
+  ];
+  const original = [...members];
+  sortBoardMembers(members);
+  assert.deepEqual(members, original);
 });

@@ -85,3 +85,25 @@ export function paginate(items, pageSize) {
   }
   return pages;
 }
+
+/**
+ * Sort board members: numbered (sort_order defined) first by sort_order asc,
+ * then unnumbered alphabetically by name. Ties within same sort_order sort by name.
+ * @param {Array<{ data: { name?: string, sort_order?: number } }>} members
+ * @returns {Array}
+ */
+export function sortBoardMembers(members) {
+  return [...members].sort((a, b) => {
+    const aHasOrder = a.data.sort_order != null;
+    const bHasOrder = b.data.sort_order != null;
+    if (aHasOrder && bHasOrder) {
+      if (a.data.sort_order !== b.data.sort_order) {
+        return a.data.sort_order - b.data.sort_order;
+      }
+      return (a.data.name || '').localeCompare(b.data.name || '');
+    }
+    if (aHasOrder) return -1;
+    if (bHasOrder) return 1;
+    return (a.data.name || '').localeCompare(b.data.name || '');
+  });
+}
