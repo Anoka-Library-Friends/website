@@ -13,12 +13,14 @@ import {
   formatDate,
   isExpired,
   paginate,
+  sortBoardMembers,
 } from './parse-markdown.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const BLOG_SRC  = join(ROOT, 'blog');
 const VOL_SRC   = join(ROOT, 'volunteers');
+const BOARD_SRC  = join(ROOT, 'board-members');
 const POSTS_PER_PAGE = 10;
 const RECENT_POSTS_COUNT = 3;
 const UPCOMING_EVENTS_COUNT = 10;
@@ -232,6 +234,24 @@ function volunteerCardHtml({ data }) {
     </div>`;
 }
 
+// ── Board member card HTML ────────────────────────────────────────────────────
+
+function boardMembersHtml(members) {
+  if (members.length === 0) return '        <p>Board member information coming soon.</p>';
+  return sortBoardMembers(members).map(({ data }) => {
+    const photoHtml = data.photo
+      ? `\n          <img src="${data.photo}" alt="${data.name}" width="120" height="120" style="border-radius: 50%; object-fit: cover; flex-shrink: 0;">`
+      : '';
+    const yearsHtml = data.years_active ? ` (${data.years_active})` : '';
+    const bioHtml = data.bio ? `\n            <p>${data.bio}</p>` : '';
+    return `        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">${photoHtml}
+          <div>
+            <h3 style="font-size: 1.1rem;">${data.name} &mdash; ${data.title}${yearsHtml}</h3>${bioHtml}
+          </div>
+        </div>`;
+  }).join('\n');
+}
+
 // ── Google Calendar iCal fetch & parse ───────────────────────────────────────
 
 /** Undo iCal line folding (CRLF + whitespace = continuation of previous line). */
@@ -434,6 +454,17 @@ async function build() {
     pastHtml
   );
   console.log('[build] Injected volunteer opportunities into volunteer.html');
+
+  // 5. Board members
+  const allMembers = readMarkdownDir(BOARD_SRC);
+  console.log(`[build] Found ${allMembers.length} board member(s).`);
+  injectBetweenMarkers(
+    join(ROOT, 'about.html'),
+    'BUILD:BOARD_MEMBERS_START',
+    'BUILD:BOARD_MEMBERS_END',
+    boardMembersHtml(allMembers)
+  );
+  console.log('[build] Injected board members into about.html');
 
   // 4. Upcoming events from Google Calendar
   const calEvents = await fetchCalendarEvents();
