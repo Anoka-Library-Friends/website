@@ -112,3 +112,44 @@ collections:
         widget: "string"
         required: false
         hint: "Name or email of the volunteer coordinator."
+
+  # ── Board Members ──────────────────────────────────────────────────────────
+  - name: "board-members"
+    label: "Board Members"
+    folder: "board-members"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - label: "Name"
+        name: "name"
+        widget: "string"
+        required: true
+
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        required: true
+        hint: "e.g. President, Treasurer, Secretary"
+
+      - label: "Sort Order"
+        name: "sort_order"
+        widget: "number"
+        required: false
+        hint: "Optional. Lower numbers appear first. Leave blank to sort alphabetically after numbered entries."
+
+      - label: "Years Active"
+        name: "years_active"
+        widget: "string"
+        required: false
+        hint: "e.g. 2021–present"
+
+      - label: "Photo"
+        name: "photo"
+        widget: "image"
+        required: false
+
+      - label: "Bio"
+        name: "bio"
+        widget: "text"
+        required: false
