@@ -21,7 +21,7 @@ const BLOG_SRC  = join(ROOT, 'blog');
 const VOL_SRC   = join(ROOT, 'volunteers');
 const POSTS_PER_PAGE = 10;
 const RECENT_POSTS_COUNT = 3;
-const UPCOMING_EVENTS_COUNT = 5;
+const UPCOMING_EVENTS_COUNT = 10;
 
 const CALENDAR_ICAL_URL =
   'https://calendar.google.com/calendar/ical/' +
@@ -444,7 +444,13 @@ async function build() {
       'BUILD:EVENTS_END',
       eventsListHtml(calEvents)
     );
-    console.log(`[build] Injected ${calEvents.length} upcoming event(s) into events.html`);
+    injectBetweenMarkers(
+      join(ROOT, 'index.html'),
+      'BUILD:HOME_EVENTS_START',
+      'BUILD:HOME_EVENTS_END',
+      eventsListHtml(calEvents.slice(0, 3))
+    );
+    console.log(`[build] Injected ${calEvents.length} upcoming event(s) into events.html and index.html`);
   } else {
     console.log('[build] Skipped events injection (calendar unavailable)');
   }
