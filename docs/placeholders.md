@@ -133,6 +133,30 @@ The generated blog post pages inherit from `footerHtml()` in `scripts/build.js` 
 
 ---
 
+## robots.txt
+
+| Line | Type | What to replace |
+|------|------|-----------------|
+| 3 | SETUP | Replace `PLACEHOLDER-DOMAIN.org` with the real domain (e.g. `www.friendsofanokacountylibrary.org`) |
+
+---
+
+## sitemap.xml
+
+| Lines | Type | What to replace |
+|-------|------|-----------------|
+| all `<loc>` entries | SETUP | Replace every occurrence of `PLACEHOLDER-DOMAIN.org` with the real domain |
+
+---
+
+## All pages — SEO domain placeholder
+
+Every HTML page (`index.html`, `about.html`, `events.html`, `membership.html`, `donate.html`, `volunteer.html`, `blog/index.html`, and all blog posts) now contains `PLACEHOLDER-DOMAIN.org` in the `<link rel="canonical">`, Open Graph, and Twitter Card tags. The `index.html` JSON-LD schema also uses it.
+
+Do a project-wide find-and-replace of `PLACEHOLDER-DOMAIN.org` → your real domain before launch. All occurrences are in `<head>` and in the `<script type="application/ld+json">` block on `index.html`.
+
+---
+
 ## admin/config.yml
 
 No placeholders, but before launch confirm:
@@ -145,6 +169,6 @@ No placeholders, but before launch confirm:
 | Type | Count |
 |------|-------|
 | CONTENT (copy from org) | 22 |
-| SETUP (third-party service) | 3 |
+| SETUP (third-party service) | 4 |
 | BRAND (from brand guide) | 3 |
-| **Total** | **28** |
+| **Total** | **29** |

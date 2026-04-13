@@ -321,7 +321,7 @@ p:last-child { margin-bottom: 0; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: 0;
   list-style: none;
 }
 
@@ -331,7 +331,7 @@ p:last-child { margin-bottom: 0; }
   font-size: var(--font-size-sm);
   text-decoration: none;
   color: var(--color-sky);
-  padding: 0.625rem var(--space-sm);  /* 10px vertical → ~46px tap target (WCAG 2.5.5) */
+  padding: 0.625rem var(--space-md);  /* horizontal padding replaces gap so hover zones are contiguous */
   border-radius: var(--radius);
   transition: color 0.2s;
   position: relative;
@@ -356,8 +356,18 @@ p:last-child { margin-bottom: 0; }
 
 .nav-links a:not(.nav-donate):hover::after,
 .nav-links a:not(.nav-donate)[aria-current="page"]::after {
-  left: var(--space-sm);
-  right: var(--space-sm);
+  left: var(--space-md);
+  right: var(--space-md);
+}
+
+/* When another nav link is hovered, un-highlight the current page indicator */
+.nav-links:has(a:not([aria-current="page"]):hover) a:not(.nav-donate)[aria-current="page"] {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.nav-links:has(a:not([aria-current="page"]):hover) a:not(.nav-donate)[aria-current="page"]::after {
+  left: 50%;
+  right: 50%;
 }
 
 /* Donate link styled as button — cream on primary header */
@@ -367,6 +377,7 @@ p:last-child { margin-bottom: 0; }
   padding: 0.4rem 1rem;
   border-radius: var(--radius);
   font-weight: 700;
+  margin-left: var(--space-md);
 }
 
 .nav-links .nav-donate:hover {
@@ -783,6 +794,14 @@ p:last-child { margin-bottom: 0; }
 .donate-section {
   text-align: center;
   padding-block: var(--space-xl);
+}
+
+[data-page="donate"] .section {
+  padding-block-end: var(--space-md);
+}
+
+[data-page="donate"] .donate-section {
+  padding-block-start: var(--space-md);
 }
 
 .btn--paypal {

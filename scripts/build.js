@@ -18,7 +18,7 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const BLOG_SRC  = join(ROOT, 'blog');
-const VOL_SRC   = join(ROOT, '_volunteers');
+const VOL_SRC   = join(ROOT, 'volunteers');
 const POSTS_PER_PAGE = 10;
 const RECENT_POSTS_COUNT = 3;
 
