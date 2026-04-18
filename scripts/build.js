@@ -246,7 +246,7 @@ function boardMembersHtml(members) {
     const yearsHtml = data.years_active ? ` (${data.years_active})` : '';
     const bioHtml = data.bio ? `\n            <p>${data.bio}</p>` : '';
     return `        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">${photoHtml}
-          <div>
+          <div style="flex: 1; min-width: 16rem;">
             <h3 style="font-size: 1.1rem;">${data.name} &mdash; ${data.title}${yearsHtml}</h3>${bioHtml}
           </div>
         </div>`;

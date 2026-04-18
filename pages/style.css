@@ -547,6 +547,10 @@ p:last-child { margin-bottom: 0; }
   padding-block: 0.625rem;  /* 10px vertical → ~44px tap target (WCAG 2.5.5) */
 }
 
+.footer-nav li:first-child a {
+  padding-top: 0;
+}
+
 .social-links {
   display: flex;
   gap: var(--space-md);
