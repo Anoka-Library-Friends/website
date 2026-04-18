@@ -65,7 +65,8 @@ function navHtml() {
   return `  <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
-        <img src="/images/logo-white.webp" alt="" width="150" height="40" aria-hidden="true">
+        <img src="/images/logo-icon-white.svg" alt="" width="40" height="40" aria-hidden="true">
+        <span class="nav-logo-text">Friends of Anoka County Library</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="hamburger-bar" aria-hidden="true"></span>
@@ -74,7 +75,7 @@ function navHtml() {
       </button>
       <ul id="nav-menu" class="nav-links" role="list">
         <li><a href="/">Home</a></li>
-        <li><a href="/about.html">About &amp; Contact</a></li>
+        <li><a href="/about.html">About</a></li>
         <li><a href="/events.html">Events</a></li>
         <li><a href="/membership.html">Membership</a></li>
         <li><a href="/volunteer.html">Volunteer</a></li>
@@ -93,7 +94,7 @@ function footerHtml() {
       <nav aria-label="Footer navigation">
         <ul class="footer-nav">
           <li><a href="/">Home</a></li>
-          <li><a href="/about.html">About &amp; Contact</a></li>
+          <li><a href="/about.html">About</a></li>
           <li><a href="/events.html">Events</a></li>
           <li><a href="/membership.html">Membership</a></li>
           <li><a href="/volunteer.html">Volunteer</a></li>

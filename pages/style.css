@@ -313,9 +313,35 @@ p:last-child { margin-bottom: 0; }
   padding-inline: var(--space-lg);
 }
 
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-sky);
+  text-decoration: none;
+}
+
 .nav-logo img {
   height: 40px;
   width: auto;
+}
+
+.nav-logo-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--font-size-md);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  white-space: nowrap;
+  color: white;
+}
+
+@media (max-width: 767px) {
+  .nav-logo-text {
+    white-space: normal;
+    font-size: var(--font-size-sm);
+    max-width: 14ch;
+  }
 }
 
 .nav-links {
