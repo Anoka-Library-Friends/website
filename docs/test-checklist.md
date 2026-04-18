@@ -37,13 +37,13 @@ npm run build
 Open `index.html` in a browser (use a local server — see `docs/dev-and-deployment.md`).
 
 - [ ] Logo image renders (no broken image icon)
-- [ ] All nav links are present: Home, About & Contact, Events, Membership, Volunteer, Blog, Donate
+- [ ] All nav links are present: Home, About, Events, Membership, Volunteer, Blog, Donate
 - [ ] "Donate" nav link has a distinct red/accent background
 - [ ] Clicking each nav link navigates to the correct page without a 404
 
 **Active link highlighting:**
 - [ ] On `index.html`, the "Home" link has an underline
-- [ ] On `about.html`, the "About & Contact" link has an underline
+- [ ] On `about.html`, the "About" link has an underline
 - [ ] On `events.html`, the "Events" link has an underline
 - [ ] On `membership.html`, the "Membership" link has an underline
 - [ ] On `volunteer.html`, the "Volunteer" link has an underline

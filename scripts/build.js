@@ -305,6 +305,7 @@ function parseIcalEvents(icalText) {
       title:       unescape(props['SUMMARY']?.value     || ''),
       description: unescape(props['DESCRIPTION']?.value || ''),
       location:    unescape(props['LOCATION']?.value    || ''),
+      url:         unescape(props['URL']?.value         || ''),
     });
   }
   return events;
@@ -336,15 +337,19 @@ function eventsListHtml(events) {
             </div>
           </li>`;
   }
-  return events.map(({ start, title, description, location }) => {
+  const locationIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;margin-right:3px;flex-shrink:0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>`;
+  return events.map(({ start, title, description, location, url }) => {
     const month = MONTHS[start.getMonth()];
     const day   = start.getDate();
+    const titleHtml = url
+      ? `<a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a>`
+      : title;
     // Show location as secondary line when both description and location are present
     const descHtml = description
       ? `\n              <p class="event-desc">${description}</p>`
       : '';
     const locHtml = location
-      ? `\n              <p class="event-desc" style="font-size:0.875rem;color:var(--color-text-muted);">${location}</p>`
+      ? `\n              <p class="event-desc" style="font-size:0.875rem;color:var(--color-text-muted);display:flex;align-items:center;">${locationIcon}${location}</p>`
       : '';
     return `          <li class="event-item">
             <div class="event-date" aria-hidden="true">
@@ -352,7 +357,7 @@ function eventsListHtml(events) {
               <span class="event-date__day">${day}</span>
             </div>
             <div class="event-details">
-              <h3 class="event-title">${title}</h3>${descHtml}${locHtml}
+              <h3 class="event-title">${titleHtml}</h3>${descHtml}${locHtml}
             </div>
           </li>`;
   }).join('\n');

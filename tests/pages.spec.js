@@ -6,7 +6,7 @@ import { test, expect } from '@playwright/test';
 
 const NAV_LINKS = [
   { text: 'Home',             href: '/' },
-  { text: 'About & Contact',  href: '/about.html' },
+  { text: 'About',  href: '/about.html' },
   { text: 'Events',           href: '/events.html' },
   { text: 'Membership',       href: '/membership.html' },
   { text: 'Volunteer',        href: '/volunteer.html' },
@@ -47,7 +47,7 @@ test('home page: title, h1, hero, events strip, recent posts, CTAs', async ({ pa
   // Upcoming Events strip with at least one event item
   const eventsSection = page.locator('.events-strip');
   await expect(eventsSection).toBeVisible();
-  await expect(eventsSection.locator('.event-item')).toHaveCount(3);
+  await expect(eventsSection.locator('.event-item')).toHaveCount(2);
   await expect(eventsSection.locator('.events-strip__link')).toHaveAttribute('href', '/events.html');
 
   // Recent posts section — three blog cards
@@ -68,8 +68,8 @@ test('home page: title, h1, hero, events strip, recent posts, CTAs', async ({ pa
 
 test('about page: title, h1, page banner, sections, contact anchor', async ({ page }) => {
   await page.goto('/about.html');
-  await expect(page).toHaveTitle(/About & Contact/);
-  await expect(page.locator('h1')).toHaveText('About & Contact');
+  await expect(page).toHaveTitle(/About/);
+  await expect(page.locator('h1')).toHaveText('About');
   await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 

@@ -5,7 +5,7 @@ import { test, expect } from '@playwright/test';
 
 const PAGES = [
   { url: '/',               activeText: 'Home' },
-  { url: '/about.html',     activeText: 'About & Contact' },
+  { url: '/about.html',     activeText: 'About' },
   { url: '/events.html',    activeText: 'Events' },
   { url: '/membership.html',activeText: 'Membership' },
   { url: '/volunteer.html', activeText: 'Volunteer' },
@@ -83,7 +83,7 @@ test('mobile: clicking a nav link closes the menu', async ({ page }) => {
   await expect(menu).toBeVisible();
 
   // Click the About link
-  await menu.locator('a', { hasText: 'About & Contact' }).click();
+  await menu.locator('a', { hasText: 'About' }).click();
 
   // Menu should be closed (either by navigation or JS close handler)
   await page.goBack();

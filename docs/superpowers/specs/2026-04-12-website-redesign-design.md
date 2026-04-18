@@ -111,7 +111,7 @@ Each inner page gets a banner directly below the nav:
 ### Pages to update
 | Page | Title | Subtitle |
 |------|-------|----------|
-| `about.html` | About & Contact | Learn about our mission, board, and how to reach us |
+| `about.html` | About | Learn about our mission, board, and how to reach us |
 | `events.html` | Events & Programs | Upcoming programs, book sales, and community gatherings |
 | `membership.html` | Membership | Support the library — join the Friends today |
 | `volunteer.html` | Volunteer | Make a difference in your community |

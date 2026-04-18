@@ -19,7 +19,7 @@
 ├── style.css                     # All styles — CSS custom properties, reset, nav, footer, pages
 ├── main.js                       # Hamburger nav toggle + active page link highlighting
 ├── index.html                    # Home: hero, mission, recent posts marker, CTA
-├── about.html                    # About & Contact: history, board, contact details
+├── about.html                    # About: history, board, contact details
 ├── events.html                   # Events: Google Calendar iframe embed
 ├── membership.html               # Membership: tiers, benefits, mailto CTA
 ├── volunteer.html                # Volunteer: rendered from /_volunteers/*.md at build time
@@ -978,7 +978,7 @@ git commit -m "feat: add home page with hero, events CTA, recent posts marker, j
 
 ---
 
-### Task 7: about.html — About & Contact page
+### Task 7: about.html — About page
 
 **Files:**
 - Create: `about.html`
@@ -1101,7 +1101,7 @@ git commit -m "feat: add home page with hero, events CTA, recent posts marker, j
 
 ```bash
 git add about.html
-git commit -m "feat: add about & contact page"
+git commit -m "feat: add About page"
 ```
 
 ---
@@ -2824,7 +2824,7 @@ This task has no code changes — it is a checklist for the deployment handoff (
 | Spec Requirement | Covered By |
 |---|---|
 | Home: hero, mission, featured events, 3 recent posts, CTA | Task 6, Task 11 |
-| About & Contact: history, board, partners, contact at bottom | Task 7 |
+| About: history, board, partners, contact at bottom | Task 7 |
 | Events: Google Calendar iframe, no CMS for events | Task 8 |
 | Membership: tiers, benefits, mailto join | Task 8 |
 | Volunteer: Decap CMS collection, card list, expired handling | Task 9, 11, 13 |

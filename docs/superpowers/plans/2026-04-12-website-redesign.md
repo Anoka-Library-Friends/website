@@ -1108,7 +1108,7 @@ Find:
 ```js
 test('about page: title, h1, sections, contact anchor', async ({ page }) => {
   await page.goto('/about.html');
-  await expect(page).toHaveTitle(/About & Contact/);
+  await expect(page).toHaveTitle(/About/);
   await expect(page.locator('h1')).toHaveText('About Us');
   await checkSharedElements(page);
 
@@ -1126,8 +1126,8 @@ Replace with:
 ```js
 test('about page: title, h1, page banner, sections, contact anchor', async ({ page }) => {
   await page.goto('/about.html');
-  await expect(page).toHaveTitle(/About & Contact/);
-  await expect(page.locator('h1')).toHaveText('About & Contact');
+  await expect(page).toHaveTitle(/About/);
+  await expect(page.locator('h1')).toHaveText('About');
   await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
