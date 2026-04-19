@@ -202,12 +202,10 @@
   </script>
   <script defer src="/main.js"></script>
   <!--
-    Netlify Identity: loaded on root page only so CMS editors are redirected to
-    /admin/ after GitHub OAuth login. Loaded synchronously (no defer) so the
-    redirect handler runs immediately after the widget initialises.
-    DO NOT copy these two script tags to other pages.
+    Netlify Identity loader: only fires when an OAuth token is present in the
+    URL hash (post-login redirect). Otherwise it's a no-op and the widget is
+    never loaded, so no extra HTML is injected for normal visitors.
   -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="/netlify-identity.js"></script>
 
 </body>
