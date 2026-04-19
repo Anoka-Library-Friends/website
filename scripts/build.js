@@ -103,8 +103,11 @@ function footerHtml() {
         </ul>
       </nav>
       <div>
-        <ul class="social-links">
-          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        <strong>Connect With Us</strong>
+        <ul class="footer-contact">
+          <li><a href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.anokacountymn.gov/4180/Libraries" target="_blank" rel="noopener noreferrer">Anoka County Library</a></li>
+          <li><a href="mailto:friendsofanokacolib@gmail.com">friendsofanokacolib@gmail.com</a></li>
         </ul>
       </div>
     </div>
@@ -154,7 +157,7 @@ ${navHtml()}
         <div class="blog-post__body">
           ${html}
         </div>
-        <p style="margin-top: 2rem;">
+        <p class="mt-xl">
           <a href="/blog/">&larr; Back to all posts</a>
         </p>
       </div>
@@ -173,7 +176,7 @@ ${footerHtml()}
 function blogIndexListHtml(posts) {
   if (posts.length === 0) return '<p>No posts yet. Check back soon!</p>';
   return posts.map(({ data, slug }) => `
-    <article class="card" style="margin-bottom: 1.5rem;">
+    <article class="card mb-lg">
       <p class="card__date">${formatDate(data.date) || ''}</p>
       <h2 class="card__title"><a href="/blog/${slug}.html">${data.title || 'Untitled'}</a></h2>
       ${data.excerpt ? `<p class="card__excerpt">${data.excerpt}</p>` : ''}
@@ -222,9 +225,9 @@ function volunteerCardHtml({ data }) {
     <div class="volunteer-card">
       <div>
         <p class="volunteer-card__meta">${dateRange}${location}${needed}</p>
-        <h2 style="margin-bottom: 0.5rem;">${data.title || 'Untitled Opportunity'}</h2>
+        <h2 class="mb-sm">${data.title || 'Untitled Opportunity'}</h2>
         ${data.description ? marked.parse(data.description) : ''}
-        ${data.contact ? `<p style="font-size:0.875rem; color: var(--color-text-muted);">Contact: ${data.contact}</p>` : ''}
+        ${data.contact ? `<p class="volunteer-card__contact">Contact: ${data.contact}</p>` : ''}
       </div>
       ${data.signup_url ? `
       <div class="volunteer-card__cta">
@@ -242,13 +245,13 @@ function boardMembersHtml(members) {
   if (members.length === 0) return '        <p>Board member information coming soon.</p>';
   return sortBoardMembers(members).map(({ data }) => {
     const photoHtml = data.photo
-      ? `\n          <img src="${data.photo}" alt="${data.name}" width="120" height="120" style="border-radius: 50%; object-fit: cover; flex-shrink: 0;">`
+      ? `\n          <img src="${data.photo}" alt="${data.name}" width="120" height="120" class="board-member__photo">`
       : '';
     const yearsHtml = data.years_active ? ` (${data.years_active})` : '';
     const bioHtml = data.bio ? `\n            <p>${data.bio}</p>` : '';
-    return `        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">${photoHtml}
-          <div style="flex: 1; min-width: 16rem;">
-            <h3 style="font-size: 1.1rem;">${data.name} &mdash; ${data.title}${yearsHtml}</h3>${bioHtml}
+    return `        <div class="board-member">${photoHtml}
+          <div class="board-member__content">
+            <h3 class="board-member__name">${data.name} &mdash; ${data.title}${yearsHtml}</h3>${bioHtml}
           </div>
         </div>`;
   }).join('\n');
@@ -338,7 +341,7 @@ function eventsListHtml(events) {
             </div>
           </li>`;
   }
-  const locationIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;margin-right:3px;flex-shrink:0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>`;
+  const locationIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" class="event-location__icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>`;
   return events.map(({ start, title, description, location, url }) => {
     const month = MONTHS[start.getMonth()];
     const day   = start.getDate();
@@ -350,7 +353,7 @@ function eventsListHtml(events) {
       ? `\n              <p class="event-desc">${description}</p>`
       : '';
     const locHtml = location
-      ? `\n              <p class="event-desc" style="font-size:0.875rem;color:var(--color-text-muted);display:flex;align-items:center;">${locationIcon}${location}</p>`
+      ? `\n              <p class="event-desc event-location">${locationIcon}${location}</p>`
       : '';
     return `          <li class="event-item">
             <div class="event-date" aria-hidden="true">
@@ -446,9 +449,9 @@ async function build() {
   );
 
   const pastHtml = pastOpps.length > 0
-    ? `<details style="margin-top: 2rem;">
-        <summary style="cursor:pointer; font-weight:600;">Past Opportunities (${pastOpps.length})</summary>
-        <div style="margin-top: 1rem; opacity: 0.75;">
+    ? `<details class="past-opps">
+        <summary class="past-opps__summary">Past Opportunities (${pastOpps.length})</summary>
+        <div class="past-opps__list">
           ${pastOpps.map(volunteerCardHtml).join('\n')}
         </div>
       </details>`
