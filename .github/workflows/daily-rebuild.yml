@@ -1,0 +1,17 @@
+name: Daily rebuild
+
+# Triggers a Netlify build once a day so the Google Calendar event feed
+# (fetched at build time by scripts/build.js) stays current even when no
+# code or content changes have been pushed.
+
+on:
+  schedule:
+    - cron: '0 11 * * *'   # 11:00 UTC daily (~06:00 Central)
+  workflow_dispatch:        # allow manual runs from the Actions tab
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Netlify build hook
+        run: curl -fsSL -X POST -d '{}' "${{ secrets.NETLIFY_BUILD_HOOK }}"
