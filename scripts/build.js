@@ -24,12 +24,6 @@ const VOL_SRC   = join(PAGES, 'volunteers');
 const BOARD_SRC  = join(PAGES, 'board-members');
 const POSTS_PER_PAGE = 10;
 const RECENT_POSTS_COUNT = 3;
-const UPCOMING_EVENTS_COUNT = 10;
-
-const CALENDAR_ICAL_URL =
-  'https://calendar.google.com/calendar/ical/' +
-  'e647b5d49505dadc3c028b0b4d60661e276bf6801f2ba3f1449b0b9e24a72e21%40group.calendar.google.com' +
-  '/public/basic.ics';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -257,116 +251,6 @@ function boardMembersHtml(members) {
   }).join('\n');
 }
 
-// ── Google Calendar iCal fetch & parse ───────────────────────────────────────
-
-/** Undo iCal line folding (CRLF + whitespace = continuation of previous line). */
-function unfoldIcal(text) {
-  return text.replace(/\r\n[ \t]/g, '').replace(/\n[ \t]/g, '');
-}
-
-/** Parse a DTSTART/DTEND value (with optional params) into a JS Date. */
-function parseIcalDate(value, params = '') {
-  // All-day event: VALUE=DATE → YYYYMMDD
-  if (params.includes('VALUE=DATE')) {
-    return new Date(`${value.slice(0,4)}-${value.slice(4,6)}-${value.slice(6,8)}T00:00:00`);
-  }
-  // UTC datetime: YYYYMMDDTHHmmssZ
-  if (value.endsWith('Z')) {
-    return new Date(value.replace(
-      /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/,
-      '$1-$2-$3T$4:$5:$6Z'
-    ));
-  }
-  // Floating / TZID local datetime: YYYYMMDDTHHmmss
-  const m = value.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})$/);
-  if (m) return new Date(`${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}`);
-  return null;
-}
-
-function parseIcalEvents(icalText) {
-  const text = unfoldIcal(icalText);
-  const events = [];
-  const unescape = s => s
-    .replace(/\\n/g, ' ').replace(/\\,/g, ',')
-    .replace(/\\;/g, ';').replace(/\\\\/g, '\\');
-
-  for (const [, block] of text.matchAll(/BEGIN:VEVENT([\s\S]*?)END:VEVENT/g)) {
-    const props = {};
-    for (const line of block.split(/\r?\n/)) {
-      const ci = line.indexOf(':');
-      if (ci === -1) continue;
-      const [key, ...paramParts] = line.slice(0, ci).split(';');
-      props[key.trim()] = { value: line.slice(ci + 1).trim(), params: paramParts.join(';') };
-    }
-
-    const dtStart = props['DTSTART'];
-    if (!dtStart) continue;
-    const start = parseIcalDate(dtStart.value, dtStart.params);
-    if (!start) continue;
-
-    events.push({
-      start,
-      title:       unescape(props['SUMMARY']?.value     || ''),
-      description: unescape(props['DESCRIPTION']?.value || ''),
-      location:    unescape(props['LOCATION']?.value    || ''),
-      url:         unescape(props['URL']?.value         || ''),
-    });
-  }
-  return events;
-}
-
-async function fetchCalendarEvents() {
-  try {
-    const res = await fetch(CALENDAR_ICAL_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const text = await res.text();
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return parseIcalEvents(text)
-      .filter(e => e.start >= today)
-      .sort((a, b) => a.start - b.start)
-      .slice(0, UPCOMING_EVENTS_COUNT);
-  } catch (err) {
-    console.warn(`[build] Could not fetch calendar events: ${err.message}`);
-    return null; // null = skip injection, keep existing HTML
-  }
-}
-
-function eventsListHtml(events) {
-  const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-  if (events.length === 0) {
-    return `          <li class="event-item">
-            <div class="event-details">
-              <p>No upcoming events at this time. Check back soon, or browse the calendar above!</p>
-            </div>
-          </li>`;
-  }
-  const locationIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" class="event-location__icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>`;
-  return events.map(({ start, title, description, location, url }) => {
-    const month = MONTHS[start.getMonth()];
-    const day   = start.getDate();
-    const titleHtml = url
-      ? `<a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a>`
-      : title;
-    // Show location as secondary line when both description and location are present
-    const descHtml = description
-      ? `\n              <p class="event-desc">${description}</p>`
-      : '';
-    const locHtml = location
-      ? `\n              <p class="event-desc event-location">${locationIcon}${location}</p>`
-      : '';
-    return `          <li class="event-item">
-            <div class="event-date" aria-hidden="true">
-              <span class="event-date__month">${month}</span>
-              <span class="event-date__day">${day}</span>
-            </div>
-            <div class="event-details">
-              <h3 class="event-title">${titleHtml}</h3>${descHtml}${locHtml}
-            </div>
-          </li>`;
-  }).join('\n');
-}
-
 // ── Main build orchestration ──────────────────────────────────────────────────
 
 async function build() {
@@ -476,25 +360,8 @@ async function build() {
   );
   console.log('[build] Injected board members into about.html');
 
-  // 5. Upcoming events from Google Calendar
-  const calEvents = await fetchCalendarEvents();
-  if (calEvents !== null) {
-    injectBetweenMarkers(
-      join(PAGES, 'events.html'),
-      'BUILD:EVENTS_START',
-      'BUILD:EVENTS_END',
-      eventsListHtml(calEvents)
-    );
-    injectBetweenMarkers(
-      join(PAGES, 'index.html'),
-      'BUILD:HOME_EVENTS_START',
-      'BUILD:HOME_EVENTS_END',
-      eventsListHtml(calEvents.slice(0, 3))
-    );
-    console.log(`[build] Injected ${calEvents.length} upcoming event(s) into events.html and index.html`);
-  } else {
-    console.log('[build] Skipped events injection (calendar unavailable)');
-  }
+  // 5. Events are now served dynamically via netlify/functions/events.js —
+  //    no build-time injection needed.
 
   console.log('[build] Done.');
 }

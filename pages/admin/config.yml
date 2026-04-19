@@ -5,6 +5,9 @@ backend:
   name: git-gateway
   branch: main  # Branch to update (change to your default branch name if different)
 
+# Enables draft → review → ready workflow so multiple entries can be published at once
+publish_mode: editorial_workflow
+
 # Where uploaded images are stored
 media_folder: "pages/images/uploads"
 public_folder: "/images/uploads"
