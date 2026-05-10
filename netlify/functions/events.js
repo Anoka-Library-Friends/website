@@ -7,7 +7,7 @@
 
 const CALENDAR_ICAL_URL =
   'https://calendar.google.com/calendar/ical/' +
-  'e647b5d49505dadc3c028b0b4d60661e276bf6801f2ba3f1449b0b9e24a72e21%40group.calendar.google.com' +
+  'friendsofanokacolib%40gmail.com' +
   '/public/basic.ics';
 
 /** Undo iCal line folding (CRLF + whitespace = continuation of previous line). */

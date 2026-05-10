@@ -74,6 +74,12 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
+  // ── Board Members heading year ────────────────────────────────────────────
+  const boardYearEl = document.getElementById('board-year');
+  if (boardYearEl) {
+    boardYearEl.textContent = new Date().getFullYear();
+  }
+
   // ── Floating Donate Button ────────────────────────────────────────────────
   // Suppressed on donate.html via data-page="donate" on <body>.
   if (document.body.dataset.page !== 'donate') {

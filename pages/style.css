@@ -130,6 +130,15 @@ ol[role="list"] {
   list-style: none;
 }
 
+.prose-list {
+  padding-inline-start: var(--space-lg);
+  margin-block: var(--space-md);
+}
+
+.prose-list li {
+  margin-bottom: var(--space-sm);
+}
+
 /* =============================================
    TYPOGRAPHY
    ============================================= */
@@ -643,6 +652,14 @@ p:last-child { margin-bottom: 0; }
 /* =============================================
    HERO SECTION
    ============================================= */
+.hero__logo {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto var(--space-xl);
+}
+
 .hero {
   background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-dark) 100%);
   color: #fff;
@@ -852,6 +869,19 @@ p:last-child { margin-bottom: 0; }
   background: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
   color: #fff;
+}
+
+.donate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.donate-address {
+  font-style: normal;
+  line-height: 1.6;
+  margin-block: var(--space-sm);
 }
 
 /* =============================================

@@ -70,28 +70,32 @@
 
     <section class="donate-section">
       <div class="container">
-        <!--
-          PAYPAL DONATE BUTTON
-          SETUP: Replace REPLACE_WITH_YOUR_BUTTON_ID with your PayPal hosted button ID.
-          Generate at: paypal.com → Merchant Services → PayPal Buttons → Donate
-          The hosted_button_id is found in the code snippet PayPal provides.
-        -->
-        <form action="https://www.paypal.com/donate" method="post" target="_top">
-          <input type="hidden" name="hosted_button_id" value="REPLACE_WITH_YOUR_BUTTON_ID">
-          <button type="submit" class="btn--paypal">
+
+        <h2>Donate Online</h2>
+        <p>Give securely through PayPal or GiveMN.</p>
+        <div class="donate-actions">
+          <a href="https://www.paypal.com/donate?token=INE7ZQbhU4ZG_0XhSpNRVPm9x-9yfMrDo2DoYlfKdIWbLOZFZ87y0kaX6ltvVplqduCUWFSf8-DRvfOx"
+             class="btn--paypal"
+             target="_blank" rel="noopener noreferrer">
             Donate with PayPal
-          </button>
-        </form>
+          </a>
+          <a href="https://www.givemn.org/organization/Acl"
+             class="btn--paypal"
+             target="_blank" rel="noopener noreferrer">
+            Donate via GiveMN
+          </a>
+        </div>
         <p class="donate-note">
-          You will be redirected to PayPal to complete your donation securely.
+          You will be redirected to the donation provider to complete your gift securely.
         </p>
-        <!--
-          CONTENT: confirm 501(c)(3) status with board before publishing this line.
-          <p style="font-size: 0.875rem; color: var(--color-text-muted);">
-            Friends of the Anoka County Library is a 501(c)(3) nonprofit organization.
-            Your donation may be tax-deductible.
-          </p>
-        -->
+
+        <h2 class="mt-xl">Donate by Mail</h2>
+        <p>Make checks payable to <strong>Friends of the Anoka County Library</strong> and mail to:</p>
+        <address class="donate-address">
+          Friends of the Anoka County Library<br>
+          707 County Hwy 10<br>
+          Blaine, MN 55434
+        </address>
       </div>
     </section>
 

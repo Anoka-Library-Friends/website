@@ -124,7 +124,7 @@ test('membership page: title, h1, page banner, single tier, mailto link', async 
 
 // ── donate.html ───────────────────────────────────────────────────────────────
 
-test('donate page: title, page banner, impact statement, PayPal form, no FAB', async ({ page }) => {
+test('donate page: title, page banner, impact statement, donation methods, no FAB', async ({ page }) => {
   await page.goto('/donate.html');
   await expect(page).toHaveTitle(/Donate/);
   await expect(page.locator('h1')).toHaveText('Make a Donation');
@@ -134,14 +134,23 @@ test('donate page: title, page banner, impact statement, PayPal form, no FAB', a
   // Impact statement heading
   await expect(page.locator('h2', { hasText: 'Why Your Gift Matters' })).toBeVisible();
 
-  // PayPal form
-  const form = page.locator('form[action="https://www.paypal.com/donate"]');
-  await expect(form).toBeAttached();
-  await expect(form.locator('input[name="hosted_button_id"]')).toBeAttached();
-  await expect(form.locator('button[type="submit"]')).toBeVisible();
+  // PayPal link
+  const paypal = page.locator('a.btn--paypal[href*="paypal.com/donate"]');
+  await expect(paypal).toBeVisible();
+  await expect(paypal).toHaveAttribute('target', '_blank');
 
-  // Security note below button
-  await expect(page.locator('.donate-section p')).toBeVisible();
+  // GiveMN link
+  const givemn = page.locator('a.btn--paypal[href*="givemn.org"]');
+  await expect(givemn).toBeVisible();
+
+  // Mailing address
+  const address = page.locator('.donate-address');
+  await expect(address).toBeVisible();
+  await expect(address).toContainText('707 County Hwy 10');
+  await expect(address).toContainText('Blaine, MN 55434');
+
+  // Security note below buttons
+  await expect(page.locator('.donate-note')).toBeVisible();
 
   // Donate FAB must NOT appear on donate page
   await expect(page.locator('.donate-fab')).not.toBeAttached();
