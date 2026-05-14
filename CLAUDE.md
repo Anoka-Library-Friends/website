@@ -22,7 +22,8 @@ npx playwright test --headed --debug           # open browser, step through
 
 Local preview (no hot reload — this is a plain static site):
 ```bash
-node scripts/test-server.js                    # serves pages/ on http://localhost:4000
+npx serve pages                                # serves the site on http://localhost:3000
+node scripts/test-server.js                    # alternative: serves pages/ on http://localhost:4000
 ```
 
 ## Architecture
