@@ -585,6 +585,14 @@ p:last-child { margin-bottom: 0; }
   font-size: 0.875rem;
 }
 
+.footer-tagline {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  opacity: 0.85;
+  max-width: 28ch;
+}
+
 .footer-nav a,
 .footer-contact a {
   display: block;
