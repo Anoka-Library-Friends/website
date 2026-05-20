@@ -73,7 +73,7 @@ function navHtml() {
         <li><a href="/events.html">Events</a></li>
         <li><a href="/membership.html">Membership</a></li>
         <li><a href="/volunteer.html">Volunteer</a></li>
-        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/blog/">News</a></li>
         <li><a href="/donate.html" class="nav-donate">Donate</a></li>
       </ul>
     </nav>
@@ -92,7 +92,7 @@ function footerHtml() {
           <li><a href="/events.html">Events</a></li>
           <li><a href="/membership.html">Membership</a></li>
           <li><a href="/volunteer.html">Volunteer</a></li>
-          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/blog/">News</a></li>
           <li><a href="/donate.html">Donate</a></li>
         </ul>
       </nav>

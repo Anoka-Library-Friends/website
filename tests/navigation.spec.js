@@ -9,7 +9,7 @@ const PAGES = [
   { url: '/events.html',    activeText: 'Events' },
   { url: '/membership.html',activeText: 'Membership' },
   { url: '/volunteer.html', activeText: 'Volunteer' },
-  { url: '/blog/',          activeText: 'Blog' },
+  { url: '/blog/',          activeText: 'News' },
   { url: '/donate.html',    activeText: 'Donate' },
 ];
 
@@ -24,11 +24,11 @@ for (const { url, activeText } of PAGES) {
   });
 }
 
-test('blog post page marks "Blog" nav link as active', async ({ page }) => {
+test('blog post page marks "News" nav link as active', async ({ page }) => {
   await page.goto('/blog/welcome-to-our-new-website.html');
   const activeLink = page.locator('.nav-links a[aria-current="page"]');
   await expect(activeLink).toHaveCount(1);
-  await expect(activeLink).toHaveText('Blog');
+  await expect(activeLink).toHaveText('News');
 });
 
 // ── Desktop: hamburger hidden, links visible ───────────────────────────────────

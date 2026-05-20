@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { text: 'Events',           href: '/events.html' },
   { text: 'Membership',       href: '/membership.html' },
   { text: 'Volunteer',        href: '/volunteer.html' },
-  { text: 'Blog',             href: '/blog/' },
+  { text: 'News',             href: '/blog/' },
   { text: 'Donate',           href: '/donate.html' },
 ];
 
