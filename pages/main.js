@@ -81,12 +81,18 @@
   }
 
   // ── Floating Donate Button ────────────────────────────────────────────────
+  // One-click GiveMN donation. External link — opens in a new tab.
   // Suppressed on donate.html via data-page="donate" on <body>.
   if (document.body.dataset.page !== 'donate') {
     const fab = document.createElement('a');
-    fab.href = '/donate.html';
+    fab.href = 'https://www.givemn.org/organization/Acl';
     fab.className = 'donate-fab';
-    fab.setAttribute('aria-label', 'Donate to Friends of the Anoka County Library');
+    fab.target = '_blank';
+    fab.rel = 'noopener noreferrer';
+    fab.setAttribute(
+      'aria-label',
+      'Donate to Friends of the Anoka County Library via GiveMN (opens in a new tab)'
+    );
     fab.textContent = '♥ Donate';
     document.body.appendChild(fab);
   }

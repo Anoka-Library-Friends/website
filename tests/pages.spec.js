@@ -59,9 +59,10 @@ test('home page: title, h1, hero, events strip, recent posts, CTAs', async ({ pa
   await expect(ctaBand).toBeVisible();
   await expect(ctaBand.locator('a.btn')).toHaveCount(2);
 
-  // Donate FAB present on homepage
+  // Donate FAB present on homepage, links to GiveMN one-click
   await expect(page.locator('.donate-fab')).toBeVisible();
-  await expect(page.locator('.donate-fab')).toHaveAttribute('href', '/donate.html');
+  await expect(page.locator('.donate-fab')).toHaveAttribute('href', 'https://www.givemn.org/organization/Acl');
+  await expect(page.locator('.donate-fab')).toHaveAttribute('target', '_blank');
 });
 
 // ── about.html ────────────────────────────────────────────────────────────────
