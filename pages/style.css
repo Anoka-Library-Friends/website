@@ -193,6 +193,25 @@ p:last-child { margin-bottom: 0; }
   .grid-3 { grid-template-columns: 1fr; }
 }
 
+/* Image-left / copy-right two-column row */
+.media-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 2rem;
+  align-items: start;
+  margin: 2rem 0;
+}
+
+.media-row img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+@media (max-width: 720px) {
+  .media-row { grid-template-columns: 1fr; }
+}
+
 /* =============================================
    BUTTONS
    ============================================= */
