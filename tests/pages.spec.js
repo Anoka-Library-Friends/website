@@ -107,20 +107,23 @@ test('events page: title, h1, page banner, calendar iframe with title and loadin
 
 // ── membership.html ───────────────────────────────────────────────────────────
 
-test('membership page: title, h1, page banner, single tier, mailto link', async ({ page }) => {
+test('membership page: title, h1, page banner, Donate-to-Join CTA, GiveMN + PayPal links', async ({ page }) => {
   await page.goto('/membership.html');
   await expect(page).toHaveTitle(/Membership/);
   await expect(page.locator('h1')).toHaveText('Membership');
   await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
-  // Single tier at $20/year
-  await expect(page.locator('.tier')).toHaveCount(1);
+  // Donate-to-Join CTA in page banner
+  const joinBtn = page.locator('.page-banner__cta a.btn');
+  await expect(joinBtn).toBeVisible();
+  await expect(joinBtn).toHaveText(/Donate to Join/i);
+  await expect(joinBtn).toHaveAttribute('href', '/donate.html');
 
-  // Join button uses mailto
-  const joinBtn = page.locator('.tier .btn').first();
-  const href = await joinBtn.getAttribute('href');
-  expect(href).toMatch(/^mailto:/);
+  // GiveMN + PayPal links are present in the main content
+  // (excludes the donate FAB which also links to GiveMN)
+  await expect(page.locator('main a[href*="givemn.org"]')).toHaveCount(1);
+  await expect(page.locator('main a[href*="paypal.com"]')).toHaveCount(1);
 });
 
 // ── donate.html ───────────────────────────────────────────────────────────────

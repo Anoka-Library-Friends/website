@@ -916,6 +916,14 @@ p:last-child { margin-bottom: 0; }
   margin: 0;
 }
 
+.page-banner__cta {
+  margin: 1.25rem 0 0;
+}
+
+.page-banner__cta .btn {
+  display: inline-block;
+}
+
 /* =============================================
    EVENTS STRIP (homepage)
    ============================================= */
