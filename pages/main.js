@@ -61,7 +61,7 @@
 
     const isActive =
       normalizePath(linkPath) === normalizePath(currentPath) ||
-      (normalizePath(linkPath) === '/blog' && normalizePath(currentPath).startsWith('/blog'));
+      (normalizePath(linkPath) === '/news' && normalizePath(currentPath).startsWith('/news'));
 
     if (isActive) {
       link.setAttribute('aria-current', 'page');

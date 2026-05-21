@@ -754,23 +754,23 @@ p:last-child { margin-bottom: 0; }
 /* =============================================
    BLOG
    ============================================= */
-.blog-post__header {
+.news-post__header {
   margin-bottom: var(--space-lg);
 }
 
-.blog-post__meta {
+.news-post__meta {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
 }
 
-.blog-post__body {
+.news-post__body {
   max-width: 720px;
 }
 
-.blog-post__body h2 { margin-top: var(--space-lg); }
-.blog-post__body h3 { margin-top: var(--space-md); }
-.blog-post__body ul,
-.blog-post__body ol {
+.news-post__body h2 { margin-top: var(--space-lg); }
+.news-post__body h3 { margin-top: var(--space-md); }
+.news-post__body ul,
+.news-post__body ol {
   margin-left: var(--space-lg);
   margin-bottom: var(--space-md);
 }

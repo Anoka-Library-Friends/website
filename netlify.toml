@@ -2,6 +2,13 @@
   command = "npm ci && npm run build"
   publish = "pages"
 
+# Forward old /blog/ URLs to the renamed /news/ section.
+[[redirects]]
+  from = "/blog/*"
+  to = "/news/:splat"
+  status = 301
+  force = true
+
 # Security headers for all public pages
 [[headers]]
   for = "/*"

@@ -19,7 +19,7 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT  = join(__dirname, '..');
 const PAGES = join(ROOT, 'pages');
-const BLOG_SRC  = join(PAGES, 'blog');
+const NEWS_SRC  = join(PAGES, 'news');
 const VOL_SRC   = join(PAGES, 'volunteers');
 const BOARD_SRC  = join(PAGES, 'board-members');
 const POSTS_PER_PAGE = 10;
@@ -54,7 +54,7 @@ function injectBetweenMarkers(filePath, startMarker, endMarker, newContent) {
   writeFileSync(filePath, `${before}\n${newContent}\n${after}`, 'utf8');
 }
 
-/** Shared nav HTML included in each generated blog post page. */
+/** Shared nav HTML included in each generated news post page. */
 function navHtml() {
   return `  <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
@@ -73,14 +73,14 @@ function navHtml() {
         <li><a href="/events.html">Events</a></li>
         <li><a href="/membership.html">Membership</a></li>
         <li><a href="/volunteer.html">Volunteer</a></li>
-        <li><a href="/blog/">News</a></li>
+        <li><a href="/news/">News</a></li>
         <li><a href="/donate.html" class="nav-donate">Donate</a></li>
       </ul>
     </nav>
   </header>`;
 }
 
-/** Shared footer HTML included in each generated blog post page. */
+/** Shared footer HTML included in each generated news post page. */
 function footerHtml() {
   return `  <footer class="site-footer">
     <div class="footer-inner">
@@ -95,7 +95,7 @@ function footerHtml() {
           <li><a href="/events.html">Events</a></li>
           <li><a href="/membership.html">Membership</a></li>
           <li><a href="/volunteer.html">Volunteer</a></li>
-          <li><a href="/blog/">News</a></li>
+          <li><a href="/news/">News</a></li>
           <li><a href="/donate.html">Donate</a></li>
         </ul>
       </nav>
@@ -114,9 +114,9 @@ function footerHtml() {
   </footer>`;
 }
 
-// ── Blog post page generation ──────────────────────────────────────────────────
+// ── News post page generation ─────────────────────────────────────────────────
 
-function generateBlogPostPage({ data, html, slug }) {
+function generateNewsPostPage({ data, html, slug }) {
   const title    = data.title   || 'Untitled Post';
   const author   = data.author  || '';
   const dateStr  = formatDate(data.date);
@@ -144,18 +144,18 @@ ${navHtml()}
   <main id="main-content">
     <article class="section">
       <div class="container">
-        <header class="blog-post__header">
+        <header class="news-post__header">
           <h1>${title}</h1>
-          <p class="blog-post__meta">
+          <p class="news-post__meta">
             ${dateStr ? `<time datetime="${data.date}">${dateStr}</time>` : ''}
             ${author ? ` &middot; ${author}` : ''}
           </p>
         </header>
-        <div class="blog-post__body">
+        <div class="news-post__body">
           ${html}
         </div>
         <p class="mt-xl">
-          <a href="/blog/">&larr; Back to all posts</a>
+          <a href="/news/">&larr; Back to all posts</a>
         </p>
       </div>
     </article>
@@ -168,16 +168,16 @@ ${footerHtml()}
 </html>`;
 }
 
-// ── Blog index list HTML ───────────────────────────────────────────────────────
+// ── News index list HTML ──────────────────────────────────────────────────────
 
-function blogIndexListHtml(posts) {
+function newsIndexListHtml(posts) {
   if (posts.length === 0) return '<p>No posts yet. Check back soon!</p>';
   return posts.map(({ data, slug }) => `
     <article class="card mb-lg">
       <p class="card__date">${formatDate(data.date) || ''}</p>
-      <h2 class="card__title"><a href="/blog/${slug}.html">${data.title || 'Untitled'}</a></h2>
+      <h2 class="card__title"><a href="/news/${slug}.html">${data.title || 'Untitled'}</a></h2>
       ${data.excerpt ? `<p class="card__excerpt">${data.excerpt}</p>` : ''}
-      <a href="/blog/${slug}.html" class="btn btn--outline">Read More</a>
+      <a href="/news/${slug}.html" class="btn btn--outline">Read More</a>
     </article>`).join('\n');
 }
 
@@ -188,11 +188,11 @@ function paginationHtml(pages, currentPage) {
     if (pageNum === currentPage) {
       return `<span class="current" aria-current="page">${pageNum}</span>`;
     }
-    // page 1 → /blog/, page 2+ → /blog/page-2.html etc.
-    const href = pageNum === 1 ? '/blog/' : `/blog/page-${pageNum}.html`;
+    // page 1 → /news/, page 2+ → /news/page-2.html etc.
+    const href = pageNum === 1 ? '/news/' : `/news/page-${pageNum}.html`;
     return `<a href="${href}">${pageNum}</a>`;
   });
-  return `<nav class="pagination" aria-label="Blog pagination">${links.join('')}</nav>`;
+  return `<nav class="pagination" aria-label="News pagination">${links.join('')}</nav>`;
 }
 
 // ── Recent posts HTML (3 newest) for home page ────────────────────────────────
@@ -203,9 +203,9 @@ function recentPostsHtml(posts) {
   return `<div class="grid-3">${recent.map(({ data, slug }) => `
     <article class="card">
       <p class="card__date">${formatDate(data.date) || ''}</p>
-      <h3 class="card__title"><a href="/blog/${slug}.html">${data.title || 'Untitled'}</a></h3>
+      <h3 class="card__title"><a href="/news/${slug}.html">${data.title || 'Untitled'}</a></h3>
       ${data.excerpt ? `<p class="card__excerpt">${data.excerpt}</p>` : ''}
-      <a href="/blog/${slug}.html">Read More &rarr;</a>
+      <a href="/news/${slug}.html">Read More &rarr;</a>
     </article>`).join('\n')}</div>`;
 }
 
@@ -259,50 +259,50 @@ function boardMembersHtml(members) {
 async function build() {
   console.log('[build] Starting build...');
 
-  // 1. Blog posts
-  const allPosts = sortByDateDesc(readMarkdownDir(BLOG_SRC));
-  console.log(`[build] Found ${allPosts.length} blog post(s).`);
+  // 1. News posts
+  const allPosts = sortByDateDesc(readMarkdownDir(NEWS_SRC));
+  console.log(`[build] Found ${allPosts.length} news post(s).`);
 
-  // Generate individual blog post HTML files
+  // Generate individual news post HTML files
   allPosts.forEach(post => {
-    const outPath = join(BLOG_SRC, `${post.slug}.html`);
-    writeFileSync(outPath, generateBlogPostPage(post), 'utf8');
+    const outPath = join(NEWS_SRC, `${post.slug}.html`);
+    writeFileSync(outPath, generateNewsPostPage(post), 'utf8');
     console.log(`[build]   → ${outPath}`);
   });
 
-  // Generate paginated blog index (page 1 injected into blog/index.html)
+  // Generate paginated news index (page 1 injected into news/index.html)
   const pages = paginate(allPosts, POSTS_PER_PAGE);
   const page1Posts = pages[0] || [];
   injectBetweenMarkers(
-    join(BLOG_SRC, 'index.html'),
-    'BUILD:BLOG_INDEX_START',
-    'BUILD:BLOG_INDEX_END',
-    blogIndexListHtml(page1Posts)
+    join(NEWS_SRC, 'index.html'),
+    'BUILD:NEWS_INDEX_START',
+    'BUILD:NEWS_INDEX_END',
+    newsIndexListHtml(page1Posts)
   );
   injectBetweenMarkers(
-    join(BLOG_SRC, 'index.html'),
-    'BUILD:BLOG_PAGINATION_START',
-    'BUILD:BLOG_PAGINATION_END',
+    join(NEWS_SRC, 'index.html'),
+    'BUILD:NEWS_PAGINATION_START',
+    'BUILD:NEWS_PAGINATION_END',
     paginationHtml(pages, 1)
   );
 
   // Generate additional pagination pages (page 2+)
   pages.slice(1).forEach((pagePosts, i) => {
     const pageNum  = i + 2;
-    const pageFile = join(BLOG_SRC, `page-${pageNum}.html`);
-    const indexTemplate = readFileSync(join(BLOG_SRC, 'index.html'), 'utf8');
+    const pageFile = join(NEWS_SRC, `page-${pageNum}.html`);
+    const indexTemplate = readFileSync(join(NEWS_SRC, 'index.html'), 'utf8');
     let pageHtml = indexTemplate;
     pageHtml = pageHtml.replace(
-      /<!-- BUILD:BLOG_INDEX_START -->[\s\S]*?<!-- BUILD:BLOG_INDEX_END -->/,
-      `<!-- BUILD:BLOG_INDEX_START -->\n${blogIndexListHtml(pagePosts)}\n<!-- BUILD:BLOG_INDEX_END -->`
+      /<!-- BUILD:NEWS_INDEX_START -->[\s\S]*?<!-- BUILD:NEWS_INDEX_END -->/,
+      `<!-- BUILD:NEWS_INDEX_START -->\n${newsIndexListHtml(pagePosts)}\n<!-- BUILD:NEWS_INDEX_END -->`
     );
     pageHtml = pageHtml.replace(
-      /<!-- BUILD:BLOG_PAGINATION_START -->[\s\S]*?<!-- BUILD:BLOG_PAGINATION_END -->/,
-      `<!-- BUILD:BLOG_PAGINATION_START -->\n${paginationHtml(pages, pageNum)}\n<!-- BUILD:BLOG_PAGINATION_END -->`
+      /<!-- BUILD:NEWS_PAGINATION_START -->[\s\S]*?<!-- BUILD:NEWS_PAGINATION_END -->/,
+      `<!-- BUILD:NEWS_PAGINATION_START -->\n${paginationHtml(pages, pageNum)}\n<!-- BUILD:NEWS_PAGINATION_END -->`
     );
     pageHtml = pageHtml.replace(
-      /<title>Blog —/,
-      `<title>Blog — Page ${pageNum} —`
+      /<title>News —/,
+      `<title>News — Page ${pageNum} —`
     );
     writeFileSync(pageFile, pageHtml, 'utf8');
     console.log(`[build]   → ${pageFile}`);

@@ -29,10 +29,9 @@ const PAGES = [
   { name: 'donate',                  path: '/donate.html' },
   { name: 'events',                  path: '/events.html' },
   { name: 'volunteer',               path: '/volunteer.html' },
-  { name: 'blog',                    path: '/blog/' },
-  { name: 'blog-book-sale',          path: '/blog/annual-book-sale-2026.html' },
-  { name: 'blog-summer-reading',     path: '/blog/summer-reading-program-recap.html' },
-  { name: 'blog-welcome',            path: '/blog/welcome-to-our-new-website.html' },
+  { name: 'news',                    path: '/news/' },
+  { name: 'news-fall-book-sale',     path: '/news/fall-book-sale.html' },
+  { name: 'news-grant-awarded',      path: '/news/grant-awarded.html' },
 ];
 
 const VIEWPORTS = [

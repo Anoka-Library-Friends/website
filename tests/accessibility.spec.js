@@ -11,8 +11,8 @@ const PAGES = [
   { name: 'membership',     url: '/membership.html' },
   { name: 'donate',         url: '/donate.html' },
   { name: 'volunteer',      url: '/volunteer.html' },
-  { name: 'blog index',     url: '/blog/' },
-  { name: 'blog post',      url: '/blog/welcome-to-our-new-website.html' },
+  { name: 'news index',     url: '/news/' },
+  { name: 'news post',      url: '/news/fall-book-sale.html' },
 ];
 
 for (const { name, url } of PAGES) {
@@ -50,7 +50,7 @@ test('body text color token is dark enough for WCAG AA', async ({ page }) => {
 });
 
 test('muted text color token is readable on page background', async ({ page }) => {
-  await page.goto('/blog/');
+  await page.goto('/news/');
   // .card__date uses --color-text-muted (#6B5B4F), contrast ≥4.5:1 on --color-bg
   const mutedColor = await page.evaluate(() => {
     const el = document.querySelector('.card__date');

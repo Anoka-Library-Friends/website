@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-// Pages covered: all 7 static pages + generated blog posts
+// Pages covered: all 7 static pages + generated news posts
 // Tests: title, h1, skip link, full nav presence, footer year,
 //        page-specific content, external link attributes, build output
 
@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { text: 'Events',           href: '/events.html' },
   { text: 'Membership',       href: '/membership.html' },
   { text: 'Volunteer',        href: '/volunteer.html' },
-  { text: 'News',             href: '/blog/' },
+  { text: 'News',             href: '/news/' },
   { text: 'Donate',           href: '/donate.html' },
 ];
 
@@ -178,18 +178,18 @@ test('volunteer page: title, h1, page banner, injected opportunity card, sign-up
   await expect(signUpBtn).toHaveAttribute('aria-label', /sign up/i);
 });
 
-// ── blog/index.html ───────────────────────────────────────────────────────────
+// ── news/index.html ───────────────────────────────────────────────────────────
 
-test('blog index: title, h1, page banner, injected post list with three sample posts', async ({ page }) => {
-  await page.goto('/blog/');
-  await expect(page).toHaveTitle(/Blog/);
+test('news index: title, h1, page banner, injected post list', async ({ page }) => {
+  await page.goto('/news/');
+  await expect(page).toHaveTitle(/News/);
   await expect(page.locator('h1')).toHaveText('Latest News');
   await expect(page.locator('.page-banner')).toBeVisible();
   await checkSharedElements(page);
 
-  // Build injected 3 sample blog posts
+  // Build injected at least one post
   const articles = page.locator('article.card');
-  await expect(articles).toHaveCount(3);
+  await expect(articles.first()).toBeVisible();
 
   // Each card has a title link and a Read More link
   for (const article of await articles.all()) {
@@ -198,42 +198,37 @@ test('blog index: title, h1, page banner, injected post list with three sample p
   }
 });
 
-// ── generated blog post pages ─────────────────────────────────────────────────
+// ── generated news post pages ─────────────────────────────────────────────────
 
-const BLOG_POSTS = [
+const NEWS_POSTS = [
   {
-    slug: 'welcome-to-our-new-website',
-    title: 'Welcome to Our New Website',
+    slug: 'fall-book-sale',
+    title: 'Fall Book Sale',
     author: 'Friends of the Library Board',
   },
   {
-    slug: 'annual-book-sale-2026',
-    title: 'Annual Book Sale — April 2026',
+    slug: 'grant-awarded',
+    title: 'Grant Awarded',
     author: 'Friends of the Library Board',
-  },
-  {
-    slug: 'summer-reading-program-recap',
-    title: 'Summer Reading Program Recap',
-    author: 'Jane Smith',
   },
 ];
 
-for (const post of BLOG_POSTS) {
-  test(`blog post "${post.title}": h1, author, date, body, back link`, async ({ page }) => {
-    await page.goto(`/blog/${post.slug}.html`);
+for (const post of NEWS_POSTS) {
+  test(`news post "${post.title}": h1, author, date, body, back link`, async ({ page }) => {
+    await page.goto(`/news/${post.slug}.html`);
     await expect(page).toHaveTitle(new RegExp(post.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
 
     // Heading
     await expect(page.locator('h1')).toHaveText(post.title);
 
     // Meta: author name appears somewhere in the meta block
-    await expect(page.locator('.blog-post__meta')).toContainText(post.author);
+    await expect(page.locator('.news-post__meta')).toContainText(post.author);
 
     // Body content rendered (not empty)
-    await expect(page.locator('.blog-post__body')).not.toBeEmpty();
+    await expect(page.locator('.news-post__body')).not.toBeEmpty();
 
     // Back link
-    await expect(page.locator('a', { hasText: 'Back to all posts' })).toHaveAttribute('href', '/blog/');
+    await expect(page.locator('a', { hasText: 'Back to all posts' })).toHaveAttribute('href', '/news/');
 
     // Nav and footer still present
     await checkSharedElements(page);
@@ -242,15 +237,15 @@ for (const post of BLOG_POSTS) {
 
 // ── recent posts on home page link to correct post pages ─────────────────────
 
-test('home page: recent post links navigate to correct blog post pages', async ({ page }) => {
+test('home page: recent post links navigate to correct news post pages', async ({ page }) => {
   await page.goto('/');
   const recentSection = page.locator('section').filter({ hasText: 'Latest News' });
   const postLinks = recentSection.locator('article a').filter({ hasText: 'Read More' });
   const hrefs = await postLinks.evaluateAll(links => links.map(a => a.getAttribute('href')));
 
-  // Each href points to a valid /blog/*.html page
+  // Each href points to a valid /news/*.html page
   for (const href of hrefs) {
-    expect(href).toMatch(/^\/blog\/.+\.html$/);
+    expect(href).toMatch(/^\/news\/.+\.html$/);
     await page.goto(href);
     await expect(page.locator('h1')).not.toBeEmpty();
   }

@@ -38,25 +38,19 @@
   </url>
 
   <url>
-    <loc>https://www.PLACEHOLDER-DOMAIN.org/blog/</loc>
+    <loc>https://www.PLACEHOLDER-DOMAIN.org/news/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.PLACEHOLDER-DOMAIN.org/blog/annual-book-sale-2026.html</loc>
+    <loc>https://www.PLACEHOLDER-DOMAIN.org/news/fall-book-sale.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.PLACEHOLDER-DOMAIN.org/blog/summer-reading-program-recap.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://www.PLACEHOLDER-DOMAIN.org/blog/welcome-to-our-new-website.html</loc>
+    <loc>https://www.PLACEHOLDER-DOMAIN.org/news/grant-awarded.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

@@ -9,7 +9,7 @@ const PAGES = [
   { url: '/events.html',    activeText: 'Events' },
   { url: '/membership.html',activeText: 'Membership' },
   { url: '/volunteer.html', activeText: 'Volunteer' },
-  { url: '/blog/',          activeText: 'News' },
+  { url: '/news/',          activeText: 'News' },
   { url: '/donate.html',    activeText: 'Donate' },
 ];
 
@@ -24,8 +24,8 @@ for (const { url, activeText } of PAGES) {
   });
 }
 
-test('blog post page marks "News" nav link as active', async ({ page }) => {
-  await page.goto('/blog/welcome-to-our-new-website.html');
+test('news post page marks "News" nav link as active', async ({ page }) => {
+  await page.goto('/news/fall-book-sale.html');
   const activeLink = page.locator('.nav-links a[aria-current="page"]');
   await expect(activeLink).toHaveCount(1);
   await expect(activeLink).toHaveText('News');
@@ -141,7 +141,7 @@ test('footer nav links all present and functional', async ({ page }) => {
   await expect(footerLinks).toHaveCount(7);
 
   const expectedHrefs = ['/', '/about.html', '/events.html', '/membership.html',
-                         '/volunteer.html', '/blog/', '/donate.html'];
+                         '/volunteer.html', '/news/', '/donate.html'];
   const actualHrefs = await footerLinks.evaluateAll(links => links.map(a => a.getAttribute('href')));
   expect(actualHrefs).toEqual(expectedHrefs);
 });
