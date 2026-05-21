@@ -138,9 +138,9 @@ test('skip link becomes visible on focus and targets #main-content', async ({ pa
 test('footer nav links all present and functional', async ({ page }) => {
   await page.goto('/');
   const footerLinks = page.locator('.footer-nav a');
-  await expect(footerLinks).toHaveCount(7);
+  await expect(footerLinks).toHaveCount(8);
 
-  const expectedHrefs = ['/', '/about.html', '/events.html', '/membership.html',
+  const expectedHrefs = ['/', '/about.html', '/gala.html', '/events.html', '/membership.html',
                          '/volunteer.html', '/news/', '/donate.html'];
   const actualHrefs = await footerLinks.evaluateAll(links => links.map(a => a.getAttribute('href')));
   expect(actualHrefs).toEqual(expectedHrefs);

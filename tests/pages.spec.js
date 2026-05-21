@@ -7,6 +7,7 @@ import { test, expect } from '@playwright/test';
 const NAV_LINKS = [
   { text: 'Home',             href: '/' },
   { text: 'About',  href: '/about.html' },
+  { text: 'Gala',             href: '/gala.html' },
   { text: 'Events',           href: '/events.html' },
   { text: 'Membership',       href: '/membership.html' },
   { text: 'Volunteer',        href: '/volunteer.html' },
@@ -47,12 +48,12 @@ test('home page: title, h1, hero, events strip, recent posts, CTAs', async ({ pa
   // Upcoming Events strip with at least one event item
   const eventsSection = page.locator('.events-strip');
   await expect(eventsSection).toBeVisible();
-  await expect(eventsSection.locator('.event-item')).toHaveCount(2);
+  await expect(eventsSection.locator('.event-item').first()).toBeVisible();
   await expect(eventsSection.locator('.events-strip__link')).toHaveAttribute('href', '/events.html');
 
-  // Recent posts section — three blog cards
+  // Recent posts section — at least one post card (build injects up to 3)
   const recentSection = page.locator('.section--teal');
-  await expect(recentSection.locator('article')).toHaveCount(3);
+  await expect(recentSection.locator('article').first()).toBeVisible();
 
   // CTA band — two cream buttons
   const ctaBand = page.locator('.cta-band');

@@ -19,8 +19,11 @@ for (const { name, url } of PAGES) {
   test(`${name}: zero axe WCAG 2.1 AA violations`, async ({ page }) => {
     await page.goto(url);
 
+    // Exclude third-party iframe content (Google Calendar) — we don't
+    // control its styling and can't fix contrast inside it.
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .exclude('iframe')
       .analyze();
 
     // Surface violations clearly in test output
@@ -63,7 +66,7 @@ test('muted text color token is readable on page background', async ({ page }) =
 
 test('focus ring visible on primary button', async ({ page }) => {
   await page.goto('/membership.html');
-  const btn = page.locator('.tier--featured .btn').first();
+  const btn = page.locator('.page-banner__cta .btn').first();
   await btn.focus();
   const outline = await btn.evaluate(el => getComputedStyle(el).outlineStyle);
   // Outline should not be 'none' when focused

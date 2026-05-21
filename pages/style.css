@@ -690,7 +690,7 @@ p:last-child { margin-bottom: 0; }
 .hero {
   background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-dark) 100%);
   color: #fff;
-  padding-block: 6rem;
+  padding: 3rem 0 6rem;
   text-align: center;
 }
 
