@@ -70,6 +70,7 @@ function navHtml() {
       <ul id="nav-menu" class="nav-links" role="list">
         <li><a href="/">Home</a></li>
         <li><a href="/about.html">About</a></li>
+        <li><a href="/gala.html">Gala</a></li>
         <li><a href="/events.html">Events</a></li>
         <li><a href="/membership.html">Membership</a></li>
         <li><a href="/volunteer.html">Volunteer</a></li>
@@ -92,6 +93,7 @@ function footerHtml() {
         <ul class="footer-nav">
           <li><a href="/">Home</a></li>
           <li><a href="/about.html">About</a></li>
+          <li><a href="/gala.html">Gala</a></li>
           <li><a href="/events.html">Events</a></li>
           <li><a href="/membership.html">Membership</a></li>
           <li><a href="/volunteer.html">Volunteer</a></li>
