@@ -52,95 +52,6 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&family=Merriweather:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      .event-details-card {
-        background: white;
-        border: 2px solid var(--color-teal, #415c5c);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        box-shadow: 0 4px 16px rgba(65, 92, 92, 0.12);
-        margin: var(--space-lg) 0;
-      }
-      .event-details-card h2 {
-        color: var(--color-primary);
-        margin-bottom: var(--space-md);
-      }
-      .gala-ticket-cta {
-        margin-top: var(--space-md);
-      }
-      .donor-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-md);
-        margin: var(--space-lg) 0;
-      }
-      @media (max-width: 640px) {
-        .donor-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      .donor-tier {
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-lg);
-        padding: var(--space-lg);
-        background: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
-      }
-      .donor-tier h3 {
-        font-family: var(--font-heading);
-        color: var(--color-primary);
-        margin-bottom: var(--space-sm);
-      }
-      .donor-tier ul {
-        padding-left: 1.25rem;
-        color: var(--color-text);
-      }
-      .donor-tier ul li {
-        margin-bottom: 0.35rem;
-      }
-      .sponsor-tier {
-        border-left: 4px solid var(--color-teal, #415c5c);
-        padding-left: var(--space-md);
-        margin-bottom: var(--space-xl);
-      }
-      .sponsor-tier h3 {
-        font-family: var(--font-heading);
-        font-size: var(--font-size-lg);
-        color: var(--color-primary);
-        margin-bottom: var(--space-xs);
-      }
-      .sponsor-tier ul {
-        padding-left: 1.25rem;
-        margin: var(--space-sm) 0;
-      }
-      .sponsor-tier ul li {
-        margin-bottom: 0.35rem;
-      }
-      .gala-hero-img {
-        width: 100%;
-        max-width: 800px;
-        display: block;
-        margin: 0 auto var(--space-xl);
-        border-radius: var(--radius-lg);
-      }
-      .author-entry {
-        display: flex;
-        gap: var(--space-lg);
-        margin-bottom: var(--space-xl);
-        align-items: flex-start;
-      }
-      .author-entry__photo {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: 50%;
-        flex-shrink: 0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      }
-      .author-entry p {
-        margin: 0;
-      }
-    </style>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -270,12 +181,12 @@
               hour, join us for an elegant dinner, dessert, and our
               evening&rsquo;s highlight: the author presentations.
             </p>
-            <p style="margin-top: var(--space-sm)">
+            <p class="mt-sm">
               <strong>Date:</strong> Thursday, October 15, 2026<br />
               <strong>Venue:</strong> Courtyards of Andover, 13545 Martin St NW,
               Andover, MN 55304
             </p>
-            <p style="margin-top: var(--space-sm)">Ticketing opens June 1.</p>
+            <p class="mt-sm">Ticketing opens June 1.</p>
             <p class="gala-ticket-cta">
               <a
                 class="btn btn--primary"
@@ -352,13 +263,12 @@
             </div>
           </div>
 
-          <p style="text-align: center; margin-top: var(--space-lg)">
+          <p class="text-center mt-lg">
             <a
-              class="btn btn--primary"
+              class="btn btn--primary btn--lg"
               href="https://www.zeffy.com/en-US/donation-form/friends-of-acl-gala-sponsor-donations"
               target="_blank"
               rel="noopener noreferrer"
-              style="font-size: 1.2rem; padding: 1rem 2.5rem"
               >Donate Now</a
             >
           </p>
@@ -373,7 +283,7 @@
             consider sponsoring one of the following:
           </p>
 
-          <div style="margin-top: var(--space-lg)">
+          <div class="mt-lg">
             <div class="sponsor-tier">
               <h3>Dessert Sponsor &mdash; $500</h3>
               <p>
