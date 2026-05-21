@@ -243,14 +243,11 @@ function volunteerCardHtml({ data }) {
 function boardMembersHtml(members) {
   if (members.length === 0) return '        <p>Board member information coming soon.</p>';
   return sortBoardMembers(members).map(({ data }) => {
-    const photoHtml = data.photo
-      ? `\n          <img src="${data.photo}" alt="${data.name}" width="120" height="120" class="board-member__photo">`
-      : '';
     const yearsHtml = data.years_active ? ` (${data.years_active})` : '';
-    const bioHtml = data.bio ? `\n            <p>${data.bio}</p>` : '';
-    return `        <div class="board-member">${photoHtml}
+    const tenureHtml = data.bio ? `\n            <p>${data.bio}</p>` : '';
+    return `        <div class="board-member">
           <div class="board-member__content">
-            <h3 class="board-member__name">${data.name} &mdash; ${data.title}${yearsHtml}</h3>${bioHtml}
+            <h3 class="board-member__name">${data.name} &mdash; ${data.title}${yearsHtml}</h3>${tenureHtml}
           </div>
         </div>`;
   }).join('\n');
