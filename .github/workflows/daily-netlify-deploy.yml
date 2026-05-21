@@ -1,0 +1,42 @@
+name: Daily Netlify deploy (if changes)
+
+on:
+  schedule:
+    # 13:00 UTC = 8am CDT / 7am CST. Adjust as needed.
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+
+jobs:
+  trigger-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Check for commits in the last 24 hours
+        id: check
+        run: |
+          COMMITS=$(git log --since='24 hours ago' --oneline)
+          if [ -n "$COMMITS" ]; then
+            echo "Changes detected:"
+            echo "$COMMITS"
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No commits in the last 24 hours — skipping deploy."
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Trigger Netlify build hook
+        if: steps.check.outputs.has_changes == 'true'
+        env:
+          HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK_URL" ]; then
+            echo "NETLIFY_BUILD_HOOK secret is not set." >&2
+            exit 1
+          fi
+          curl -fsS -X POST -d '{}' "$HOOK_URL"
+          echo "Build hook triggered."
