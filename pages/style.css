@@ -372,6 +372,14 @@ p:last-child { margin-bottom: 0; }
   }
 }
 
+/* Wrapper around the <ul> nav items and the donate CTA. On desktop they sit
+   in a row inside the header; on mobile this becomes the dropdown panel. */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -379,7 +387,8 @@ p:last-child { margin-bottom: 0; }
   list-style: none;
 }
 
-.nav-links a {
+.nav-links a,
+.nav-menu .nav-donate {
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: var(--font-size-sm);
@@ -425,22 +434,23 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* Donate link styled as button — cream on primary header */
-.nav-links .nav-donate {
+.nav-menu .nav-donate {
   background: var(--color-bg);
   color: var(--color-primary);
   padding: 0.4rem 1rem;
   border-radius: var(--radius);
   font-weight: 700;
   margin-left: var(--space-md);
+  text-decoration: none;
 }
 
-.nav-links .nav-donate:hover {
+.nav-menu .nav-donate:hover {
   background: white;
   color: var(--color-primary-dark);
 }
 
 /* Keep donate button text primary when on donate page */
-.nav-links .nav-donate[aria-current="page"] {
+.nav-menu .nav-donate[aria-current="page"] {
   color: var(--color-primary);
   text-decoration: none;
 }
@@ -483,8 +493,8 @@ p:last-child { margin-bottom: 0; }
 @media (max-width: 767px) {
   .nav-toggle { display: flex; }
 
-  .nav-links {
-    display: flex;
+  /* The wrapper becomes the absolute-positioned dropdown panel */
+  .nav-menu {
     position: absolute;
     top: var(--nav-height);
     left: 0;
@@ -504,7 +514,7 @@ p:last-child { margin-bottom: 0; }
                 visibility 0s linear 0.4s;
   }
 
-  .nav-links.is-open {
+  .nav-menu.is-open {
     /* Opening transition uses ease-out (fast start) */
     visibility: visible;
     pointer-events: auto;
@@ -512,18 +522,27 @@ p:last-child { margin-bottom: 0; }
                 visibility 0s linear 0s;
   }
 
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0;
+  }
+
   /* Staggered item reveal — only on open, no reverse animation */
-  .nav-links.is-open li {
+  .nav-menu.is-open li,
+  .nav-menu.is-open .nav-donate {
     animation: navItemIn 0.25s ease-out both;
   }
 
-  .nav-links.is-open li:nth-child(1) { animation-delay: 0.06s; }
-  .nav-links.is-open li:nth-child(2) { animation-delay: 0.10s; }
-  .nav-links.is-open li:nth-child(3) { animation-delay: 0.14s; }
-  .nav-links.is-open li:nth-child(4) { animation-delay: 0.18s; }
-  .nav-links.is-open li:nth-child(5) { animation-delay: 0.22s; }
-  .nav-links.is-open li:nth-child(6) { animation-delay: 0.26s; }
-  .nav-links.is-open li:nth-child(7) { animation-delay: 0.30s; }
+  .nav-menu.is-open li:nth-child(1) { animation-delay: 0.06s; }
+  .nav-menu.is-open li:nth-child(2) { animation-delay: 0.10s; }
+  .nav-menu.is-open li:nth-child(3) { animation-delay: 0.14s; }
+  .nav-menu.is-open li:nth-child(4) { animation-delay: 0.18s; }
+  .nav-menu.is-open li:nth-child(5) { animation-delay: 0.22s; }
+  .nav-menu.is-open li:nth-child(6) { animation-delay: 0.26s; }
+  .nav-menu.is-open li:nth-child(7) { animation-delay: 0.30s; }
+  .nav-menu.is-open .nav-donate    { animation-delay: 0.30s; }
 
   @keyframes navItemIn {
     from { opacity: 0; transform: translateX(-8px); }
@@ -536,12 +555,13 @@ p:last-child { margin-bottom: 0; }
   }
 
   /* Nav link ::after underline doesn't make sense stacked — remove it */
-  .nav-links a:not(.nav-donate)::after {
+  .nav-links a::after {
     display: none;
   }
 
-  .nav-links .nav-donate {
+  .nav-menu .nav-donate {
     margin-left: 0;
+    margin-top: 10px;
     padding: 0.5rem 1rem;
     align-self: flex-start;
   }
@@ -1289,6 +1309,12 @@ p:last-child { margin-bottom: 0; }
   margin-top: var(--space-md);
 }
 
+@media (max-width: 640px) {
+  .gala-cta {
+    text-align: center;
+  }
+}
+
 .author-entry {
   display: flex;
   gap: var(--space-lg);
@@ -1315,42 +1341,137 @@ p:last-child { margin-bottom: 0; }
     align-items: center;
     gap: var(--space-md);
   }
-}
 
-.donor-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
-  margin: var(--space-lg) 0;
-}
-
-@media (max-width: 640px) {
-  .donor-grid {
-    grid-template-columns: 1fr;
+  .author-entry__photo {
+    width: 60%;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 }
 
-.donor-tier {
-  border: 1px solid var(--color-border);
+/* Sponsorship levels & benefits table (gala page) */
+.sponsor-table-wrap {
+  margin: var(--space-lg) 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--radius-lg);
-  padding: var(--space-lg);
   background: white;
+  border: 1px solid var(--color-border);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
 }
 
-.donor-tier h3 {
+.sponsor-table-wrap:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.sponsor-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  min-width: 640px;
+}
+
+/* Visually hide the table caption + first-column header label (kept for SR users) */
+.sponsor-table__caption,
+.sponsor-table > caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sponsor-table thead th {
+  background: var(--color-primary);
+  color: #fff;
   font-family: var(--font-heading);
-  color: var(--color-primary);
-  margin-bottom: var(--space-sm);
+  text-align: center;
+  padding: var(--space-md) var(--space-sm);
+  vertical-align: middle;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.donor-tier ul {
-  padding-left: 1.25rem;
+.sponsor-table thead th:last-child {
+  border-right: none;
+}
+
+.sponsor-table__name {
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--font-size-sm);
+}
+
+.sponsor-table__price {
+  display: block;
+  font-weight: 400;
+  font-size: 0.85em;
+  margin-top: 2px;
+  opacity: 0.95;
+}
+
+.sponsor-table tbody th {
+  text-align: left;
+  font-weight: 500;
+  font-family: var(--font-body);
   color: var(--color-text);
+  padding: var(--space-md);
+  background: white;
+  border-top: 1px solid var(--color-border);
+  vertical-align: middle;
+  min-width: 11rem;
 }
 
-.donor-tier ul li {
-  margin-bottom: 0.35rem;
+.sponsor-table tbody td {
+  text-align: center;
+  padding: var(--space-md) var(--space-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  vertical-align: middle;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.sponsor-table tbody tr:first-child td {
+  border-top: none;
+}
+
+.sponsor-table .t--1 { background: #D7E7E3; }
+.sponsor-table .t--2 { background: #A8C7C2; }
+.sponsor-table .t--3 { background: #7CA59E; }
+.sponsor-table .t--4 { background: #5C8580; color: #fff; }
+
+@media (max-width: 640px) {
+  /* Break the table out of the .container padding so it spans the full viewport */
+  .sponsor-table-wrap {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  /* Fixed layout: first column 25%, four tier columns share the remaining 75% */
+  .sponsor-table {
+    table-layout: fixed;
+  }
+
+  .sponsor-table thead th,
+  .sponsor-table tbody td {
+    width: 18.75%;
+  }
+
+  .sponsor-table thead th:first-child,
+  .sponsor-table tbody th {
+    width: 25%;
+    min-width: 0;
+    padding: var(--space-sm);
+  }
 }
 
 .sponsor-tier {

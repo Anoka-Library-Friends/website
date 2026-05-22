@@ -29,6 +29,7 @@
   <!-- Skip to main content (screen readers + keyboard) -->
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <!-- BUILD:NAV_START -->
   <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
@@ -40,18 +41,21 @@
         <span class="hamburger-bar" aria-hidden="true"></span>
         <span class="hamburger-bar" aria-hidden="true"></span>
       </button>
-      <ul id="nav-menu" class="nav-links" role="list">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/gala.html">Gala</a></li>
-        <li><a href="/events.html">Events</a></li>
-        <li><a href="/membership.html">Membership</a></li>
-        <li><a href="/volunteer.html">Volunteer</a></li>
-        <li><a href="/news/">News</a></li>
-        <li><a href="/donate.html" class="nav-donate">Donate</a></li>
-      </ul>
+      <div id="nav-menu" class="nav-menu">
+        <ul class="nav-links" role="list">
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/gala.html">Gala</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/membership.html">Membership</a></li>
+          <li><a href="/volunteer.html">Volunteer</a></li>
+          <li><a href="/news/">News</a></li>
+        </ul>
+        <a href="/donate.html" class="nav-donate">Donate</a>
+      </div>
     </nav>
   </header>
+<!-- BUILD:NAV_END -->
 
   <main id="main-content">
 
@@ -119,6 +123,7 @@
 
   </main>
 
+  <!-- BUILD:FOOTER_START -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div>
@@ -150,6 +155,7 @@
       &copy; <span id="footer-year"></span> Friends of the Anoka County Library. All rights reserved.
     </p>
   </footer>
+<!-- BUILD:FOOTER_END -->
 
   <script type="application/ld+json">
   {

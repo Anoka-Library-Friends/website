@@ -59,44 +59,33 @@
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <header class="site-header">
-      <nav class="site-nav" aria-label="Main navigation">
-        <a
-          href="/"
-          class="nav-logo"
-          aria-label="Friends of the Anoka County Library — home"
-        >
-          <img
-            src="/images/logo-icon-white.svg"
-            alt=""
-            width="40"
-            height="40"
-            aria-hidden="true"
-          />
-          <span class="nav-logo-text">Friends of Anoka County Library</span>
-        </a>
-        <button
-          class="nav-toggle"
-          aria-expanded="false"
-          aria-controls="nav-menu"
-          aria-label="Open menu"
-        >
-          <span class="hamburger-bar" aria-hidden="true"></span>
-          <span class="hamburger-bar" aria-hidden="true"></span>
-          <span class="hamburger-bar" aria-hidden="true"></span>
-        </button>
-        <ul id="nav-menu" class="nav-links" role="list">
+    <!-- BUILD:NAV_START -->
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
+        <img src="/images/logo-icon-white.svg" alt="" width="40" height="40" aria-hidden="true">
+        <span class="nav-logo-text">Friends of Anoka County Library</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+      </button>
+      <div id="nav-menu" class="nav-menu">
+        <ul class="nav-links" role="list">
           <li><a href="/">Home</a></li>
-          <li><a href="/about.html">About</a></li>
+          <li><a href="/about.html" aria-current="page">About</a></li>
           <li><a href="/gala.html">Gala</a></li>
           <li><a href="/events.html">Events</a></li>
           <li><a href="/membership.html">Membership</a></li>
           <li><a href="/volunteer.html">Volunteer</a></li>
           <li><a href="/news/">News</a></li>
-          <li><a href="/donate.html" class="nav-donate">Donate</a></li>
         </ul>
-      </nav>
-    </header>
+        <a href="/donate.html" class="nav-donate">Donate</a>
+      </div>
+    </nav>
+  </header>
+<!-- BUILD:NAV_END -->
 
     <main id="main-content">
       <section class="page-banner">
@@ -272,56 +261,39 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div>
-          <strong>Friends of the Anoka County Library</strong>
-          <p class="footer-tagline">Raising funds and awareness for the Anoka County Library since 2003.</p>
-        </div>
-        <nav aria-label="Footer navigation">
-          <ul class="footer-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/gala.html">Gala</a></li>
-            <li><a href="/events.html">Events</a></li>
-            <li><a href="/membership.html">Membership</a></li>
-            <li><a href="/volunteer.html">Volunteer</a></li>
-            <li><a href="/news/">News</a></li>
-            <li><a href="/donate.html">Donate</a></li>
-          </ul>
-        </nav>
-        <div>
-          <strong>Connect With Us</strong>
-          <ul class="footer-contact">
-            <li>
-              <a
-                href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Facebook</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.anokacountymn.gov/4180/Libraries"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Anoka County Library</a
-              >
-            </li>
-            <li>
-              <a href="mailto:FriendsoftheACL@gmail.com"
-                >FriendsoftheACL@gmail.com</a
-              >
-            </li>
-          </ul>
-        </div>
+    <!-- BUILD:FOOTER_START -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Friends of the Anoka County Library</strong>
+        <p class="footer-tagline">Raising funds and awareness for the Anoka County Library since 2003.</p>
       </div>
-      <p class="footer-copyright">
-        &copy; <span id="footer-year"></span> Friends of the Anoka County
-        Library. All rights reserved.
-      </p>
-    </footer>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/gala.html">Gala</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/membership.html">Membership</a></li>
+          <li><a href="/volunteer.html">Volunteer</a></li>
+          <li><a href="/news/">News</a></li>
+          <li><a href="/donate.html">Donate</a></li>
+        </ul>
+      </nav>
+      <div>
+        <strong>Connect With Us</strong>
+        <ul class="footer-contact">
+          <li><a href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.anokacountymn.gov/4180/Libraries" target="_blank" rel="noopener noreferrer">Anoka County Library</a></li>
+          <li><a href="mailto:FriendsoftheACL@gmail.com">FriendsoftheACL@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copyright">
+      &copy; <span id="footer-year"></span> Friends of the Anoka County Library. All rights reserved.
+    </p>
+  </footer>
+<!-- BUILD:FOOTER_END -->
 
     <script defer src="/main.js"></script>
   </body>

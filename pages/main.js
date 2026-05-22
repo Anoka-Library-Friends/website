@@ -6,7 +6,7 @@
 
   // ── Hamburger menu toggle ────────────────────────────────────────────────
   const toggle = document.querySelector('.nav-toggle');
-  const menu   = document.querySelector('.nav-links');
+  const menu   = document.querySelector('.nav-menu');
 
   if (toggle && menu) {
     function openMenu() {
@@ -44,6 +44,18 @@
         toggle.focus();
       }
     });
+
+    // Close menu when clicking outside of it (mobile UX)
+    document.addEventListener('click', function (e) {
+      if (!menu.classList.contains('is-open')) return;
+      if (menu.contains(e.target) || toggle.contains(e.target)) return;
+      closeMenu();
+    });
+
+    // Close menu when the page scrolls (mobile UX)
+    window.addEventListener('scroll', function () {
+      if (menu.classList.contains('is-open')) closeMenu();
+    }, { passive: true });
   }
 
   // ── Active nav link highlighting ─────────────────────────────────────────
@@ -56,7 +68,7 @@
     return p.replace(/\.html$/, '').replace(/\/$/, '') || '/';
   }
 
-  document.querySelectorAll('.nav-links a').forEach(function (link) {
+  document.querySelectorAll('.nav-menu a').forEach(function (link) {
     const linkPath = new URL(link.href, window.location.origin).pathname;
 
     const isActive =

@@ -54,8 +54,28 @@ function injectBetweenMarkers(filePath, startMarker, endMarker, newContent) {
   writeFileSync(filePath, `${before}\n${newContent}\n${after}`, 'utf8');
 }
 
-/** Shared nav HTML included in each generated news post page. */
-function navHtml() {
+/** Canonical nav definition — single source of truth for header + footer nav. */
+const NAV_LINKS = [
+  { href: '/',                label: 'Home' },
+  { href: '/about.html',      label: 'About' },
+  { href: '/gala.html',       label: 'Gala' },
+  { href: '/events.html',     label: 'Events' },
+  { href: '/membership.html', label: 'Membership' },
+  { href: '/volunteer.html',  label: 'Volunteer' },
+  { href: '/news/',           label: 'News' },
+  { href: '/donate.html',     label: 'Donate', donate: true },
+];
+
+/** Shared nav HTML. Pass `currentPath` (e.g. '/about.html', '/news/') so the
+ *  matching link gets aria-current="page". The donate button sits as a sibling
+ *  of the <ul> inside the .nav-menu wrapper (it's a CTA, not a regular nav item). */
+function navHtml(currentPath = '') {
+  const donateLink = NAV_LINKS.find(l => l.donate);
+  const items = NAV_LINKS.filter(l => !l.donate).map(({ href, label }) => {
+    const ariaAttr = href === currentPath ? ' aria-current="page"' : '';
+    return `          <li><a href="${href}"${ariaAttr}>${label}</a></li>`;
+  }).join('\n');
+  const donateAria = donateLink.href === currentPath ? ' aria-current="page"' : '';
   return `  <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
@@ -67,22 +87,21 @@ function navHtml() {
         <span class="hamburger-bar" aria-hidden="true"></span>
         <span class="hamburger-bar" aria-hidden="true"></span>
       </button>
-      <ul id="nav-menu" class="nav-links" role="list">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/gala.html">Gala</a></li>
-        <li><a href="/events.html">Events</a></li>
-        <li><a href="/membership.html">Membership</a></li>
-        <li><a href="/volunteer.html">Volunteer</a></li>
-        <li><a href="/news/">News</a></li>
-        <li><a href="/donate.html" class="nav-donate">Donate</a></li>
-      </ul>
+      <div id="nav-menu" class="nav-menu">
+        <ul class="nav-links" role="list">
+${items}
+        </ul>
+        <a href="${donateLink.href}" class="nav-donate"${donateAria}>${donateLink.label}</a>
+      </div>
     </nav>
   </header>`;
 }
 
-/** Shared footer HTML included in each generated news post page. */
+/** Shared footer HTML. Uses the same NAV_LINKS list as the header. */
 function footerHtml() {
+  const items = NAV_LINKS.map(({ href, label }) =>
+    `          <li><a href="${href}">${label}</a></li>`
+  ).join('\n');
   return `  <footer class="site-footer">
     <div class="footer-inner">
       <div>
@@ -91,14 +110,7 @@ function footerHtml() {
       </div>
       <nav aria-label="Footer navigation">
         <ul class="footer-nav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/gala.html">Gala</a></li>
-          <li><a href="/events.html">Events</a></li>
-          <li><a href="/membership.html">Membership</a></li>
-          <li><a href="/volunteer.html">Volunteer</a></li>
-          <li><a href="/news/">News</a></li>
-          <li><a href="/donate.html">Donate</a></li>
+${items}
         </ul>
       </nav>
       <div>
@@ -141,7 +153,7 @@ function generateNewsPostPage({ data, html, slug }) {
 
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-${navHtml()}
+${navHtml('/news/')}
 
   <main id="main-content">
     <article class="section">
@@ -364,6 +376,25 @@ async function build() {
 
   // 5. Events are now served dynamically via netlify/functions/events.js —
   //    no build-time injection needed.
+
+  // 6. Inject shared nav + footer into every static page (markers must already
+  //    exist in the HTML — see CLAUDE.md for the BUILD:* marker convention).
+  const STATIC_PAGES = [
+    { file: 'index.html',      currentPath: '/' },
+    { file: 'about.html',      currentPath: '/about.html' },
+    { file: 'gala.html',       currentPath: '/gala.html' },
+    { file: 'events.html',     currentPath: '/events.html' },
+    { file: 'membership.html', currentPath: '/membership.html' },
+    { file: 'donate.html',     currentPath: '/donate.html' },
+    { file: 'volunteer.html',  currentPath: '/volunteer.html' },
+    { file: 'news/index.html', currentPath: '/news/' },
+  ];
+  for (const { file, currentPath } of STATIC_PAGES) {
+    const filePath = join(PAGES, file);
+    injectBetweenMarkers(filePath, 'BUILD:NAV_START',    'BUILD:NAV_END',    navHtml(currentPath));
+    injectBetweenMarkers(filePath, 'BUILD:FOOTER_START', 'BUILD:FOOTER_END', footerHtml());
+  }
+  console.log(`[build] Injected nav + footer into ${STATIC_PAGES.length} static pages.`);
 
   console.log('[build] Done.');
 }

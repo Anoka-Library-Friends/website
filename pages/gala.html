@@ -56,44 +56,33 @@
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <header class="site-header">
-      <nav class="site-nav" aria-label="Main navigation">
-        <a
-          href="/"
-          class="nav-logo"
-          aria-label="Friends of the Anoka County Library — home"
-        >
-          <img
-            src="/images/logo-icon-white.svg"
-            alt=""
-            width="40"
-            height="40"
-            aria-hidden="true"
-          />
-          <span class="nav-logo-text">Friends of Anoka County Library</span>
-        </a>
-        <button
-          class="nav-toggle"
-          aria-expanded="false"
-          aria-controls="nav-menu"
-          aria-label="Open menu"
-        >
-          <span class="hamburger-bar" aria-hidden="true"></span>
-          <span class="hamburger-bar" aria-hidden="true"></span>
-          <span class="hamburger-bar" aria-hidden="true"></span>
-        </button>
-        <ul id="nav-menu" class="nav-links" role="list">
+    <!-- BUILD:NAV_START -->
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
+        <img src="/images/logo-icon-white.svg" alt="" width="40" height="40" aria-hidden="true">
+        <span class="nav-logo-text">Friends of Anoka County Library</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+        <span class="hamburger-bar" aria-hidden="true"></span>
+      </button>
+      <div id="nav-menu" class="nav-menu">
+        <ul class="nav-links" role="list">
           <li><a href="/">Home</a></li>
           <li><a href="/about.html">About</a></li>
           <li><a href="/gala.html" aria-current="page">Gala</a></li>
           <li><a href="/events.html">Events</a></li>
           <li><a href="/membership.html">Membership</a></li>
           <li><a href="/volunteer.html">Volunteer</a></li>
-          <li><a href="/blog/">Blog</a></li>
-          <li><a href="/donate.html" class="nav-donate">Donate</a></li>
+          <li><a href="/news/">News</a></li>
         </ul>
-      </nav>
-    </header>
+        <a href="/donate.html" class="nav-donate">Donate</a>
+      </div>
+    </nav>
+  </header>
+<!-- BUILD:NAV_END -->
 
     <main id="main-content">
       <section class="section">
@@ -187,9 +176,9 @@
               Andover, MN 55304
             </p>
             <p class="mt-sm">Ticketing opens June 1.</p>
-            <p class="gala-ticket-cta">
+            <p class="gala-ticket-cta gala-cta">
               <a
-                class="btn btn--primary"
+                class="btn btn--primary btn--lg"
                 href="https://www.zeffy.com/en-US/ticketing/an-evening-with-friends-and-authors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -198,72 +187,138 @@
             </p>
           </div>
 
-          <!-- Donors -->
-          <h2 class="mt-xl">Donors</h2>
+          <!-- Sponsorship Levels & Benefits -->
+          <h2 class="mt-xl">Sponsorship Levels &amp; Benefits</h2>
           <p>
             Join us in keeping Anoka County Library strong, accessible, and
-            inspiring for our community. Donors may give at the following levels
-            of recognition:
+            inspiring for our community. Sponsors are recognized at the
+            following levels:
           </p>
 
-          <div class="donor-grid">
-            <div class="donor-tier">
-              <h3>Supporter: $100&ndash;$499</h3>
-              <ul>
-                <li>Your name in the event program</li>
-                <li>Your name in the event slideshow</li>
-                <li>
-                  A social media thank-you post (general listing on one post)
-                </li>
-                <li>Inclusion in the fall email blast/newsletter</li>
-              </ul>
-            </div>
-            <div class="donor-tier">
-              <h3>Sustainer: $500&ndash;$999</h3>
-              <ul>
-                <li>Your logo in the event program</li>
-                <li>Your logo on event signage and slideshow</li>
-                <li>
-                  A social media thank-you post (general listing on one post)
-                </li>
-                <li>Inclusion in the fall email blast/newsletter</li>
-                <li>
-                  Your name listed on our website sponsor page (for one year)
-                </li>
-              </ul>
-            </div>
-            <div class="donor-tier">
-              <h3>Patron: $1,000&ndash;$1,499</h3>
-              <ul>
-                <li>
-                  Your organization has a half-page ad in the event program
-                </li>
-                <li>Your logo in event signage and slideshow</li>
-                <li>
-                  Your organization featured on fall email blast/newsletter
-                </li>
-                <li>A dedicated social media highlight (1 post per sponsor)</li>
-                <li>Verbal recognition during the event</li>
-              </ul>
-            </div>
-            <div class="donor-tier">
-              <h3>Benefactor: $1,500+</h3>
-              <ul>
-                <li>
-                  Your organization has a full-page ad in the event program
-                </li>
-                <li>(2) complimentary event tickets</li>
-                <li>
-                  Your organization featured on the fall email blast/newsletter
-                </li>
-                <li>A dedicated page on the event slideshow with your logo</li>
-                <li>Verbal recognition during the event</li>
-                <li>Permission to display vendor materials at the event</li>
-              </ul>
-            </div>
+          <div class="sponsor-table-wrap" tabindex="0" role="region" aria-label="Sponsorship levels and benefits">
+            <table class="sponsor-table">
+              <caption class="sponsor-table__caption">
+                Sponsorship levels and benefits for the 2026 An Evening with
+                Friends &amp; Authors Gala
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col"><span class="sponsor-table__caption">Benefit</span></th>
+                  <th scope="col">
+                    <span class="sponsor-table__name">Supporter</span>
+                    <span class="sponsor-table__price">$100&ndash;$499</span>
+                  </th>
+                  <th scope="col">
+                    <span class="sponsor-table__name">Sustainer</span>
+                    <span class="sponsor-table__price">$500&ndash;$999</span>
+                  </th>
+                  <th scope="col">
+                    <span class="sponsor-table__name">Patron</span>
+                    <span class="sponsor-table__price">$1,000&ndash;$1,499</span>
+                  </th>
+                  <th scope="col">
+                    <span class="sponsor-table__name">Benefactor</span>
+                    <span class="sponsor-table__price">$1,500 &amp; up</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Name in event program</th>
+                  <td class="t--1" aria-label="Included">&#10003;</td>
+                  <td class="t--2">Logo</td>
+                  <td class="t--3">Logo</td>
+                  <td class="t--4">Logo</td>
+                </tr>
+                <tr>
+                  <th scope="row">Name on event slideshow</th>
+                  <td class="t--1" aria-label="Included">&#10003;</td>
+                  <td class="t--2" aria-label="Included">&#10003;</td>
+                  <td class="t--3" aria-label="Included">&#10003;</td>
+                  <td class="t--4">Individual slide</td>
+                </tr>
+                <tr>
+                  <th scope="row">Social media thank-you post</th>
+                  <td class="t--1" aria-label="Included">&#10003;</td>
+                  <td class="t--2" aria-label="Included">&#10003;</td>
+                  <td class="t--3" aria-label="Included">&#10003;</td>
+                  <td class="t--4">Logo</td>
+                </tr>
+                <tr>
+                  <th scope="row">Inclusion in the fall email newsletter</th>
+                  <td class="t--1" aria-label="Included">&#10003;</td>
+                  <td class="t--2" aria-label="Included">&#10003;</td>
+                  <td class="t--3" aria-label="Included">&#10003;</td>
+                  <td class="t--4" aria-label="Included">&#10003;</td>
+                </tr>
+                <tr>
+                  <th scope="row">Logo in the event program</th>
+                  <td class="t--1"></td>
+                  <td class="t--2" aria-label="Included">&#10003;</td>
+                  <td class="t--3" aria-label="Included">&#10003;</td>
+                  <td class="t--4" aria-label="Included">&#10003;</td>
+                </tr>
+                <tr>
+                  <th scope="row">Recognition on event signage</th>
+                  <td class="t--1"></td>
+                  <td class="t--2" aria-label="Included">&#10003;</td>
+                  <td class="t--3" aria-label="Included">&#10003;</td>
+                  <td class="t--4" aria-label="Included">&#10003;</td>
+                </tr>
+                <tr>
+                  <th scope="row">Listed on website sponsor page</th>
+                  <td class="t--1"></td>
+                  <td class="t--2" aria-label="Included">&#10003;</td>
+                  <td class="t--3" aria-label="Included">&#10003;</td>
+                  <td class="t--4" aria-label="Included">&#10003;</td>
+                </tr>
+                <tr>
+                  <th scope="row">Ad in event program</th>
+                  <td class="t--1"></td>
+                  <td class="t--2"></td>
+                  <td class="t--3">Half-page</td>
+                  <td class="t--4">Full-page</td>
+                </tr>
+                <tr>
+                  <th scope="row">Featured on fall email blast/newsletter</th>
+                  <td class="t--1"></td>
+                  <td class="t--2"></td>
+                  <td class="t--3" aria-label="Included">&#10003;</td>
+                  <td class="t--4" aria-label="Included">&#10003;</td>
+                </tr>
+                <tr>
+                  <th scope="row">Dedicated social media thank-you post</th>
+                  <td class="t--1"></td>
+                  <td class="t--2"></td>
+                  <td class="t--3" aria-label="Included">&#10003;</td>
+                  <td class="t--4" aria-label="Included">&#10003;</td>
+                </tr>
+                <tr>
+                  <th scope="row">Verbal recognition during the event</th>
+                  <td class="t--1"></td>
+                  <td class="t--2"></td>
+                  <td class="t--3" aria-label="Included">&#10003;</td>
+                  <td class="t--4" aria-label="Included">&#10003;</td>
+                </tr>
+                <tr>
+                  <th scope="row">Two complimentary event tickets</th>
+                  <td class="t--1"></td>
+                  <td class="t--2"></td>
+                  <td class="t--3"></td>
+                  <td class="t--4" aria-label="Included">&#10003;</td>
+                </tr>
+                <tr>
+                  <th scope="row">Display vendor materials at the event</th>
+                  <td class="t--1"></td>
+                  <td class="t--2"></td>
+                  <td class="t--3"></td>
+                  <td class="t--4" aria-label="Included">&#10003;</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <p class="text-center mt-lg">
+          <p class="text-center mt-lg gala-cta">
             <a
               class="btn btn--primary btn--lg"
               href="https://www.zeffy.com/en-US/donation-form/friends-of-acl-gala-sponsor-donations"
@@ -350,9 +405,9 @@
             </div>
           </div>
 
-          <p>
+          <p class="gala-cta">
             <a
-              class="btn btn--primary"
+              class="btn btn--primary btn--lg"
               href="https://www.zeffy.com/en-US/ticketing/friends-of-the-anoka-county-library-donors-and-sponsors"
               target="_blank"
               rel="noopener noreferrer"
@@ -363,58 +418,39 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div>
-          <strong>Friends of the Anoka County Library</strong>
-          <p class="footer-address">
-            <!-- CONTENT: address — supplied by organization -->
-          </p>
-        </div>
-        <nav aria-label="Footer navigation">
-          <ul class="footer-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/gala.html">Gala</a></li>
-            <li><a href="/events.html">Events</a></li>
-            <li><a href="/membership.html">Membership</a></li>
-            <li><a href="/volunteer.html">Volunteer</a></li>
-            <li><a href="/blog/">Blog</a></li>
-            <li><a href="/donate.html">Donate</a></li>
-          </ul>
-        </nav>
-        <div>
-          <strong>Connect With Us</strong>
-          <ul class="footer-contact">
-            <li>
-              <a
-                href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Facebook</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.anokacountymn.gov/4180/Libraries"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Anoka County Library</a
-              >
-            </li>
-            <li>
-              <a href="mailto:FriendsoftheACL@gmail.com"
-                >FriendsoftheACL@gmail.com</a
-              >
-            </li>
-          </ul>
-        </div>
+    <!-- BUILD:FOOTER_START -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Friends of the Anoka County Library</strong>
+        <p class="footer-tagline">Raising funds and awareness for the Anoka County Library since 2003.</p>
       </div>
-      <p class="footer-copyright">
-        &copy; <span id="footer-year"></span> Friends of the Anoka County
-        Library. All rights reserved.
-      </p>
-    </footer>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/gala.html">Gala</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/membership.html">Membership</a></li>
+          <li><a href="/volunteer.html">Volunteer</a></li>
+          <li><a href="/news/">News</a></li>
+          <li><a href="/donate.html">Donate</a></li>
+        </ul>
+      </nav>
+      <div>
+        <strong>Connect With Us</strong>
+        <ul class="footer-contact">
+          <li><a href="https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.anokacountymn.gov/4180/Libraries" target="_blank" rel="noopener noreferrer">Anoka County Library</a></li>
+          <li><a href="mailto:FriendsoftheACL@gmail.com">FriendsoftheACL@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copyright">
+      &copy; <span id="footer-year"></span> Friends of the Anoka County Library. All rights reserved.
+    </p>
+  </footer>
+<!-- BUILD:FOOTER_END -->
 
     <script defer src="/main.js"></script>
   </body>
