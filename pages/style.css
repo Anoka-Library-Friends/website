@@ -533,7 +533,6 @@ p:last-child { margin-bottom: 0; }
   .nav-links a {
     width: 100%;
     padding: var(--space-sm) 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   /* Nav link ::after underline doesn't make sense stacked — remove it */
@@ -541,13 +540,10 @@ p:last-child { margin-bottom: 0; }
     display: none;
   }
 
-  /* Give donate button extra breathing room in the hamburger menu */
-  .nav-links li:last-child {
-    margin-top: var(--space-sm);
-  }
-
   .nav-links .nav-donate {
+    margin-left: 0;
     padding: 0.5rem 1rem;
+    align-self: flex-start;
   }
 }
 
@@ -1311,6 +1307,14 @@ p:last-child { margin-bottom: 0; }
 
 .author-entry p {
   margin: 0;
+}
+
+@media (max-width: 640px) {
+  .author-entry {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+  }
 }
 
 .donor-grid {
