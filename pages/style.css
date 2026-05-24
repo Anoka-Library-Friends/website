@@ -169,6 +169,10 @@ p:last-child { margin-bottom: 0; }
   padding-block: var(--space-xl);
 }
 
+.section--flush-bottom {
+  padding-block-end: 0;
+}
+
 .section--alt {
   background: var(--color-sky);
   box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.05), inset 0 -4px 12px rgba(0, 0, 0, 0.05);
@@ -202,6 +206,11 @@ p:last-child { margin-bottom: 0; }
   margin: 2rem 0;
 }
 
+/* Copy-left / image-right variant */
+.media-row--reverse {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
 .media-row img {
   width: 100%;
   height: auto;
@@ -209,7 +218,8 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (max-width: 720px) {
-  .media-row { grid-template-columns: 1fr; }
+  .media-row,
+  .media-row--reverse { grid-template-columns: 1fr; }
 }
 
 /* =============================================
@@ -628,14 +638,42 @@ p:last-child { margin-bottom: 0; }
   max-width: 28ch;
 }
 
-.footer-nav a,
-.footer-contact a {
+.footer-nav a {
   display: block;
   padding-block: 0.625rem;  /* 10px vertical → ~44px tap target (WCAG 2.5.5) */
 }
 
 .footer-nav li:first-child a {
   padding-top: 0;
+}
+
+.footer-contact li {
+  padding-block: 0.625rem;
+}
+
+.footer-contact li:first-child {
+  padding-top: 0;
+}
+
+.footer-contact a {
+  display: block;
+}
+
+.footer-links {
+  list-style: none;
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-links svg {
+  display: block;
 }
 
 @media (max-width: 767px) {
@@ -799,7 +837,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .news-post__body {
-  max-width: 720px;
+  max-width: 100%;
 }
 
 .news-post__body h2 { margin-top: var(--space-lg); }
@@ -839,6 +877,8 @@ p:last-child { margin-bottom: 0; }
   border-radius: var(--radius-lg);
   overflow: hidden;
   aspect-ratio: 4 / 3;
+  max-width: 720px;
+  margin-inline: auto;
 }
 
 .calendar-wrapper iframe {
@@ -886,11 +926,12 @@ p:last-child { margin-bottom: 0; }
 }
 
 [data-page="donate"] .section {
+  padding-block-start: var(--space-sm);
   padding-block-end: var(--space-md);
 }
 
 [data-page="donate"] .donate-section {
-  padding-block-start: var(--space-md);
+  padding-block: var(--space-md);
 }
 
 .btn--paypal {
@@ -1164,6 +1205,12 @@ p:last-child { margin-bottom: 0; }
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+}
+
+.figure-img--sm {
+  max-width: 560px;
+  display: block;
+  margin-inline: auto;
 }
 
 /* Large CTA button variant */
