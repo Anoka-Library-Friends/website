@@ -59,7 +59,7 @@ Static pages in `pages/` each contain their own full `<nav>` and `<footer>` HTML
 
 ### Decap CMS + Netlify Identity
 
-`pages/admin/` is a Decap CMS instance backed by `git-gateway` + Netlify Identity with GitHub OAuth. Collections for `blog`, `volunteers`, and `board-members` are defined in `pages/admin/config.yml`. Editors publishing via `/admin` commit Markdown to `main`, which triggers a Netlify build that re-runs the injection pipeline.
+`pages/admin/` is a Decap CMS instance backed by `git-gateway` + Netlify Identity. Editors are invited via Netlify Identity and log in with an email/password — they do **not** need a GitHub account; `git-gateway` commits on their behalf. Collections for `news`, `volunteers`, and `board-members` are defined in `pages/admin/config.yml`. Editors publishing via `/admin` commit Markdown to `main`, which triggers a Netlify build that re-runs the injection pipeline.
 
 ### CSP is strict and route-scoped
 
