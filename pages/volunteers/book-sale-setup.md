@@ -6,5 +6,5 @@ description: Help us set up tables, sort donated books, and arrange the sale flo
 signup_url: https://www.signupgenius.com/REPLACE_WITH_ACTUAL_LINK
 location: Anoka County Library Main Branch
 volunteers_needed: 15
-contact: volunteer@example.org
+contact: FriendsOfAnokaCoLib@gmail.com
 ---
