@@ -59,7 +59,7 @@ const NAV_LINKS = [
   { href: '/',                label: 'Home' },
   { href: '/about.html',      label: 'About' },
   { href: '/gala.html',       label: 'Gala' },
-  { href: '/events.html',     label: 'Events' },
+  { href: '/events.html',     label: 'Calendar' },
   { href: '/membership.html', label: 'Membership' },
   { href: '/volunteer.html',  label: 'Volunteer' },
   { href: '/news/',           label: 'News' },
@@ -71,7 +71,7 @@ const NAV_LINKS = [
  *  of the <ul> inside the .nav-menu wrapper (it's a CTA, not a regular nav item). */
 function navHtml(currentPath = '') {
   const donateLink = NAV_LINKS.find(l => l.donate);
-  const items = NAV_LINKS.filter(l => !l.donate).map(({ href, label }) => {
+  const items = NAV_LINKS.filter(l => !l.donate && l.href !== '/').map(({ href, label }) => {
     const ariaAttr = href === currentPath ? ' aria-current="page"' : '';
     return `          <li><a href="${href}"${ariaAttr}>${label}</a></li>`;
   }).join('\n');
@@ -80,7 +80,7 @@ function navHtml(currentPath = '') {
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
         <img src="/images/logo-icon-white.svg" alt="" width="40" height="40" aria-hidden="true">
-        <span class="nav-logo-text">Friends of Anoka County Library</span>
+        <span class="nav-logo-text">Friends of the Anoka County Library</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="hamburger-bar" aria-hidden="true"></span>

@@ -5,10 +5,9 @@ import { test, expect } from '@playwright/test';
 //        page-specific content, external link attributes, build output
 
 const NAV_LINKS = [
-  { text: 'Home',             href: '/' },
   { text: 'About',  href: '/about.html' },
   { text: 'Gala',             href: '/gala.html' },
-  { text: 'Events',           href: '/events.html' },
+  { text: 'Calendar',         href: '/events.html' },
   { text: 'Membership',       href: '/membership.html' },
   { text: 'Volunteer',        href: '/volunteer.html' },
   { text: 'News',             href: '/news/' },

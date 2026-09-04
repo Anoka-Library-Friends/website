@@ -77,7 +77,7 @@ test('focus ring visible on nav links', async ({ page }) => {
   await page.goto('/');
   // Tab to skip link, then Tab again to reach first nav link
   await page.keyboard.press('Tab'); // skip link
-  await page.keyboard.press('Tab'); // first nav link (Home)
+  await page.keyboard.press('Tab'); // logo link (home)
   const focused = page.locator(':focus');
   const outlineStyle = await focused.evaluate(el => getComputedStyle(el).outlineStyle);
   expect(outlineStyle).not.toBe('none');

@@ -4,9 +4,8 @@ import { test, expect } from '@playwright/test';
 //        keyboard navigation, focus management
 
 const PAGES = [
-  { url: '/',               activeText: 'Home' },
   { url: '/about.html',     activeText: 'About' },
-  { url: '/events.html',    activeText: 'Events' },
+  { url: '/events.html',    activeText: 'Calendar' },
   { url: '/membership.html',activeText: 'Membership' },
   { url: '/volunteer.html', activeText: 'Volunteer' },
   { url: '/news/',          activeText: 'News' },
