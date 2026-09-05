@@ -390,6 +390,8 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
   gap: 0;
   flex-shrink: 0;  /* never let the menu shrink below its content — see .nav-logo */
+  height: 40px;  /* match .nav-logo img so both flex items share one exact
+                    height instead of being independently auto-centered */
 }
 
 .nav-links {

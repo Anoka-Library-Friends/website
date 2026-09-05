@@ -23,6 +23,7 @@ const NEWS_SRC  = join(PAGES, 'news');
 const VOL_SRC   = join(PAGES, 'volunteers');
 const BOARD_SRC  = join(PAGES, 'board-members');
 const BOOK_SALE_SRC = join(PAGES, 'book-sale.md');
+const GALA_SRC = join(PAGES, 'gala.md');
 const POSTS_PER_PAGE = 10;
 const RECENT_POSTS_COUNT = 3;
 
@@ -315,6 +316,22 @@ function bookSaleHtml(post) {
     </section>`;
 }
 
+// ── Singleton Gala hero image HTML ────────────────────────────────────────────
+
+function escapeAttr(str) {
+  return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
+function galaHeroHtml(post) {
+  const src = post?.data.image || '/images/gala/gala-flyer.jpg';
+  const alt = post?.data.image_alt || '';
+  return `<img
+            src="${escapeAttr(src)}"
+            alt="${escapeAttr(alt)}"
+            class="gala-hero-img"
+          />`;
+}
+
 // ── Main build orchestration ──────────────────────────────────────────────────
 
 async function build() {
@@ -437,7 +454,17 @@ async function build() {
   );
   console.log('[build] Injected Book Sale content into book-sale.html');
 
-  // 7. Inject shared nav + footer into every static page (markers must already
+  // 7. Gala singleton hero image (content managed as a single file in Decap CMS)
+  const galaPost = readSingleton(GALA_SRC);
+  injectBetweenMarkers(
+    join(PAGES, 'gala.html'),
+    'BUILD:GALA_HERO_START',
+    'BUILD:GALA_HERO_END',
+    galaHeroHtml(galaPost)
+  );
+  console.log('[build] Injected Gala hero image into gala.html');
+
+  // 8. Inject shared nav + footer into every static page (markers must already
   //    exist in the HTML — see CLAUDE.md for the BUILD:* marker convention).
   const STATIC_PAGES = [
     { file: 'index.html',      currentPath: '/' },
