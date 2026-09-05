@@ -22,6 +22,8 @@ const PAGES = join(ROOT, 'pages');
 const NEWS_SRC  = join(PAGES, 'news');
 const VOL_SRC   = join(PAGES, 'volunteers');
 const BOARD_SRC  = join(PAGES, 'board-members');
+const BOOK_SALE_SRC = join(PAGES, 'book-sale.md');
+const GALA_SRC = join(PAGES, 'gala.md');
 const POSTS_PER_PAGE = 10;
 const RECENT_POSTS_COUNT = 3;
 
@@ -36,6 +38,13 @@ function readMarkdownDir(dir) {
       const raw = readFileSync(join(dir, filename), 'utf8');
       return parsePost(raw, filename);
     });
+}
+
+/** Read and parse a singleton Markdown file. Returns null if it doesn't exist. */
+function readSingleton(filePath) {
+  if (!existsSync(filePath)) return null;
+  const raw = readFileSync(filePath, 'utf8');
+  return parsePost(raw, filePath);
 }
 
 /** Replace content between two HTML comment markers in a file (in-place). */
@@ -59,6 +68,7 @@ const NAV_LINKS = [
   { href: '/',                label: 'Home' },
   { href: '/about.html',      label: 'About' },
   { href: '/gala.html',       label: 'Gala' },
+  { href: '/book-sale.html',  label: 'Book Sale' },
   { href: '/events.html',     label: 'Calendar' },
   { href: '/membership.html', label: 'Membership' },
   { href: '/volunteer.html',  label: 'Volunteer' },
@@ -280,6 +290,48 @@ function boardMembersHtml(members) {
   }).join('\n');
 }
 
+// ── Singleton Book Sale page HTML ─────────────────────────────────────────────
+
+function bookSaleHtml(post) {
+  const title    = post?.data.title    || 'Book Sale';
+  const subtitle = post?.data.subtitle
+    ? `<p class="page-banner__subtitle">${post.data.subtitle}</p>`
+    : '';
+  const image = post?.data.image
+    ? `<img src="${post.data.image}" alt="" class="book-sale-hero-img" loading="lazy">`
+    : '';
+  const body = post?.html || '<p>Book sale details coming soon. Check back soon!</p>';
+
+  return `<section class="page-banner">
+      <div class="container">
+        <h1>${title}</h1>
+        ${subtitle}
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        ${image}
+        ${body}
+      </div>
+    </section>`;
+}
+
+// ── Singleton Gala hero image HTML ────────────────────────────────────────────
+
+function escapeAttr(str) {
+  return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
+function galaHeroHtml(post) {
+  const src = post?.data.image || '/images/gala/gala-flyer.jpg';
+  const alt = post?.data.image_alt || '';
+  return `<img
+            src="${escapeAttr(src)}"
+            alt="${escapeAttr(alt)}"
+            class="gala-hero-img"
+          />`;
+}
+
 // ── Main build orchestration ──────────────────────────────────────────────────
 
 async function build() {
@@ -392,12 +444,33 @@ async function build() {
   // 5. Events are now served dynamically via netlify/functions/events.js —
   //    no build-time injection needed.
 
-  // 6. Inject shared nav + footer into every static page (markers must already
+  // 6. Book Sale singleton page (content managed as a single file in Decap CMS)
+  const bookSalePost = readSingleton(BOOK_SALE_SRC);
+  injectBetweenMarkers(
+    join(PAGES, 'book-sale.html'),
+    'BUILD:BOOK_SALE_START',
+    'BUILD:BOOK_SALE_END',
+    bookSaleHtml(bookSalePost)
+  );
+  console.log('[build] Injected Book Sale content into book-sale.html');
+
+  // 7. Gala singleton hero image (content managed as a single file in Decap CMS)
+  const galaPost = readSingleton(GALA_SRC);
+  injectBetweenMarkers(
+    join(PAGES, 'gala.html'),
+    'BUILD:GALA_HERO_START',
+    'BUILD:GALA_HERO_END',
+    galaHeroHtml(galaPost)
+  );
+  console.log('[build] Injected Gala hero image into gala.html');
+
+  // 8. Inject shared nav + footer into every static page (markers must already
   //    exist in the HTML — see CLAUDE.md for the BUILD:* marker convention).
   const STATIC_PAGES = [
     { file: 'index.html',      currentPath: '/' },
     { file: 'about.html',      currentPath: '/about.html' },
     { file: 'gala.html',       currentPath: '/gala.html' },
+    { file: 'book-sale.html',  currentPath: '/book-sale.html' },
     { file: 'events.html',     currentPath: '/events.html' },
     { file: 'membership.html', currentPath: '/membership.html' },
     { file: 'donate.html',     currentPath: '/donate.html' },

@@ -153,3 +153,49 @@ collections:
         name: "bio"
         widget: "text"
         required: false
+
+  # ── Singleton Pages ────────────────────────────────────────────────────────
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Gala Page"
+        name: "gala"
+        file: "pages/gala.md"
+        fields:
+          - label: "Invite Flyer Image"
+            name: "image"
+            widget: "image"
+            required: true
+            hint: "The hero invitation flyer shown at the top of the gala page."
+
+          - label: "Image Alt Text"
+            name: "image_alt"
+            widget: "string"
+            required: false
+            hint: "Describes the flyer image for screen readers (e.g. event name, date, venue)."
+
+      - label: "Book Sale Page"
+        name: "book-sale"
+        file: "pages/book-sale.md"
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: true
+
+          - label: "Subtitle"
+            name: "subtitle"
+            widget: "string"
+            hint: "Shown below the title at the top of the page."
+            required: false
+
+          - label: "Featured Image"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Optional. Shown at the top of the page content."
+
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: true

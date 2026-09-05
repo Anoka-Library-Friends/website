@@ -5,6 +5,7 @@ import { test, expect } from '@playwright/test';
 
 const PAGES = [
   { url: '/about.html',     activeText: 'About' },
+  { url: '/book-sale.html', activeText: 'Book Sale' },
   { url: '/events.html',    activeText: 'Calendar' },
   { url: '/membership.html',activeText: 'Membership' },
   { url: '/volunteer.html', activeText: 'Volunteer' },
@@ -17,7 +18,8 @@ const PAGES = [
 for (const { url, activeText } of PAGES) {
   test(`active nav link: "${activeText}" is marked aria-current on ${url}`, async ({ page }) => {
     await page.goto(url);
-    const activeLink = page.locator('.nav-links a[aria-current="page"]');
+    // .nav-menu covers both .nav-links items and the sibling .nav-donate CTA
+    const activeLink = page.locator('.nav-menu a[aria-current="page"]');
     await expect(activeLink).toHaveCount(1);
     await expect(activeLink).toHaveText(activeText);
   });
@@ -25,7 +27,7 @@ for (const { url, activeText } of PAGES) {
 
 test('news post page marks "News" nav link as active', async ({ page }) => {
   await page.goto('/news/fall-book-sale.html');
-  const activeLink = page.locator('.nav-links a[aria-current="page"]');
+  const activeLink = page.locator('.nav-menu a[aria-current="page"]');
   await expect(activeLink).toHaveCount(1);
   await expect(activeLink).toHaveText('News');
 });
@@ -137,10 +139,10 @@ test('skip link becomes visible on focus and targets #main-content', async ({ pa
 test('footer nav links all present and functional', async ({ page }) => {
   await page.goto('/');
   const footerLinks = page.locator('.footer-nav a');
-  await expect(footerLinks).toHaveCount(8);
+  await expect(footerLinks).toHaveCount(9);
 
-  const expectedHrefs = ['/', '/about.html', '/gala.html', '/events.html', '/membership.html',
-                         '/volunteer.html', '/news/', '/donate.html'];
+  const expectedHrefs = ['/', '/about.html', '/gala.html', '/book-sale.html', '/events.html',
+                         '/membership.html', '/volunteer.html', '/news/', '/donate.html'];
   const actualHrefs = await footerLinks.evaluateAll(links => links.map(a => a.getAttribute('href')));
   expect(actualHrefs).toEqual(expectedHrefs);
 });
