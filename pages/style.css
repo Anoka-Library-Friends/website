@@ -357,6 +357,7 @@ p:last-child { margin-bottom: 0; }
   gap: var(--space-sm);
   color: var(--color-sky);
   text-decoration: none;
+  flex-shrink: 0;  /* never let the logo shrink below its content — nowrap text would overflow into the nav-menu instead of reflowing */
 }
 
 .nav-logo img {
@@ -388,6 +389,7 @@ p:last-child { margin-bottom: 0; }
   display: flex;
   align-items: center;
   gap: 0;
+  flex-shrink: 0;  /* never let the menu shrink below its content — see .nav-logo */
 }
 
 .nav-links {
@@ -408,6 +410,7 @@ p:last-child { margin-bottom: 0; }
   border-radius: var(--radius);
   transition: color 0.2s;
   position: relative;
+  white-space: nowrap;  /* multi-word labels (e.g. "Book Sale") must never wrap mid-item on desktop */
 }
 
 .nav-links a:not(.nav-donate)::after {
@@ -500,7 +503,11 @@ p:last-child { margin-bottom: 0; }
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 767px) {
+/* Switches to the hamburger menu below 1200px — the full desktop nav row
+   (logo + 8 links + Donate CTA) needs ~1170px to lay out without overflow;
+   1200px keeps a real safety margin above that (font/OS rendering variance)
+   while still showing the full row at the common 1280px viewport width. */
+@media (max-width: 1200px) {
   .nav-toggle { display: flex; }
 
   /* The wrapper becomes the absolute-positioned dropdown panel */
@@ -1331,6 +1338,17 @@ p:last-child { margin-bottom: 0; }
    GALA PAGE
    ============================================= */
 .gala-hero-img {
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  margin: 0 auto var(--space-xl);
+  border-radius: var(--radius-lg);
+}
+
+/* =============================================
+   BOOK SALE PAGE
+   ============================================= */
+.book-sale-hero-img {
   width: 100%;
   max-width: 800px;
   display: block;

@@ -7,6 +7,7 @@ import { test, expect } from '@playwright/test';
 const NAV_LINKS = [
   { text: 'About',  href: '/about.html' },
   { text: 'Gala',             href: '/gala.html' },
+  { text: 'Book Sale',        href: '/book-sale.html' },
   { text: 'Calendar',         href: '/events.html' },
   { text: 'Membership',       href: '/membership.html' },
   { text: 'Volunteer',        href: '/volunteer.html' },
@@ -20,10 +21,11 @@ async function checkSharedElements(page) {
   // Skip link is present (may not be visible until focused)
   await expect(page.locator('.skip-link')).toHaveAttribute('href', '#main-content');
 
-  // All nav links present
+  // All nav links present (Donate lives in .nav-menu as a sibling of .nav-links,
+  // styled as a CTA button rather than a regular list item)
   for (const link of NAV_LINKS) {
     await expect(
-      page.locator('.nav-links a', { hasText: link.text }).first()
+      page.locator('.nav-menu a', { hasText: link.text }).first()
     ).toBeVisible();
   }
 
@@ -82,6 +84,23 @@ test('about page: title, h1, page banner, sections, contact anchor', async ({ pa
 
   // #contact anchor exists for deep-linking
   await expect(page.locator('#contact')).toBeAttached();
+
+  // Donate FAB present
+  await expect(page.locator('.donate-fab')).toBeVisible();
+});
+
+// ── book-sale.html ────────────────────────────────────────────────────────────
+
+test('book sale page: title, h1, page banner, singleton CMS content', async ({ page }) => {
+  await page.goto('/book-sale.html');
+  await expect(page).toHaveTitle(/Book Sale/);
+  await expect(page.locator('h1')).toHaveText('Book Sale');
+  await expect(page.locator('.page-banner')).toBeVisible();
+  await checkSharedElements(page);
+
+  // Build should have injected the singleton pages/book-sale.md content
+  await expect(page.locator('.page-banner__subtitle')).toBeVisible();
+  await expect(page.locator('main h2', { hasText: 'Next Sale' })).toBeVisible();
 
   // Donate FAB present
   await expect(page.locator('.donate-fab')).toBeVisible();
@@ -258,6 +277,6 @@ test('home page: recent post links navigate to correct news post pages', async (
 
 test('donate nav link has nav-donate class for accent styling', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('.nav-links a.nav-donate')).toBeVisible();
-  await expect(page.locator('.nav-links a.nav-donate')).toHaveAttribute('href', '/donate.html');
+  await expect(page.locator('.nav-menu a.nav-donate')).toBeVisible();
+  await expect(page.locator('.nav-menu a.nav-donate')).toHaveAttribute('href', '/donate.html');
 });

@@ -153,3 +153,33 @@ collections:
         name: "bio"
         widget: "text"
         required: false
+
+  # ── Singleton Pages ────────────────────────────────────────────────────────
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Book Sale Page"
+        name: "book-sale"
+        file: "pages/book-sale.md"
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: true
+
+          - label: "Subtitle"
+            name: "subtitle"
+            widget: "string"
+            hint: "Shown below the title at the top of the page."
+            required: false
+
+          - label: "Featured Image"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Optional. Shown at the top of the page content."
+
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: true
