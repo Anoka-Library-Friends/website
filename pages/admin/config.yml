@@ -158,6 +158,22 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
+      - label: "Gala Page"
+        name: "gala"
+        file: "pages/gala.md"
+        fields:
+          - label: "Invite Flyer Image"
+            name: "image"
+            widget: "image"
+            required: true
+            hint: "The hero invitation flyer shown at the top of the gala page."
+
+          - label: "Image Alt Text"
+            name: "image_alt"
+            widget: "string"
+            required: false
+            hint: "Describes the flyer image for screen readers (e.g. event name, date, venue)."
+
       - label: "Book Sale Page"
         name: "book-sale"
         file: "pages/book-sale.md"
