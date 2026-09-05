@@ -1,6 +1,6 @@
 ---
-title: "Book Sale"
-subtitle: "Thousands of gently used books at great prices — every dollar supports the Anoka County Library"
+title: Book Sale
+subtitle: Thousands of gently used books at great prices
 ---
 
 Friends of the Anoka County Library holds book sales three times a year — fall, winter, and spring. Each sale offers thousands of gently used books, DVDs, and CDs sorted by genre, with prices starting at fifty cents. Every dollar raised goes directly toward funding library programs, materials, and services.
