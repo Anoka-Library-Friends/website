@@ -1,35 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Friends of the Anoka County Library | Anoka, MN</title>
-  <meta name="description" content="Supporting the Anoka County Library through advocacy, fundraising, and community programming.">
-  <link rel="canonical" href="https://www.PLACEHOLDER-DOMAIN.org/">
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.PLACEHOLDER-DOMAIN.org/">
-  <meta property="og:title" content="Friends of the Anoka County Library | Anoka, MN">
-  <meta property="og:description" content="Supporting the Anoka County Library through advocacy, fundraising, and community programming.">
-  <meta property="og:image" content="https://www.PLACEHOLDER-DOMAIN.org/images/logo-color.webp">
-  <meta property="og:site_name" content="Friends of the Anoka County Library">
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Friends of the Anoka County Library | Anoka, MN">
-  <meta name="twitter:description" content="Supporting the Anoka County Library through advocacy, fundraising, and community programming.">
-  <meta name="twitter:image" content="https://www.PLACEHOLDER-DOMAIN.org/images/logo-color.webp">
-  <link rel="stylesheet" href="/style.css">
-  <!-- Google Fonts: update family names once brand is confirmed -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friends of the Anoka County Library | Anoka, MN</title>
+    <meta
+      name="description"
+      content="Supporting the Anoka County Library through advocacy, fundraising, and community programming."
+    />
+    <link rel="canonical" href="https://www.PLACEHOLDER-DOMAIN.org/" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.PLACEHOLDER-DOMAIN.org/" />
+    <meta
+      property="og:title"
+      content="Friends of the Anoka County Library | Anoka, MN"
+    />
+    <meta
+      property="og:description"
+      content="Supporting the Anoka County Library through advocacy, fundraising, and community programming."
+    />
+    <meta
+      property="og:image"
+      content="https://www.PLACEHOLDER-DOMAIN.org/images/logo-color.webp"
+    />
+    <meta
+      property="og:site_name"
+      content="Friends of the Anoka County Library"
+    />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Friends of the Anoka County Library | Anoka, MN"
+    />
+    <meta
+      name="twitter:description"
+      content="Supporting the Anoka County Library through advocacy, fundraising, and community programming."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.PLACEHOLDER-DOMAIN.org/images/logo-color.webp"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <!-- Google Fonts: update family names once brand is confirmed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600&family=Merriweather:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Skip to main content (screen readers + keyboard) -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Skip to main content (screen readers + keyboard) -->
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <!-- BUILD:NAV_START -->
+    <!-- BUILD:NAV_START -->
   <header class="site-header">
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-logo" aria-label="Friends of the Anoka County Library — home">
@@ -56,39 +82,58 @@
   </header>
 <!-- BUILD:NAV_END -->
 
-  <main id="main-content">
-
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <img src="/images/logo-white.webp" alt="Friends of the Anoka County Library logo" class="hero__logo" width="640" height="224">
-        <h1>Supporting Our Library, Strengthening Our Community</h1>
-        <p>The Friends of the Anoka County Library raises funds for, and increases awareness of, the Anoka County Library in its mission to connect the community to ideas, information, and inspiration.</p>
-        <div class="hero__actions">
-          <a href="/membership.html" class="btn btn--primary">Become a Friend</a>
-          <a href="/donate.html" class="btn btn--hero-outline">Make a Donation</a>
+    <main id="main-content">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container">
+          <img
+            src="/images/logo-white.webp"
+            alt="Friends of the Anoka County Library logo"
+            class="hero__logo"
+            width="640"
+            height="224"
+          />
+          <h1>Supporting Our Library, Strengthening Our Community</h1>
+          <p>
+            The Friends of the Anoka County Library raises funds for, and
+            increases awareness of, the Anoka County Library in its mission to
+            connect the community to ideas, information, and inspiration.
+          </p>
+          <div class="hero__actions">
+            <a href="/membership.html" class="btn btn--primary"
+              >Become a Friend</a
+            >
+            <a href="/donate.html" class="btn btn--hero-outline"
+              >Make a Donation</a
+            >
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Upcoming Events Strip — injected by build script -->
-    <section class="section events-strip">
-      <div class="container">
-        <h2>Upcoming Events</h2>
-        <ul class="event-list" role="list" data-src="/.netlify/functions/events?limit=3">
-<!-- BUILD:HOME_EVENTS_START -->
-          <li class="event-item"><div class="event-details"><p>Loading events…</p></div></li>
-<!-- BUILD:HOME_EVENTS_END -->
-        </ul>
-        <a href="/events.html" class="events-strip__link">See all events →</a>
-      </div>
-    </section>
+      <!-- Upcoming Events Strip — injected by build script -->
+      <section class="section events-strip">
+        <div class="container">
+          <h2>Upcoming Events</h2>
+          <ul
+            class="event-list"
+            role="list"
+            data-src="/.netlify/functions/events?limit=3"
+          >
+            <!-- BUILD:HOME_EVENTS_START -->
+            <li class="event-item">
+              <div class="event-details"><p>Loading events…</p></div>
+            </li>
+            <!-- BUILD:HOME_EVENTS_END -->
+          </ul>
+          <a href="/events.html" class="events-strip__link">See all events →</a>
+        </div>
+      </section>
 
-    <!-- Recent Blog Posts — injected by build script -->
-    <section class="section section--teal">
-      <div class="container">
-        <h2>Latest News</h2>
-        <!-- BUILD:RECENT_POSTS_START -->
+      <!-- Recent Blog Posts — injected by build script -->
+      <section class="section section--teal">
+        <div class="container">
+          <h2>Latest News</h2>
+          <!-- BUILD:RECENT_POSTS_START -->
 <div class="grid-3">
     <article class="card">
       <p class="card__date">July 4, 2026</p>
@@ -111,25 +156,31 @@
       <a href="/news/friends-info-june-6-events.html">Read More &rarr;</a>
     </article></div>
 <!-- BUILD:RECENT_POSTS_END -->
-        <p class="mt-md"><a href="/news/" class="btn btn--hero-outline">All Posts</a></p>
-      </div>
-    </section>
-
-    <!-- CTA Band -->
-    <section class="cta-band">
-      <div class="container">
-        <h2>Join the Friends Today</h2>
-        <p>Your membership directly funds library programs, equipment, and events for our entire community.</p>
-        <div class="cta-band__actions">
-          <a href="/membership.html" class="btn btn--cream">Become a Member</a>
-          <a href="/donate.html" class="btn btn--cream">Make a Donation</a>
+          <p class="mt-md">
+            <a href="/news/" class="btn btn--hero-outline">All Posts</a>
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main>
+      <!-- CTA Band -->
+      <section class="cta-band">
+        <div class="container">
+          <h2>Join the Friends Today</h2>
+          <p>
+            Your membership directly funds library programs, equipment, and
+            events for our entire community.
+          </p>
+          <div class="cta-band__actions">
+            <a href="/membership.html" class="btn btn--cream"
+              >Become a Friend</a
+            >
+            <a href="/donate.html" class="btn btn--cream">Make a Donation</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <!-- BUILD:FOOTER_START -->
+    <!-- BUILD:FOOTER_START -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div>
@@ -178,35 +229,34 @@
   </footer>
 <!-- BUILD:FOOTER_END -->
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Friends of the Anoka County Library",
-    "url": "https://www.PLACEHOLDER-DOMAIN.org",
-    "logo": "https://www.PLACEHOLDER-DOMAIN.org/images/logo-color.webp",
-    "description": "Supporting the Anoka County Library through advocacy, fundraising, and community programming.",
-    "sameAs": [
-      "https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "general"
-    },
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": "Anoka County, MN"
-    }
-  }
-  </script>
-  <script defer src="/main.js"></script>
-  <script defer src="/events-loader.js"></script>
-  <!--
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Friends of the Anoka County Library",
+        "url": "https://www.PLACEHOLDER-DOMAIN.org",
+        "logo": "https://www.PLACEHOLDER-DOMAIN.org/images/logo-color.webp",
+        "description": "Supporting the Anoka County Library through advocacy, fundraising, and community programming.",
+        "sameAs": [
+          "https://www.facebook.com/p/Friends-of-the-Anoka-County-Library-100066352844884/"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "general"
+        },
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Anoka County, MN"
+        }
+      }
+    </script>
+    <script defer src="/main.js"></script>
+    <script defer src="/events-loader.js"></script>
+    <!--
     Netlify Identity loader: only fires when an OAuth token is present in the
     URL hash (post-login redirect). Otherwise it's a no-op and the widget is
     never loaded, so no extra HTML is injected for normal visitors.
   -->
-  <script src="/netlify-identity.js"></script>
-
-</body>
+    <script src="/netlify-identity.js"></script>
+  </body>
 </html>

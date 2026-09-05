@@ -509,6 +509,8 @@ p:last-child { margin-bottom: 0; }
     top: var(--nav-height);
     left: 0;
     right: 0;
+    height: auto;  /* override the desktop rule's fixed 40px, which otherwise
+                      clips the dropdown to one row regardless of max-height */
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
