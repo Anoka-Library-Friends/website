@@ -7,6 +7,7 @@ import AxeBuilder from '@axe-core/playwright';
 const PAGES = [
   { name: 'home',           url: '/' },
   { name: 'about',          url: '/about.html' },
+  { name: 'book sale',      url: '/book-sale.html' },
   { name: 'events',         url: '/events.html' },
   { name: 'membership',     url: '/membership.html' },
   { name: 'donate',         url: '/donate.html' },

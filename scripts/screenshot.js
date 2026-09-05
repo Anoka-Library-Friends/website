@@ -25,6 +25,7 @@ const MIME = {
 const PAGES = [
   { name: 'home',                    path: '/' },
   { name: 'about',                   path: '/about.html' },
+  { name: 'book-sale',               path: '/book-sale.html' },
   { name: 'membership',              path: '/membership.html' },
   { name: 'donate',                  path: '/donate.html' },
   { name: 'events',                  path: '/events.html' },
