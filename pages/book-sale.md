@@ -1,6 +1,7 @@
 ---
 title: Book Sale
 subtitle: Thousands of gently used books at great prices
+image: /images/uploads/book-sale-friends.png
 ---
 Book sales are a big part of the Friends of the Anoka County Library (FACL) fundraising efforts for Anoka County Library. Friends has raised over $42,000 for the benefit of the Anoka County Library since it began holding book sales in 2021.  Each of the last three book sales raised over $3,000.00 for ACL. 
 
